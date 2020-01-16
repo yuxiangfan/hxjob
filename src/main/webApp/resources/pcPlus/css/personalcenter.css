@@ -1,0 +1,199 @@
+.left_box {
+    width: 230px;
+    height: 100%;
+    background-color: #fcfcfc;
+    float: left
+
+}
+
+.right_box {
+    height: auto;
+    right: 0px;
+    top: 0px;
+    width: 760px;
+    background-color: #fff;
+    float: right;
+}
+
+.left_box_images {
+    border-radius: 50%;
+    width: 174px;
+    height: 162px;
+    margin: auto;
+    display: block;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+    margin-top: -19px;
+}
+
+.left_box_img {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    position: relative;
+    border-bottom: 1px solid #828282;
+}
+
+.left_box_text {
+    text-align: center;
+    display: block;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.left_box_tx {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 25px;
+    height: 25px;
+}
+
+.rectangle {
+    height: 200px;
+    width: 200px;
+    border: 1px solid #828282;
+    margin: auto;
+    padding-top: 20px;
+    margin-top: -10px;
+    background-color: white;
+    box-shadow: 0px 0px 5px black;
+}
+
+.left_box_ul {
+    width: 80%;
+    margin: 25px auto 0;
+    padding-bottom: 150px;
+
+}
+
+.left_box_ul li {
+    list-style-type: none;
+}
+
+.left_box_li {
+    width: 100%;
+    height: 46px;
+    border-bottom: 1px solid #eeeeee;
+    padding-top: 10px;
+    list-style: disc;
+    color: #89020f;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.card {
+    padding: 20px;
+    width: 560px;
+    height: 380px;
+    margin: 20px auto 0;
+    border: 1px solid #f7f7f7;
+    box-shadow: 10px 10px 5px #888;
+}
+
+.card_one {
+    position: relative;
+    width: 560px;
+    margin: 20px auto 0;
+    border: 1px solid #f7f7f7;
+    box-shadow: 10px 10px 5px #888;
+}
+
+.right_box_input {
+    width: 300px;
+    border: none;
+    border-radius: 5px;
+}
+
+.ladel_span {
+    padding: 1px 5px;
+    background-color: gray;
+    color: white;
+    border-radius: 5px;
+    margin-left: 30px;
+    margin-top: 4px;
+}
+
+.card_one_img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.card_one_p {
+    margin-left: 64px;
+    margin-top: -30px;
+}
+
+.span_postion {
+    position: relative;
+    bottom: 62px;
+    left: 341px;
+    width: 150px;
+}
+
+.span_lable {
+    margin-left: 2px;
+    background-color: #f0ad4e;
+    color: white;
+    font-size: 0.4375em;
+    padding: 1px;
+}
+
+.card_one_xin {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.table-hover li {
+    list-style-type: none
+}
+
+.passwordedit input {
+    width: 360px;
+    height: 30px;
+    border: 1px solid grey;
+    -webkit-box-shadow: 0px 3px 3px #c8c8c8;
+    -moz-box-shadow: 0px 3px 3px #c8c8c8;
+    box-shadow: 0px 3px 3px #c8c8c8;
+
+}
+
+.passwordedit li {
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+.deleteRemark {
+    cursor: pointer;
+    color: #2f6f9f;
+    background-size: 21px 19px;
+    height: 19px;
+    display: block;
+    width: 21px;
+    position: relative;
+    background-image: url(/smartBR/resources/pcPlus/images/delete.png);
+    float: right;
+}
+.detailRemark{
+    cursor: pointer;
+    color: #2f6f9f;
+    background-size: 21px 19px;
+    height: 19px;
+    display: block;
+    width: 21px;
+    position: relative;
+    background-image: url(/smartBR/resources/pcPlus/images/xq.png);
+    float: right;
+}
+
+.clear {
+    cursor: pointer;
+    background-size: 30px 30px;
+    height: 30px;
+    display: block;
+    width: 30px;
+    position: relative;
+    background-image: url(/smartBR/resources/pcPlus/images/clear.png);
+    margin-top: 22px;
+    margin-left: 627px;
+}

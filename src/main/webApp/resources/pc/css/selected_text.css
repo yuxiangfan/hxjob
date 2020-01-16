@@ -1,0 +1,62 @@
+div.container {
+	width: 62%;
+	background-color: #fff;
+	margin: 0 auto;
+	padding-bottom: 30px;
+	min-height: 680px;
+}
+.clearfix {
+	zoom: 1;
+}
+div.ps_con {
+	margin-top: 15px;
+}
+section.l_con {
+	width: 75%;
+	float: left;
+	padding: 0 20px 20px;
+	margin-top: 20px;
+	border-right: 1px solid #e7e7e7;
+	min-height: 680px;
+	position: relative;
+}
+section.r_con {
+	margin-top: 10px;
+	margin-right: 1.2%;
+	width: 20%;
+	float: right;
+}
+.content_head{
+	min-height: 100px;
+	width: 100%;
+	display: inline-block;
+}
+.head_img{
+	width: 30%;
+    float: left;
+}
+.head_img img{
+	width: 100%;
+}
+.head_text{
+	width: 31%;
+    height: 200px;
+    float: left;
+    line-height: 180%;
+    margin-left: 3%;
+}
+p i{
+	color: #ff7800;
+}
+.head_text button{
+	width: 80%;
+	height: 40px;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    float: left;
+    margin: 5px;
+    cursor: pointer;
+	
+}

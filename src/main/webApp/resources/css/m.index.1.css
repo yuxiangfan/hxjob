@@ -1,0 +1,149 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+    background: #FFFFFF;
+}
+.head{
+	width: 100%;
+	height: 40px;
+}
+.head img{
+	height: 25px;
+	margin-top: 8px;
+	margin-left: 1%;
+}
+.head_b{
+	width: 100%;
+	min-height: 50px;
+	display: inline-block;
+	/* border-bottom: 1px solid #DBDBDB; */
+	padding-bottom: 5px;
+}
+.head_img{
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	height: 60px;
+	width: 60px;
+	border-radius: 10px;
+    overflow: hidden;
+	border: 1px #DEDEDE solid;
+}
+.head_img img{
+	width: 100%;
+}
+.head_title {
+	width: 72%;
+	display: inline-block;
+	float: left;
+	margin-left: 15px;
+	margin-top: 10px;
+}
+.head_title strong{
+	font-size: 1.1rem;
+    font-weight: 600;
+    color: #474747;
+}
+.head_title span{
+	font-size: 14px;
+	color: 	#6b6b6b;
+}
+.head_title button{
+	height: 30px;
+	width: 20%;
+	border: 0px;
+	background-color:#38b447;
+}
+.comment{
+	width: 100%;
+	display: inline-block;
+}
+.content{
+	margin-bottom: 20px;
+	padding-left: 3px;
+	display: inline-block;
+	width: 99%;
+	background-color: #fdfdfd;
+}
+.content p{
+	padding: 2px;
+	font-size: 13px;
+}
+h3{
+	margin-left:10px;
+}
+.grade_star {
+    width: 85px;
+    height: 15px;
+    overflow: hidden;
+    display: inline-block;
+    font-size: 0;
+    background: url(../picture/stars.png) no-repeat 0 -174px;
+    line-height: 0;
+    vertical-align: middle;
+    text-align: left;
+}
+.grade_star i {
+    display: inline-block;
+    width: 85px;
+    height: 15px;
+    overflow: hidden;
+    font-size: 0;
+    background: url(../picture/stars.png) no-repeat 0 -269px;
+}
+.username{
+	font-size: 16px!important;
+}
+.head_b_a{
+	padding: 5px;
+	display: block;
+	width: 90%;
+	background-color: #DDDDDD;
+	margin: 0 auto;
+}
+.head_b_a h2{
+	text-align: center;
+}
+.head_b_a p{
+	font-size: 13px;
+}
+.problem {
+    margin-top: 15px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #555555;
+}
+.answer {
+    margin-top: 10px;
+    color: #555555;
+}
+radio {
+	position: relative;
+}
+
+input[type="radio"] {
+	display: none;
+}
+
+input[type="radio"]:checked+label::before {
+	background-color: #1195fe;
+	border: 4px #ccc solid;
+}
+
+.item_label::before {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: #EEE;
+    vertical-align: middle;
+    -webkit-border-radius: 50%;
+    margin-right: 10px;
+    -webkit-box-sizing: border-box;
+    -webkit-transition: background ease-in .5s;
+}
+
+
+

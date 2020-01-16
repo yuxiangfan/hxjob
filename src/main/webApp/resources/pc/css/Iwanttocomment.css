@@ -1,0 +1,43 @@
+.head{
+	width: 100%;
+	height: 180px;
+	background-color: #FFFFFF;
+}
+.head_a{
+	width: 62%;
+	margin: 0 auto;
+}
+.return span{
+	height: 30px;
+	margin: 0 0 0 30px;
+	padding-top:10px ;
+	display: block;
+}
+.head_a_a{
+	width: 60%;
+	display: inline-block;
+	margin-left: 3%;
+	margin-top: 50px;
+}
+h1{
+	display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+.body{
+	background-color: #FFFFFF;
+	min-height: 800px;
+	width: 60%;
+	margin: 0 auto;
+	margin-top: 20px;
+	padding-top: 10px;
+	padding-right: 40px;
+}
+.layui-btn{
+	width: 100%;
+}
+	

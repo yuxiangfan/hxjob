@@ -1,0 +1,355 @@
+﻿.login-wrap,body,html {
+    width:100%;
+    height:100%
+}
+* {
+    padding:0;
+    margin:0;
+    box-sizing:border-box
+}
+body,html {
+    background:#FFF
+}
+button,input {
+    outline:0;
+    -webkit-appearance:none
+}
+.login-wrap {
+    display:-webkit-box;
+    display:-moz-box;
+    display:-webkit-flex;
+    display:-moz-flex;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-orient:vertical;
+    -webkit-flex-direction:column;
+    -ms-flex-direction:column;
+    flex-direction:column;
+    padding-top:1rem;
+    position:relative;
+    top:0;
+    left:0;
+    min-width:100%;
+    min-height:100%
+}
+.login-wrap .beirui_logo {
+    width:100px;
+    height: 48px;
+    border-radius:.3rem;
+    background:url(../images/logo_br.png) no-repeat;
+    background-size:100% auto;
+    margin:2rem auto
+}
+.login-wrap .pswd-wrap {
+    -webkit-box-flex:1;
+    -webkit-flex:1;
+    -ms-flex:1;
+    flex:1;
+    padding:0 1.8rem
+}
+.login-wrap .pswd-wrap .form-item {
+    padding:.6rem;
+    margin-bottom:1.1rem;
+    border:1px solid #D2D3D6;
+    font-size:.75rem;
+    color:#474747
+}
+.login-wrap .pswd-wrap .form-item .area-code {
+    white-space:nowrap
+}
+.login-wrap .pswd-wrap .form-item .area-code i {
+    margin:0 .15rem .1rem;
+    display:inline-block;
+    width:0;
+    height:0;
+    border-width:.25rem .25rem 0;
+    border-style:solid;
+    border-color:#AAA transparent transparent
+}
+.login-wrap .pswd-wrap .form-item input {
+    font-size:.75rem
+}
+.login-wrap .pswd-wrap .form-item input.minwidth {
+    border: none;
+    width:7rem
+}
+.login-wrap .pswd-wrap .form-item .toggle-msg {
+    float:right;
+    text-align:right
+}
+.login-wrap .pswd-wrap .form-item .toggle-msg.phonevf-btn {
+    color:#6174A2
+}
+.login-wrap .pswd-wrap .form-item .toggle-msg.phonevf-btn.disabled {
+    color:#C0C0C4
+}
+.login-wrap .pswd-wrap .form-item .sms-code-btn {
+    white-space:nowrap;
+    float:right;
+    text-align:right;
+    color:#474747
+}
+.login-wrap .pswd-wrap .form-item .sms-code-btn.disabled {
+    color:#C0C0C4
+}
+.login-wrap .pswd-wrap .form-item .code-countdown {
+    white-space:nowrap;
+    float:right;
+    text-align:right;
+    color:#C0C0C4;
+    display:none
+}
+.login-wrap .pswd-wrap .form-item .tag-type {
+    display:none;
+    float:right;
+    width:1.15rem;
+    height:1.15rem;
+    background:url(../images/password.png) center center no-repeat;
+    background-size:80% auto;
+    transition:all .2s;
+    -webkit-transition:all .2s
+}
+.login-wrap .pswd-wrap .form-item .tag-type.active {
+    background:url(../images/look.png) center center no-repeat;
+    background-size:80% auto
+}
+.login-wrap .pswd-wrap .form-item.form-item-password input {
+    width:100%
+}
+.login-wrap .pswd-wrap .form-item.form-item-phone input {
+    width:11rem
+}
+.login-wrap .pswd-wrap .form-item.form-item-nc {
+    height:2.3rem;
+    padding:0;
+    border:none
+}
+.login-wrap .pswd-wrap .no-pswd {
+    padding-bottom:.8rem
+}
+.login-wrap .pswd-wrap .no-pswd a {
+    display:inline-block;
+    font-size:13px
+}
+.login-wrap .pswd-wrap .no-pswd .btn {
+    color:#474747
+}
+.login-wrap .pswd-wrap .no-pswd .forget {
+    float:right;
+    color:#474747
+}
+.login-wrap .pswd-wrap .no-pswd .forget .sms-voice-btn {
+    margin-left:.2rem;
+    color:#50D27D
+}
+.login-wrap .pswd-wrap .no-pswd .forget .sms-voice-btn.disabled {
+    color:#C0C0C4
+}
+.login-wrap .pswd-wrap .submit-btn {
+    margin-top:.25rem;
+    width:100%;
+    padding:.7rem 0 .65rem;
+    text-align:center;
+    font-size:.75rem;
+    color:#FFF;
+    background:#292e3c;
+    border-radius:.2rem;
+    border:none
+}
+.login-wrap .pswd-wrap .hint-text {
+    margin:.4rem 0;
+    font-size:.65rem;
+    color:#C0C0C4;
+    text-align:center
+}
+.login-wrap .btm-wrap {
+    width:100%;
+    padding:1.05rem 1.8rem
+}
+.login-wrap .btm-wrap a {
+    line-height:1.05rem;
+    font-size:.65rem;
+    display:inline-block
+}
+.login-wrap .btm-wrap .protocol.active em {
+    background:url(../images/act.png) center center no-repeat;
+    background-size:120% auto
+}
+.login-wrap .btm-wrap .protocol a {
+    color:#C0C0C4
+}
+.login-wrap .btm-wrap .protocol em {
+    float:left;
+    margin-top:.15rem;
+    margin-right:.3rem;
+    width:.65rem;
+    height:.65rem;
+    border:1px solid #C0C0C4;
+    border-radius:1px
+}
+.login-wrap .btm-wrap .baidu {
+    float:right;
+    color:#6174A2
+}
+.login-wrap [data-page] {
+    display:none
+}
+.login-wrap [data-page="3"] {
+    display:block
+}
+.area-code-layer {
+    display:none;
+    padding:.9rem;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    overflow:scroll;
+    background:#FFF;
+    color:#474747
+}
+.area-code-layer .list {
+    padding-right:1.4rem
+}
+.area-code-layer .list ul {
+    padding-bottom:.6rem
+}
+.area-code-layer .list p {
+    margin:.35rem 0;
+    font-size:1.1rem
+}
+.area-code-layer .list li {
+    padding:.85rem 0;
+    border-bottom:1px solid #F0F0F0;
+    font-size:.75rem
+}
+.area-code-layer .list li:last-child {
+    border-bottom:none
+}
+.area-code-layer .list li em {
+    float:right
+}
+.area-code-layer .area-code-nav {
+    position:fixed;
+    top:50%;
+    right:.8rem;
+    width:1.3rem;
+    transform:translateY(-50%);
+    -webkit-transform:translateY(-50%);
+    -o-transform:translateY(-50%)
+}
+.area-code-layer .area-code-nav span {
+    padding:.1rem 0 .05rem;
+    display:block;
+    font-size:.55rem;
+    color:#50D27D;
+    text-align:center
+}
+.error-layer,.protocol-layer {
+    display:none;
+    padding:0 1.5rem;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:10;
+    background:rgba(0,0,0,.5)
+}
+.error-layer .btn-box,.protocol-layer .btn-box {
+    height:2.5rem;
+    line-height:2.5rem;
+    font-size:.75rem;
+    border-top:1px solid #F5F5F5
+}
+.error-layer .btn-box span,.protocol-layer .btn-box span {
+    float:left;
+    width:50%;
+    text-align:center
+}
+.error-layer .btn-box .close,.protocol-layer .btn-box .close {
+    color:#474747;
+    border-right:1px solid #F5F5F5
+}
+.error-layer .btn-box .phone,.protocol-layer .btn-box .phone {
+    color:#50D27D
+}
+.error-layer .error-wrap,.protocol-layer .error-wrap {
+    margin-top:70%;
+    width:100%;
+    height:8rem;
+    background:#FFF;
+    border-radius:.2rem
+}
+.error-layer .error-wrap .text,.protocol-layer .error-wrap .text {
+    font-size:.9rem;
+    color:#474747;
+    text-align:center;
+    line-height:5.45rem
+}
+.error-layer .content-wrap,.protocol-layer .content-wrap {
+    margin-top:50%;
+    background:#FFF;
+    border-radius:.2rem
+}
+.error-layer .content-wrap .tit,.protocol-layer .content-wrap .tit {
+    padding:1.5rem 0 1rem;
+    font-size:.8rem;
+    color:#474747;
+    font-weight:600;
+    text-align:center
+}
+.error-layer .content-wrap .cont,.protocol-layer .content-wrap .cont {
+    padding:0 1.4rem 1.5rem;
+    font-size:.7rem;
+    color:#474747;
+    letter-spacing:.3px;
+    line-height:1.2rem
+}
+.error-layer .content-wrap .cont.center,.protocol-layer .content-wrap .cont.center {
+    text-align:center
+}
+.error-layer .content-wrap .cont>a,.protocol-layer .content-wrap .cont>a {
+    color:#419BF9!important
+}
+.slider {
+    left:0!important
+}
+._nc div {
+    height:2.2rem!important;
+    line-height:2.2rem!important
+}
+.input_style{
+    border: none;
+}
+@media only screen and (-webkit-device-pixel-ratio:2) and (max-device-height:568px) and (min-device-width:320px) {
+    ._nc .icon {
+        bottom:0!important
+    }
+}._nc .stage1 .slider {
+     min-width:100%;
+     background-color:#DDD!important;
+     box-shadow:none!important
+ }
+._nc .stage1 .slider .bg-green,._nc .stage1 .slider .label {
+    font-size:.7rem
+}
+._nc .stage1 .slider .button {
+    height:2.1rem;
+    width:2.4rem;
+    background-color:#FFF;
+    border:1px solid #D2D3D6
+}
+._nc .stage1 .track div {
+    color:#fff
+}
+._nc .stage1 .bg-green {
+    background-color:#8d92a1!important
+}
+._nc .icon-ok {
+    color:#8d92a1!important
+}
+.scale_text {
+    text-align:center!important
+}

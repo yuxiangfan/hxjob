@@ -1,0 +1,66 @@
+.body{
+	min-height: 100px;
+	width: 100%;
+	margin-top: 10px;
+	background-color: #FFFFFF;
+}
+.body_title{
+	min-height: 62px;
+	width: 97%;
+	border-bottom: 1px solid #D0D0D0;
+	margin: 0 auto;
+	padding: 10px 0 10px 10px;
+	position: relative;
+}
+.body_title_img{
+	width: 60px;
+    float: left;
+    height: 42px;
+}
+.body_title_img img{
+	width: 100%;
+}
+.body_title_name{
+	font-size: 16px;
+    height: 24px;
+    width: 50%;
+	margin-left: 80px;
+}
+.body_title_comment{
+	margin-left: 80px;
+	width: 50%;
+}
+.grade_star {
+    width: 85px;
+    height: 15px;
+    overflow: hidden;
+    display: inline-block;
+    font-size: 0;
+    background: url(../picture/stars.png) no-repeat 0 -174px;
+    line-height: 0;
+    vertical-align: middle;
+    text-align: left;
+}
+.grade_star i {
+    display: inline-block;
+    width: 85px;
+    height: 15px;
+    overflow: hidden;
+    font-size: 0;
+    background: url(../picture/stars.png) no-repeat 0 -269px;
+}
+a{ 
+text-decoration:none; 
+color:#333; 
+} 
+.gt{
+	float: right;
+	display: block;
+    right: 10px;
+	position: absolute;
+	top: 36%;
+    left: 89%;
+}
+.gt img{
+	height: 30px;
+}

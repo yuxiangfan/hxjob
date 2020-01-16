@@ -1,0 +1,11 @@
+body{background:url(../images/login_bg.jpg) no-repeat #00a6b2;width:100%;height:100%;}
+a:hover{text-decoration: none;}
+#login{padding-top:8%;}
+#login .logo{font-size:30px;color:#fff;text-align:center;margin-bottom:60px;}
+#login form{max-width:400px;margin:0 auto;}
+#login .form-control{border-radius: 8px;height:44px;}
+#login{color:#00a6b2;}
+#login .copyright{text-align: center;padding-top:100px;}
+#login .copyright a{color:#00E6F2;}
+#login .copyright .statistics{display:none;}
+.btn-yellow{height:44px;width:100%;background: #f3c000;border-radius: 8px;}

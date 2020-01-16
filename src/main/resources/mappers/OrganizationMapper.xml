@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hx.hxjob.dao.OrganizationMapper">
+
+    <select id="getOrganizations" resultType="com.hx.hxjob.model.Organization">
+          select id,
+               `code`,
+               `fullname`,
+               shortname,
+               org_people_number,
+               logo,
+               brief,
+               description,
+               city,
+               industry,
+               tags,
+               salary,
+               grade,
+               `score`,
+               `sort`,
+               date_format(createtime, '%Y-%m-%d %H:%i:%s') as createtime,
+               date_format(shelftime, '%Y-%m-%d %H:%i:%s')  as shelftime,
+               date_format(updatetime, '%Y-%m-%d %H:%i:%s') as updatetime
+        from organization
+        where now() > publishtime
+          and (shelftime > now() or shelftime is null)
+    </select>
+    <select id="getCities" resultType='com.hx.hxjob.model.City'>
+        select id, `name`, ishot, `status`, date_format(createtime, '%Y-%m-%d %H:%i:%s') as createtime
+        from city
+        where `status` = 'ENABLE'
+        order by ishot desc, sort;
+    </select>
+    <select id="getIndustries" resultType="com.hx.hxjob.model.Industry">
+ select id, `name`, ishot, `status`, sort, date_format(createtime, '%Y-%m-%d %H:%i:%s') as createtime
+        from industry
+        where `status` = 'ENABLE'
+        order by ishot desc, sort;
+    </select>
+</mapper>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hx.hxjob.dao.SystemUserMapper">
+    <resultMap id="BaseResultMap" type="com.hx.hxjob.model.SystemUser">
+        <!--@mbg.generated-->
+        <!--@Table system_user-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="status" jdbcType="CHAR" property="status"/>
+        <result column="creater" jdbcType="INTEGER" property="creater"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="updater" jdbcType="INTEGER" property="updater"/>
+        <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime"/>
+        <result column="last_logintime" jdbcType="TIMESTAMP" property="lastLogintime"/>
+    </resultMap>
+
+    <resultMap type="com.hx.hxjob.model.SystemRole" id="role">
+        <id column="roleid" jdbcType="BIGINT" property="id"/>
+        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        <collection property="systemResources" ofType="com.hx.hxjob.model.SystemResources">
+            <id column="resourcesid" jdbcType="BIGINT" property="id"/>
+            <result column="icon" jdbcType="VARCHAR" property="icon"/>
+            <result column="resources_name" jdbcType="VARCHAR" property="resourcesName"/>
+            <result column="resources" jdbcType="VARCHAR" property="resources"/>
+            <result column="resources_code" jdbcType="VARCHAR" property="resourcesCode"/>
+            <collection property="children" ofType="com.hx.hxjob.model.SystemResources">
+                <id column="resourcesid1" jdbcType="BIGINT" property="id"/>
+                <result column="resources_name1" jdbcType="VARCHAR" property="resourcesName"/>
+                <result column="resources1" jdbcType="VARCHAR" property="resources"/>
+                <result column="resources_code1" jdbcType="VARCHAR" property="resourcesCode"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, user_name, `password`, real_name, mobile, `status`, creater, createtime, updater,
+        updatetime, last_logintime
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from system_user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from system_user
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.hx.hxjob.model.SystemUser"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into system_user (user_name, `password`, real_name,
+        mobile, `status`, creater,
+        createtime, updater, updatetime,
+        last_logintime)
+        values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},
+        #{mobile,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{creater,jdbcType=INTEGER},
+        #{createtime,jdbcType=TIMESTAMP}, #{updater,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP},
+        #{lastLogintime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.hx.hxjob.model.SystemUser"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into system_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="password != null">
+                `password`,
+            </if>
+            <if test="realName != null">
+                real_name,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="creater != null">
+                creater,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+            <if test="updater != null">
+                updater,
+            </if>
+            <if test="updatetime != null">
+                updatetime,
+            </if>
+            <if test="lastLogintime != null">
+                last_logintime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=CHAR},
+            </if>
+            <if test="creater != null">
+                #{creater,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updater != null">
+                #{updater,jdbcType=INTEGER},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastLogintime != null">
+                #{lastLogintime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hx.hxjob.model.SystemUser">
+        <!--@mbg.generated-->
+        update system_user
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                `password` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=CHAR},
+            </if>
+            <if test="creater != null">
+                creater = #{creater,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updater != null">
+                updater = #{updater,jdbcType=INTEGER},
+            </if>
+            <if test="updatetime != null">
+                updatetime = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastLogintime != null">
+                last_logintime = #{lastLogintime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hx.hxjob.model.SystemUser">
+        <!--@mbg.generated-->
+        update system_user
+        set user_name = #{userName,jdbcType=VARCHAR},
+        `password` = #{password,jdbcType=VARCHAR},
+        real_name = #{realName,jdbcType=VARCHAR},
+        mobile = #{mobile,jdbcType=VARCHAR},
+        `status` = #{status,jdbcType=CHAR},
+        creater = #{creater,jdbcType=INTEGER},
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+        updater = #{updater,jdbcType=INTEGER},
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+        last_logintime = #{lastLogintime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="getSystemUserByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from system_user
+        where user_name = #{userName}
+    </select>
+    <update id="updateSystemUserLastLoginTime" parameterType="java.lang.String">
+        update system_user
+        set last_logintime = now()
+        where user_name = #{userName}
+    </update>
+    <select id="getRoleResources" parameterType="java.lang.String" resultMap="role">
+        SELECT tsr.id                AS roleid,
+        tsr.role_name,
+        tsyp.id               AS resourcesid,
+        tsyp.icon,
+        tsyp.resources_name,
+        tsyp.resources,
+        tsyp.`resources_code`,
+        tsyc.id               AS resourcesid1,
+        tsyc.resources_name   AS resources_name1,
+        tsyc.resources        AS resources1,
+        tsyc.`resources_code` AS resources_code1
+        FROM system_user_role tsur
+        JOIN system_role tsr ON tsur.roleid = tsr.id
+        JOIN system_role_resources tsrr ON tsr.id = tsrr.roleid
+        LEFT JOIN system_resources tsyp ON tsrr.resourcesid = tsyp.id
+        LEFT JOIN system_resources tsyc ON tsyp.id = tsyc.parentid
+        WHERE tsur.userid = #{userId}
+        AND tsr.status = 'ENABLE'
+        AND tsyp.status = 'ENABLE'
+        AND tsyc.status = 'ENABLE'
+        AND tsyp.type = 'MENU'
+        AND (tsyp.parentid IS NULL OR tsyp.parentid = 0)
+        AND tsyc.`id` IN (SELECT resourcesid FROM system_role_resources WHERE roleid = tsur.`roleid`)
+        ORDER BY tsyp.sort, tsyc.sort;
+    </select>
+</mapper>
