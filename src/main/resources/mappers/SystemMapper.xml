@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hx.hxjob.dao.SystemMapper">
+
+    <resultMap type="com.hx.hxjob.model.SystemRole" id="role">
+        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <collection property="systemResources" ofType="com.hx.hxjob.model.SystemResources">
+            <id column="resourcesid" jdbcType="BIGINT" property="id"/>
+            <result column="resources_name" jdbcType="VARCHAR" property="resourcesName"/>
+            <result column="resources" jdbcType="VARCHAR" property="resources"/>
+            <result column="resources_code" jdbcType="VARCHAR" property="resourcesCode"/>
+            <collection property="children" ofType="com.hx.hxjob.model.SystemResources">
+                <id column="resourcesid1" jdbcType="BIGINT" property="id"/>
+                <result column="resources_name1" jdbcType="VARCHAR" property="resourcesName"/>
+                <result column="resources1" jdbcType="VARCHAR" property="resources"/>
+                <result column="resources_code1" jdbcType="VARCHAR" property="resourcesCode"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="getSystemRole" parameterType="java.util.Map" resultType="com.hx.hxjob.model.SystemRole">
+        select id, role_name,status,remark
+        from system_role
+        where 1=1
+        <if test="status!=null and status!=''">
+            and `status` = #{status}
+        </if>
+        <if test="roleName!=null and roleName!=''">
+            and `role_name` like concat('%',#{roleName},'%')
+        </if>
+        <if test="offset!=null and offset!=''">
+            limit ${offset},${limit}
+        </if>
+    </select>
+
+    <select id="getSystemResources" resultType="java.util.Map">
+        select id, parentid as pid, resources_name as `name`
+        from system_resources
+    </select>
+
+    <select id="getSystemRoleCount" parameterType="java.util.Map" resultType="int">
+        select count(1)
+        from system_role
+        where 1=1
+        <if test="status!=null and status!=''">
+            and `status` = #{status}
+        </if>
+        <if test="roleName!=null and roleName!=''">
+            and `role_name` like concat('%',#{roleName},'%')
+        </if>
+    </select>
+    <insert id="addNewRole" parameterType='java.util.Map' useGeneratedKeys="true" keyProperty="id">
+        insert into system_role(role_name, `status`, remark, createtime)
+        values (#{roleName}, #{status}, #{remark}, now());
+    </insert>
+    <insert id="addRoleResources">
+        insert into system_role_resources(roleid,resourcesid)
+        values
+        <foreach collection="ids" separator=',' item='item'>
+            (${roleid},${item})
+        </foreach>;
+    </insert>
+    <select id="getRoleById" parameterType="java.lang.String" resultMap="role">
+        SELECT tsr.role_name,
+        tsr.remark,
+        tsr.status,
+        tsyp.id               AS resourcesid,
+        tsyp.resources_name,
+        tsyp.resources,
+        tsyp.`resources_code`,
+        tsyc.id               AS resourcesid1,
+        tsyc.resources_name   AS resources_name1,
+        tsyc.resources        AS resources1,
+        tsyc.`resources_code` AS resources_code1
+        FROM system_role tsr
+        JOIN system_role_resources tsrr ON tsr.id = tsrr.roleid
+        LEFT JOIN system_resources tsyp ON tsrr.resourcesid = tsyp.id
+        LEFT JOIN system_resources tsyc ON tsyp.id = tsyc.parentid
+        WHERE tsr.id = #{roleid}
+        AND tsyp.status = 'ENABLE'
+        AND tsyc.status = 'ENABLE'
+        AND tsyp.type = 'MENU'
+        AND (tsyp.parentid IS NULL OR tsyp.parentid = 0)
+        ORDER BY tsyp.sort, tsyc.sort;
+    </select>
+    <update id="editRole" parameterType='java.util.Map'>
+        update system_role
+        set role_name = #{roleName},
+        remark=#{remark},
+        `status`=#{status}
+        where id = #{roleid}
+    </update>
+    <delete id="deleteRoleResources" parameterType='java.lang.String'>
+        delete
+        from system_role_resources
+        where roleid = #{roleid}
+    </delete>
+    <update id="changeStatus" parameterType='java.lang.String'>
+        update system_role
+        set `status` = #{status}
+        where id = #{roleid}
+    </update>
+    <select id="getSystemUser" parameterType="java.util.Map" resultType="com.hx.hxjob.model.SystemUser">
+        select tu.id, tu.`user_name`,tu.`password` ,tu.real_name,tu.mobile,
+        tu.status,tu.createtime,tu.updatetime,tu.last_logintime,tr.id,tr.role_name
+        from system_user tu
+        left join system_user_role tur on tu.id = tur.userid
+        left join system_role tr on tur.roleid = tr.id
+        where 1=1
+        <if test="username!=null and username!=''">
+            and tu.user_name like concat("%",#{username},"%")
+        </if>
+        <if test="realname!=null and realname!=''">
+            and tu.real_name like concat("%",#{realname},"%")
+        </if>
+        <if test="mobile!=null and mobile!=''">
+            and tu.mobile like concat("%",#{mobile},"%")
+        </if>
+        <if test="role!=null and role!=''">
+            and tur.roleid = #{role}
+        </if>
+        order by createtime desc
+        <if test="offset!=null and offset!=''">
+            limit ${offset},${limit}
+        </if>
+    </select>
+    <select id="getSystemUserCount" resultType="int">
+        select count(1)
+        from system_user tu
+        left join system_user_role tur on tu.id = tur.userid
+        left join system_role tr on tur.roleid = tr.id
+        where 1=1
+        <if test="username!=null and username!=''">
+            and tu.user_name like concat("%",#{username},"%")
+        </if>
+        <if test="realname!=null and realname!=''">
+            and tu.real_name like concat("%",#{realname},"%")
+        </if>
+        <if test="mobile!=null and mobile!=''">
+            and tu.mobile like concat("%",#{mobile},"%")
+        </if>
+        <if test="role!=null and role!=''">
+            and tur.roleid = #{role}
+        </if>
+    </select>
+
+    <insert id="addAccount" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty='userid'>
+        insert into system_user(user_name, password, real_name, mobile, `status`, creater, createtime)
+        values (#{username}, #{password}, #{realname}, #{mobile}, #{status}, #{creater}, now());
+    </insert>
+    <insert id="addAccountRole">
+        insert into system_user_role(userid, roleid)
+        values (${userid}, ${roleid});
+    </insert>
+</mapper>
+

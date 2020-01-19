@@ -13,57 +13,37 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SystemUser {
-    private Integer id;
+    private int id;
 
-    /**
-    * 用户名
-    */
+    private String desEntryId;
+
     private String userName;
 
-    /**
-    * 密码
-    */
     private String password;
 
-    /**
-    * 真实姓名
-    */
     private String realName;
 
-    /**
-    * 手机号
-    */
     private String mobile;
 
-    /**
-    * 状态
-    */
+    private int siteid;
+
+    private String title;
+
     private String status;
 
-    /**
-    * 创建人
-    */
-    private Integer creater;
-
-    /**
-    * 创建时间
-    */
     private Date createtime;
 
-    /**
-    * 更新人
-    */
-    private Integer updater;
-
-    /**
-    * 更新时间
-    */
     private Date updatetime;
 
-    /**
-    * 最后一次登陆时间
-    */
     private Date lastLogintime;
 
-    private  SystemRole systemRole;
+    private String imageCode;//验证码
+
+    private int roleid;
+
+    private String roleDesEntryId;
+
+    private String roleName;
+
+    private SystemRole systemRole;
 }

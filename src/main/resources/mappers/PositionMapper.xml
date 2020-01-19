@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hx.hxjob.dao.PositionMapper">
+    <sql id="positionField">
+            tp.id,
+            tp.orgcode,
+            tp.code,
+            tp.title,
+            tp.type,
+            tp.address,
+            tp.department,
+            tp.rindex,
+            tp.ishot,
+            tp.duty,
+            tp.requirement,
+            tp.contact,
+            tp.remark,
+            date_format(tp.createtime, '%Y-%m-%d %H:%i:%s') as createtime,
+            date_format(tp.updatetime, '%Y-%m-%d %H:%i:%s') as updatetime,
+            date_format(tp.publishtime, '%Y-%m-%d')         as publishtime,
+            date_format(tp.shelftime, '%Y-%m-%d %H:%i:%s')  as shelftime,
+            tp.isstar,
+            tor.id                                          as torid,
+            tor.fullname,
+            tor.shortname,
+            tor.logo,
+            tor.brief,
+            tor.description,
+            tor.city,
+            tor.industry,
+            tor.tags,
+            tor.salary,
+            tor.grade,
+            tor.score,
+            tc.name                                         as cityname,
+            ti.name                                         as industryname,
+            tu.real_name
+    </sql>
+    <select id="getPositionPage" resultType="com.hx.hxjob.model.Position">
+        select tp.page_view,tp.workplace,tp.job_salary,
+        <include refid="positionField"/>,
+        (SELECT COUNT(1) FROM save_position_member spm WHERE tp.code = spm.position_code) AS posSaveCount
+        from `position` tp join organization tor on tp.orgcode = tor.code
+        left join city tc on tp.address = tc.id
+        left join industry ti on tor.industry = ti.id
+        left join system_user tu on tu.id = tp.creater
+        where 1=1
+        <if test="title!='' and title!=null">
+            and tp.title like concat("%",#{title},"%")
+        </if>
+        <if test="orgcode!='' and orgcode!=null">
+            and tp.orgcode = #{orgcode}
+        </if>
+        <if test="type!='' and type!=null">
+            and tp.type = #{type}
+        </if>
+        <if test="industry!='' and industry!=null">
+            and tor.industry = #{industry}
+        </if>
+        <if test="city!='' and city!=null">
+            and tp.address = #{city}
+        </if>
+        <if test="ishot!='' and ishot!=null">
+            and tp.ishot = #{ishot}
+        </if>
+        <if test="isstar!='' and isstar!=null">
+            and tp.isstar = #{isstar}
+        </if>
+        order by ishot desc,publishtime desc,createtime desc
+        <if test="offset!=null and offset!=''">
+            limit ${offset},${limit}
+        </if>
+    </select>
+    <select id="getPositionPageCount" parameterType="java.util.Map" resultType="int">
+        select count(1)
+        from position tp join organization tor on tp.orgcode = tor.code
+        where 1=1
+        <if test="title!='' and title!=null">
+            and tp.title like concat("%",#{title},"%")
+        </if>
+        <if test="orgcode!='' and orgcode!=null">
+            and tp.orgcode = #{orgcode}
+        </if>
+        <if test="type!='' and type!=null">
+            and tp.type = #{type}
+        </if>
+        <if test="industry!='' and industry!=null">
+            and tor.industry = #{industry}
+        </if>
+        <if test="city!='' and city!=null">
+            and tor.city = #{city}
+        </if>
+        <if test="ishot!='' and ishot!=null">
+            and tp.ishot = #{ishot}
+        </if>
+        <if test="isstar!='' and isstar!=null">
+            and tp.isstar = #{isstar}
+        </if>
+    </select>
+    <insert id="addPosition" parameterType='com.hx.hxjob.model.Position' useGeneratedKeys="true"
+            keyProperty="id">
+        insert into `position`(
+        orgcode, `code`, title, type, address, workplace, department, rindex, ishot, pos_brief, duty,
+        requirement, job_salary,position_people_number, mon_salary,experience_require, education_require, pos_type,
+        updatetime,contact, creater, createtime, publishtime, shelftime, isstar, remark)
+        values (#{orgcode}, #{code}, #{title}, #{type}, #{address}, #{workplace}, #{department}, #{rindex}, #{ishot}, #{posBrief},
+        #{duty}, #{requirement}, #{jobSalary}, #{positionPeopleNumber}, #{monSalary}, #{experienceRequire}, #{educationRequire}, #{posType},
+        now(), #{contact}, ${creater}, now(), #{publishtime}, #{shelftime}, #{isstar}, #{remark})
+    </insert>
+
+    <select id="getPositionById" resultType="com.hx.hxjob.model.Position">
+        select
+        <include refid="positionField"/>,
+        tp.position_people_number,tp.mon_salary,experience_require,education_require,pos_type,tp.pos_brief,tp.job_salary,tp.workplace
+        from `position` tp join organization tor on tp.orgcode = tor.code
+        left join city tc on tp.address = tc.id
+        left join industry ti on tor.industry = ti.id
+        left join system_user tu on tu.id = tp.createtime
+        where tp.id = #{id}
+    </select>
+    <update id="editPosition" parameterType='com.hx.hxjob.model.Position'>
+        update `position`
+        set orgcode            = #{orgcode},
+        title                  = #{title},
+        `type`                 = #{type},
+        address                = #{address},
+        workplace              = #{workplace},
+        department             = #{department},
+        rindex                 = #{rindex},
+        ishot                  = #{ishot},
+        pos_brief              = #{posBrief},
+        duty                   = #{duty},
+        requirement            = #{requirement},
+        job_salary             = #{jobSalary},
+        position_people_number = #{positionPeopleNumber},
+        mon_salary             = #{monSalary},
+        experience_require     = #{experienceRequire},
+        education_require      = #{educationRequire},
+        pos_type               = #{posType},
+        isstar                 = #{isstar},
+        publishtime            = #{publishtime},
+        shelftime              = #{shelftime},
+        contact                = #{contact},
+        remark                 = #{remark},
+        updater                = #{updater},
+        updatetime             = #{updatetime}
+        where id = #{id}
+    </update>
+    <delete id="deletePosition">
+        delete
+        from `position`
+        where id = #{posiitonid}
+    </delete>
+    <select id="getPositionList" resultType="com.hx.hxjob.model.Position">
+       select code
+        from position
+    </select>
+    <select id="getOrgOfList" resultType="java.lang.String">
+        select code
+        from organization
+    </select>
+    <insert id="insertJobExcel">
+        insert into position (code, type, address, orgcode, department, title,pos_brief, duty,
+        requirement,workplace,job_salary, contact, remark, publishtime,
+        shelftime, isstar)values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.code}, #{item.type}, #{item.address}, #{item.orgcode}, #{item.department},
+            #{item.title},#{item.posBrief} , #{item.duty},
+            #{item.requirement},#{item.workplace} ,#{item.jobSalary} , #{item.contact},
+            #{item.remark}, #{item.publishtime}, #{item.shelftime},
+            #{item.isstar})
+        </foreach>
+    </insert>
+    <select id="getOrgList" resultType="com.hx.hxjob.model.Organization">
+        select code
+        from organization
+    </select>
+</mapper>

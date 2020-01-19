@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hx.hxjob.dao.LoginMapper">
+    <select id="getSystemUserByName" parameterType="java.lang.String" resultType="com.hx.hxjob.model.SystemUser">
+        select tu.id,
+        tu.`user_name`,
+        tu.`password`,
+        tu.real_name,
+        tu.mobile,
+        tu.status,
+        tu.createtime,
+        tu.updatetime,
+        tu.last_logintime
+        from system_user tu
+        where user_name = #{userName}
+    </select>
+</mapper>

@@ -32,9 +32,271 @@
         order by ishot desc, sort;
     </select>
     <select id="getIndustries" resultType="com.hx.hxjob.model.Industry">
- select id, `name`, ishot, `status`, sort, date_format(createtime, '%Y-%m-%d %H:%i:%s') as createtime
+        select id, `name`, ishot, `status`, sort, date_format(createtime, '%Y-%m-%d %H:%i:%s') as createtime
         from industry
         where `status` = 'ENABLE'
         order by ishot desc, sort;
     </select>
+    <select id="getOrganizationsPage" parameterType="java.util.Map" resultType="com.hx.hxjob.model.Organization">
+        select
+        torg.`code`,torg.`fullname`,torg.shortname,torg.logo,torg.brief,torg.description,
+        torg.city,torg.industry,torg.tags,torg.salary,torg.grade,torg.`score`,torg.treatment,torg.`sort`,torg.`ishot`,
+        date_format(torg.createtime,'%Y-%m-%d %H:%i:%s') as createtime,
+        date_format(torg.publishtime,'%Y-%m-%d %H:%i:%s') as publishtime,
+        date_format(torg.shelftime,'%Y-%m-%d %H:%i:%s') as shelftime,
+        date_format(torg.updatetime,'%Y-%m-%d %H:%i:%s') as updatetime,
+        tu.real_name,
+        tc.name as cityname,
+        ti.name as industryname,
+        ifnull((select count(1) from organization_praise where orgcode = torg.code),0) as praiseCount,
+        ifnull((select count(1) from organization_remark o where orgcode = torg.code),0) as commontCount,
+        ifnull((select count(1) from organization_collection where orgcode = torg.code),0) as collectCount
+        from organization torg
+        left join system_user tu on torg.creater = tu.id
+        left join city tc on torg.city = tc.id
+        left join industry ti on torg.industry = ti.id
+        where 1=1
+        <if test="name!=null and name!=''">
+            and (torg.fullname like concat('%',#{name},'%') or torg.shortname like concat('%',#{name},'%') )
+        </if>
+        <if test="industry!=null and industry!=''">
+            and torg.industry = #{industry}
+        </if>
+        <if test="city!=null and city!=''">
+            and torg.city = #{city}
+        </if>
+        <if test="ishot!=null and ishot!=''">
+            and torg.ishot = #{ishot}
+        </if>
+        order by torg.ishot desc,torg.sort
+        <if test="offset!='' and offset!=null">
+            limit ${offset},${limit}
+        </if>
+    </select>
+    <select id="getOrganizationsPageCount" resultType="int">
+        select
+        count(1)
+        from organization torg
+        left join system_user tu on torg.creater = tu.id
+        where 1=1
+        <if test="name!=null and name!=''">
+            and (torg.fullname like concat('%',#{name},'%') or torg.shortname like concat('%',#{name},'%') )
+        </if>
+        <if test="industry!=null and industry!=''">
+            and torg.industry = #{industry}
+        </if>
+        <if test="city!=null and city!=''">
+            and torg.city = #{city}
+        </if>
+        <if test="ishot!=null and ishot!=''">
+            and torg.ishot = #{ishot}
+        </if>
+    </select>
+    <select id="getOrganizationByFullNameAndShortName" parameterType="java.lang.String"
+            resultType="com.hx.hxjob.model.Organization">
+        select
+        torg.`code`,torg.`fullname`,torg.shortname,torg.logo,torg.brief,torg.description,
+        torg.city,torg.industry,torg.tags,torg.salary,torg.grade,torg.`score`,torg.`sort`,
+        date_format(torg.createtime,'%Y-%m-%d %H:%i:%s') as createtime,
+        date_format(torg.publishtime,'%Y-%m-%d %H:%i:%s') as publishtime,
+        date_format(torg.shelftime,'%Y-%m-%d %H:%i:%s') as shelftime,
+        date_format(torg.updatetime,'%Y-%m-%d %H:%i:%s') as updatetime,
+        tu.real_name,
+        tc.name as cityname,
+        ti.name as industryname
+        from organization torg
+        left join system_user tu on torg.creater = tu.id
+        left join city tc on torg.city = tc.id
+        left join industry ti on torg.industry = ti.id
+        where 1=1
+        <if test="fullname!=null and fullname!=''">
+            and fullname = #{fullname}
+        </if>
+        <if test="shortname!=null and shortname!=''">
+            and shortname = #{shortname}
+        </if>
+    </select>
+    <insert id="addNewOrg">
+        insert into organization(fullname, shortname, `code`, logo, org_people_number, brief, description, city, industry, tags, salary,
+        grade, score, treatment,
+        creater, createtime, publishtime, shelftime, sort, ishot)
+        values (#{fullname}, #{shortname}, #{code}, #{logo}, #{orgPeopleNumber}, #{brief}, #{description}, ${city}, ${industry}, #{tags},
+        ${salary}, #{grade}, ${score}, #{treatment},
+        ${creater}, now(), #{publishtime}, #{shelftime}, 10, #{ishot})
+    </insert>
+    <select id="getOrganizationByCode" parameterType="java.lang.String" resultType="com.hx.hxjob.model.Organization">
+        select torg.`code`,
+        torg.`fullname`,
+        torg.shortname,
+        torg.logo,
+        torg.org_people_number,
+        torg.brief,
+        torg.description,
+        torg.city,
+        torg.industry,
+        torg.tags,
+        torg.salary,
+        torg.grade,
+        torg.`score`,
+        torg.treatment,
+        torg.`sort`,
+        date_format(torg.createtime, '%Y-%m-%d %H:%i:%s')  as createtime,
+        date_format(torg.publishtime, '%Y-%m-%d %H:%i:%s') as publishtime,
+        date_format(torg.shelftime, '%Y-%m-%d %H:%i:%s')   as shelftime,
+        date_format(torg.updatetime, '%Y-%m-%d %H:%i:%s')  as updatetime,
+        tu.real_name,
+        tc.name                                            as cityname,
+        ti.name                                            as industryname
+        from organization torg
+        left join system_user tu on torg.creater = tu.id
+        left join city tc on torg.city = tc.id
+        left join industry ti on torg.industry = ti.id
+        where torg.code = #{code}
+    </select>
+    <update id="editOrg">
+        update organization
+        set `fullname`    = #{fullname},
+        `shortname`       = #{shortname},
+        `logo`            = #{logo},
+        org_people_number = #{orgPeopleNumber},
+        `brief`           = #{brief},
+        `description`     = #{description},
+        `city`            = ${city},
+        `industry`        = ${industry},
+        `tags`            = #{tags},
+        `salary`          = #{salary},
+        `grade`           = #{grade},
+        `score`           = #{score},
+        `sort`            = #{sort},
+        treatment         = #{treatment},
+        `ishot`           = #{ishot},
+        `publishtime`     = #{publishtime},
+        `shelftime`       = #{shelftime},
+        `updater`         = ${updater},
+        `updatetime`      = now()
+        where `code`      = #{code}
+    </update>
+    <delete id="deleteOrg">
+        delete
+        from organization
+        where `code` = #{code}
+    </delete>
+    <delete id="deleteOrgPosition">
+        delete
+        from position
+        where `orgcode` = #{code}
+    </delete>
+    <select id="getCommentPage" parameterType="java.util.Map"
+            resultType="com.hx.hxjob.model.OrganizationRemark">
+        select o.id, o.memberid, o.orgcode, o.orgname, o.city, o.workyear, o.post_status, o.salary_pre_tax,
+        o.other_benefit, o.year_end_money,
+        o.growth, o.workload, o.cultural_context, o.satisfaction, o.theme,
+        date_format(o.createtime,'%Y-%m-%d %H:%i:%s') as createtime,
+        o2.id, o2.fullname, o2.shortname,c.name,m.nickname,m.username
+        from organization_remark o left join organization o2 on o.orgcode = o2.code
+        left join city c on c.id = o.city
+        left join member m on m.id = o.memberid
+        where 1=1
+        <if test="name!=null and name!=''">
+            and (o2.fullname like concat('%',#{name},'%') or o2.shortname like concat('%',#{name},'%') )
+        </if>
+        <if test="orgcode!=null and orgcode!=''">
+            and o.orgcode = #{orgcode}
+        </if>
+        <if test="city!=null and city!=''">
+            and o.city = #{city}
+        </if>
+        <if test="offset!='' and offset!=null">
+            limit ${offset},${limit}
+        </if>
+    </select>
+    <select id="getCommentPageCount" parameterType="java.util.Map" resultType="int">
+        select count(1)
+        from organization_remark o left join organization o2 on o.orgcode = o2.code
+        where 1=1
+        <if test="name!=null and name!=''">
+            and (o2.fullname like concat('%',#{name},'%') or o2.shortname like concat('%',#{name},'%') )
+        </if>
+        <if test="orgcode!=null and orgcode!=''">
+            and o.orgcode = #{orgcode}
+        </if>
+        <if test="city!=null and city!=''">
+            and o.city = #{city}
+        </if>
+    </select>
+    <insert id="addNewComment">
+        insert into organization_remark(memberid, orgcode, city, workyear, post_status, salary_pre_tax,
+        other_benefit, year_end_money, growth, workload, cultural_context, satisfaction,
+        theme,
+        writing_evaluation, evaluate_label, remake_lable, createtime, img_upload)
+        values (#{memberid}, #{orgcode}, #{city}, #{workyear}, #{postStatus}, #{salaryPreTax},
+        #{otherBenefit}, #{yearEndMoney}, #{growth}, #{workload}, #{culturalContext}, #{satisfaction}, #{theme},
+        #{writingEvaluation}, #{evaluateLabel}, #{remakeLable}, now(), #{imgUpload});
+    </insert>
+    <select id="toEditCommentById" resultType="com.hx.hxjob.model.OrganizationRemark">
+        select toc.id,
+        toc.memberid,
+        toc.orgcode,
+        toc.orgname,
+        toc.memberPhoto,
+        toc.city,
+        toc.workyear,
+        toc.post_status,
+        toc.salary_pre_tax,
+        toc.other_benefit,
+        toc.year_end_money,
+        toc.growth,
+        toc.workload,
+        toc.cultural_context,
+        toc.satisfaction,
+        toc.theme,
+        toc.writing_evaluation,
+        toc.evaluate_label,
+        toc.img_upload,
+        date_format(toc.createtime, '%Y-%m-%d %H:%i:%s') as createtime,
+        tm.nickname,
+        o.fullname,
+        o.tags
+        from organization_remark toc
+        join member tm on toc.memberid = tm.id
+        join organization o on o.code = toc.orgcode
+        where toc.id = #{id}
+        order by toc.createtime desc
+    </select>
+    <update id="editComment" parameterType="java.util.Map">
+        update organization_remark
+        set orgname              = #{orgname},
+        `memberPhoto`        = #{memberPhoto},
+        `workyear`           = #{workyear},
+        `city`               = #{city},
+        `post_status`        = #{postStatus},
+        `salary_pre_tax`     = #{salaryPreTax},
+        `other_benefit`      = #{otherBenefit},
+        `year_end_money`     = #{yearEndMoney},
+        `growth`             = #{growth},
+        `workload`           = #{workload},
+        `cultural_context`   = #{culturalContext},
+        `satisfaction`       = #{satisfaction},
+        `theme`              = #{theme},
+        `writing_evaluation` = #{writingEvaluation},
+        `evaluate_label`     = #{evaluateLabel},
+        `img_upload`         = #{imgUpload},
+        `createtime`         = now()
+        where id = #{id}
+    </update>
+    <delete id="deleteComment">
+        delete
+        from organization_remark
+        where id = #{id}
+    </delete>
+    <insert id="insertOrgExcel">
+        insert into organization (fullname, shortname, code, logo, industry, city,tags, brief, description,
+        score,treatment, publishtime, shelftime) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.fullname}, #{item.shortname}, #{item.code}, #{item.logo}, #{item.industry},
+            #{item.city},#{item.tags}, #{item.brief}, #{item.description},
+            #{item.score},#{item.treatment},
+            #{item.publishtime}, #{item.shelftime});
+        </foreach>
+    </insert>
 </mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hx.hxjob.dao.MemberMapper">
+    <select id="getCityOfJob" resultType="com.hx.hxjob.model.City">
+       select *
+        from city;
+    </select>
+    <select id="getOrganizationGrade" resultType="com.hx.hxjob.model.OrganizationRemark">
+        select o.id,
+        growth,
+        workload,
+        cultural_context,
+        satisfaction,
+        treatment
+        from organization_remark o
+        LEFT JOIN organization o2 on o.orgcode = #{code}
+        where o.orgcode = #{code}
+    </select>
+    <select id="getMember" resultType="com.hx.hxjob.model.Member">
+        select *
+        from member
+        where username = #{username}
+    </select>
+    <select id="getIndustriesOfJob" resultType="com.hx.hxjob.model.Industry">
+         select *
+        from industry;
+    </select>
+</mapper>
