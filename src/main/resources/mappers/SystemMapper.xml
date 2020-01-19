@@ -154,5 +154,48 @@
         insert into system_user_role(userid, roleid)
         values (${userid}, ${roleid});
     </insert>
+    <select id="getSystemUserById" parameterType="java.lang.String" resultType="com.hx.hxjob.model.SystemUser">
+        select tu.id,
+        tu.`user_name`,
+        tu.`password`,
+        tu.real_name,
+        tu.mobile,
+        tu.status,
+        tu.createtime,
+        tu.updatetime,
+        tu.last_logintime,
+        tr.id as roleid,
+        tr.role_name
+        from system_user tu
+        left join system_user_role tur on tu.id = tur.userid
+        left join system_role tr on tur.roleid = tr.id
+        where tu.id = #{userid}
+    </select>
+    <update id="editAccount" parameterType="java.util.Map">
+        update system_user
+        set user_name  = #{username},
+        password   = #{password},
+        real_name  = #{realname},
+        mobile     = #{mobile},
+        `status`   = #{status},
+        updater    = ${updater},
+        updatetime = now()
+        where id = #{id}
+    </update>
+    <update id="editAccountRole">
+        update system_user_role
+        set roleid = ${roleid}
+        where userid = #{userid}
+    </update>
+    <delete id="deleteAccount" parameterType="java.lang.String">
+        delete
+        from system_user
+        where id = #{userid}
+    </delete>
+    <update id="changeAccount">
+        update system_user
+        set `status` = #{status}
+        where id = #{userid}
+    </update>
 </mapper>
 

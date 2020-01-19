@@ -39,5 +39,15 @@ public interface SystemMapper {
 
     void addAccount(Map<String, Object> params);
 
-    void addAccountRole(@Param(value="userid")String userid,@Param(value="roleid")String roleid);
+    void addAccountRole(@Param(value = "userid") String userid, @Param(value = "roleid") String roleid);
+
+    SystemUser getSystemUserById(String userid);
+
+    public void editAccount(Map<String,Object> params);
+
+     void editAccountRole(@Param(value="userid")String userid,@Param(value="roleid")String roleid);
+
+    void deleteAccount(String userid);
+
+    public void changeAccount(@Param(value="userid")String userid,@Param(value="status")String status);
 }

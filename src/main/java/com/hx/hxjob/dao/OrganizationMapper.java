@@ -50,4 +50,32 @@ public interface OrganizationMapper {
     void deleteComment(String id);
 
     void insertOrgExcel(@Param("list") List<Organization> list);
+
+    public List<City> getCitiesPage(Map<String, String> params);
+
+    public int getCitiesPageCount(Map<String, String> params);
+
+    City getCityByName(String name);
+
+    void addCity(City city);
+
+    City getCityById(String cid);
+
+     void editCity(City city);
+
+    void deleteCity(String cid);
+
+    List<Industry> getIndustriesPage(Map<String, String> params);
+
+    int getIndustriesPageCount(Map<String, String> params);
+
+    Industry getIndustryByName(String cityName);
+
+    void addIndustry(Industry industry);
+
+    Industry getIndustryById(String cid);
+
+    void editIndustry(Industry industry);
+
+    void deleteIndustry(String cid);
 }

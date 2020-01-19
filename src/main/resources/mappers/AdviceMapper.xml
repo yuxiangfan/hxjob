@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hx.hxjob.dao.AdviceMapper">
+    <select id="getAdvicePage" resultType="com.hx.hxjob.model.Advice">
+        select id,title,author,content,keywords,sort,brief,
+        date_format(publishtime,'%Y-%m-%d %H:%i:%s') as publishtime,
+        date_format(shelftime,'%Y-%m-%d %H:%i:%s') as shelftime,
+        istop,date_format(createtime,'%Y-%m-%d %H:%i:%s') as createtime,
+        `type`,url
+        from advice
+        where 1=1
+        <if test="title!=null and title!=''">
+            and title like concat('%',#{title},'%')
+        </if>
+        <if test="author!=null and author!=''">
+            and author like concat('%',#{author},'%')
+        </if>
+        <if test="keywords!=null and keywords!=''">
+            and keywords like concat('%',#{keywords},'%')
+        </if>
+        <if test="istop!=null and istop!=''">
+            and istop = #{istop}
+        </if>
+        order by istop desc,createtime desc
+        limit ${offset},${limit}
+    </select>
+
+    <select id="getAdvicePageCount" resultType="int">
+        select count(1)
+        from advice
+        where 1=1
+        <if test="title!=null and title!=''">
+            and title like concat('%',#{title},'%')
+        </if>
+        <if test="author!=null and author!=''">
+            and author like concat('%',#{author},'%')
+        </if>
+        <if test="keywords!=null and keywords!=''">
+            and keywords like concat('%',#{keywords},'%')
+        </if>
+        <if test="istop!=null and istop!=''">
+            and istop = #{istop}
+        </if>
+    </select>
+    <select id="getAuthor" resultType="com.hx.hxjob.model.ArticleCommand">
+        select *
+        from article_command
+    </select>
+    <insert id="addAdvice" parameterType="java.util.Map">
+        insert into advice(title, author, editor, image, brief, original, looktime, content, keywords, publishtime, shelftime,
+        istop,
+        createtime, creater, `type`, url)
+        values (#{title}, #{author}, #{editor}, #{image}, #{brief}, #{original}, #{lookTime}, #{content}, #{keywords},
+        #{publishtime}, #{shelftime},
+        #{istop}, now(), #{creater}, #{type}, #{url});
+    </insert>
+    <select id="getAdviceById" resultType="com.hx.hxjob.model.Advice">
+        select id,
+        title,
+        author,
+        editor,
+        image,
+        content,
+        original,
+        looktime,
+        keywords,
+        sort,
+        brief,
+        date_format(publishtime, '%Y-%m-%d %H:%i:%s') as publishtime,
+        date_format(shelftime, '%Y-%m-%d %H:%i:%s')   as shelftime,
+        istop,
+        date_format(createtime, '%Y-%m-%d %H:%i:%s')  as createtime,
+        `type`,
+        url
+        from advice
+        where id = #{id}
+    </select>
+    <update id="editAdvice">
+        update news
+        set title       = #{title},
+        author      = #{author},
+        editor      = #{editor},
+        brief       = #{brief},
+        original    = #{original},
+        looktime    = #{lookTime},
+        image       = #{image},
+        content     = #{content},
+        keywords    = #{keywords},
+        publishtime = #{publishtime},
+        shelftime   = #{shelftime},
+        istop       = #{istop},
+        updatetime  = now(),
+        updater     = ${updater},
+        `type`      = #{type},
+        url         = #{url}
+        where id = #{id}
+    </update>
+    <delete id="deleteAdvice" parameterType="java.lang.String">
+        delete
+        from news
+        where id = #{id}
+    </delete>
+
+</mapper>

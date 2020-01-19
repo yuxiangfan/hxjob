@@ -5,6 +5,7 @@ import com.hx.hxjob.common.SystemConfig;
 import com.hx.hxjob.dao.MemberMapper;
 import com.hx.hxjob.dao.OrganizationMapper;
 import com.hx.hxjob.dao.PositionMapper;
+import com.hx.hxjob.enums.StatusEnum;
 import com.hx.hxjob.model.*;
 import com.hx.hxjob.system.CodeGenerator;
 import com.hx.hxjob.system.Constant;
@@ -678,6 +679,214 @@ public class OrganizationService {
             organizationMapper.insertOrgExcel(list);
             result.put("code", 0);
             result.put("msg", "报表批量插入成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("code", -99);
+            result.put("msg", "系统异常");
+        }
+        return result;
+    }
+
+    public Map<String, Object> getCityPage(Map<String, String> params) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        PageUtil.dealPageParamForLayer(params);
+        result.put("rows", this.organizationMapper.getCitiesPage(params));
+        result.put("total", this.organizationMapper.getCitiesPageCount(params));
+        return result;
+    }
+
+    public Map<String, Object> addCity(City city) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try {
+            String name = city.getName();
+            String sort = String.valueOf(city.getSort());
+
+            if (StringUtils.isEmpty(name)) {
+                result.put("code", -1);
+                result.put("msg", "地区名未填");
+                return result;
+            }
+            City queryCity = this.organizationMapper.getCityByName(name);
+            if (queryCity != null) {
+                result.put("code", -1);
+                result.put("msg", "该地区已经存在");
+                return result;
+            }
+            if (StringUtils.isEmpty(sort)) {
+                city.setSort(10);
+            } else {
+                if (!Constant.patternSort.matcher(sort).matches()) {
+                    result.put("code", -1);
+                    result.put("msg", "排序号格式有误");
+                    return result;
+                }
+            }
+            city.setStatus(StatusEnum.ENABLE.name());
+            this.organizationMapper.addCity(city);
+            result.put("code", 0);
+            result.put("msg", "新增成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("code", -99);
+            result.put("msg", "系统异常");
+        }
+        return result;
+    }
+
+    public City getCityById(String cid) {
+        return this.organizationMapper.getCityById(cid);
+    }
+
+    public Map<String, Object> editCity(City city) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try {
+            String name = city.getName();
+            String sort = String.valueOf(city.getSort());
+            if (StringUtils.isEmpty(name)) {
+                result.put("code", -1);
+                result.put("msg", "地区名未填");
+                return result;
+            }
+            City queryCity = this.organizationMapper.getCityByName(name);
+            if (queryCity != null && queryCity.getId() != city.getId()) {
+                result.put("code", -1);
+                result.put("msg", "该地区已经存在");
+                return result;
+            }
+            if (StringUtils.isEmpty(sort)) {
+                city.setSort(10);
+            } else {
+                if (!Constant.patternSort.matcher(sort).matches()) {
+                    result.put("code", -1);
+                    result.put("msg", "排序号格式有误");
+                    return result;
+                }
+            }
+            city.setStatus(StatusEnum.ENABLE.name());
+            this.organizationMapper.editCity(city);
+            result.put("code", 0);
+            result.put("msg", "修改成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("code", -99);
+            result.put("msg", "系统异常");
+        }
+        return result;
+    }
+
+    public Map<String, Object> deleteCity(String cid) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try {
+            this.organizationMapper.deleteCity(cid);
+            result.put("code", 0);
+            result.put("msg", "修改成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("code", -99);
+            result.put("msg", "系统异常");
+        }
+        return result;
+    }
+
+    public Map<String, Object> getIndustryPage(Map<String, String> params) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        PageUtil.dealPageParamForLayer(params);
+        result.put("rows", this.organizationMapper.getIndustriesPage(params));
+        result.put("total", this.organizationMapper.getIndustriesPageCount(params));
+        return result;
+    }
+
+    public Map<String, Object> addIndustry(Industry industry) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try {
+            String name = industry.getName();
+            String sort = String.valueOf(industry.getSort());
+            if (StringUtils.isEmpty(name)) {
+                result.put("code", -1);
+                result.put("msg", "行业名未填");
+                return result;
+            }
+            Industry queryIndustry = this.organizationMapper.getIndustryByName(name);
+            if (queryIndustry != null) {
+                result.put("code", -1);
+                result.put("msg", "该行业已经存在");
+                return result;
+            }
+            if (StringUtils.isEmpty(sort)) {
+                industry.setSort(10);
+            } else {
+                if (!Constant.patternSort.matcher(sort).matches()) {
+                    result.put("code", -1);
+                    result.put("msg", "排序号格式有误");
+                    return result;
+                }
+            }
+            industry.setStatus(StatusEnum.ENABLE.name());
+            this.organizationMapper.addIndustry(industry);
+            result.put("code", 0);
+            result.put("msg", "新增成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("code", -99);
+            result.put("msg", "系统异常");
+        }
+        return result;
+    }
+
+    public Industry getIndustryById(String cid) {
+        return this.organizationMapper.getIndustryById(cid);
+    }
+
+    public Map<String, Object> editIndustry(Industry industry) {
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            String name = industry.getName();
+            String sort = String.valueOf(industry.getSort());
+
+            if (StringUtils.isEmpty(name)) {
+                result.put("code", -1);
+                result.put("msg", "地区名未填");
+                return result;
+            }
+            Industry queryIndustry = this.organizationMapper.getIndustryByName(name);
+            if (queryIndustry != null && queryIndustry.getId() != industry.getId()) {
+                result.put("code", -1);
+                result.put("msg", "该地区已经存在");
+                return result;
+            }
+
+            if (StringUtils.isEmpty(sort)) {
+                industry.setSort(10);
+            } else {
+                if (!Constant.patternSort.matcher(sort).matches()) {
+                    result.put("code", -1);
+                    result.put("msg", "排序号格式有误");
+                    return result;
+                }
+            }
+            industry.setStatus(StatusEnum.ENABLE.name());
+
+            this.organizationMapper.editIndustry(industry);
+
+            result.put("code", 0);
+            result.put("msg", "修改成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("code", -99);
+            result.put("msg", "系统异常");
+        }
+
+        return result;
+    }
+
+    public Map<String, Object> deleteIndustry(String cid) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try {
+            this.organizationMapper.deleteIndustry(cid);
+            result.put("code", 0);
+            result.put("msg", "修改成功");
         } catch (Exception e) {
             e.printStackTrace();
             result.put("code", -99);

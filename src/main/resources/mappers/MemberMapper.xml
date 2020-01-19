@@ -25,4 +25,48 @@
          select *
         from industry;
     </select>
+    <select id="getMemberPage" resultType="com.hx.hxjob.model.Member">
+        select
+        tm.id,tm.username,tm.password,tm.nickname,tm.mobile,tm.score,tm.status,
+        date_format(tm.lastlogintime,'%Y-%m-%d %H:%i:%s') as lastlogintime,
+        date_format(tm.createtime,'%Y-%m-%d %H:%i:%s') as createtime
+        from member tm
+        where 1=1
+        <if test="username!=null and username!=''">
+            and tm.username like concat("%",#{username},"%")
+        </if>
+        <if test="nickname!=null and nickname!=''">
+            and tm.nickname like concat("%",#{nickname},"%")
+        </if>
+        <if test="status!=null and status!=''">
+            and tm.status = #{status}
+        </if>
+        order by tm.createtime desc
+        limit ${offset},${limit}
+    </select>
+    <select id="getMemberPageCount" resultType="int">
+        select
+        count(1)
+        from member tm
+        where 1=1
+        <if test="username!=null and username!=''">
+            and tm.username like concat("%",#{username},"%")
+        </if>
+        <if test="nickname!=null and nickname!=''">
+            and tm.nickname like concat("%",#{nickname},"%")
+        </if>
+        <if test="status!=null and status!=''">
+            and tm.status = #{status}
+        </if>
+    </select>
+    <update id="updateMemberPassword" parameterType="java.lang.String">
+        update member
+        set password = #{password}
+        where id = #{memberid}
+    </update>
+    <update id="changeStatus" parameterType="java.util.Map">
+        update member
+        set `status` = #{status}
+        where id = #{memberid}
+    </update>
 </mapper>

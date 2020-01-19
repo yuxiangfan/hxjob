@@ -208,4 +208,87 @@ public class SystemService {
         return result;
     }
 
+    public SystemUser getSystemUser(String userid) {
+        try {
+            userid = Des.decrypt(userid);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        SystemUser user = this.systemMapper.getSystemUserById(userid);
+        try {
+            user.setDesEntryId(Des.encrypt(user.getId() + ""));
+            user.setId(0);
+            user.setRoleDesEntryId(Des.encrypt(user.getRoleid() + ""));
+            user.setRoleid(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Transactional
+    public Map<String, Object> editAccount(Map<String, Object> params) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try {
+            result = this.checkAccountParam(params);
+            if (0 != (int) result.get("code")) {
+                return result;
+            }
+            params.put("id", Des.decrypt((String) params.get("id")));
+            SystemUser queryUser = this.loginMapper.getSystemUserByName((String) params.get("username"));
+            if (queryUser != null && queryUser.getId() != Integer.valueOf((String) params.get("id"))) {
+                result.put("code", -1);
+                result.put("msg", "该用户名已被使用");
+                return result;
+            }
+            queryUser = this.systemMapper.getSystemUserById((String) params.get("id"));
+            if (!queryUser.getPassword().equals(params.get("password"))) {
+                params.put("password", MD5.MD5Encode((String) params.get("password") + KeyEnum.MD5.getKey()));
+            }
+            this.systemMapper.editAccount(params);
+            String role = (String) params.get("role");
+            role = Des.decrypt(role);
+            this.systemMapper.editAccountRole((String) params.get("id"), role);
+            result.put("code", 0);
+            result.put("msg", "操作成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("code", -99);
+            result.put("msg", "操作失败");
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        }
+        return result;
+    }
+
+    public Map<String, Object> deleteAccount(String userid) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try {
+            userid = Des.decrypt(userid);
+            this.systemMapper.deleteAccount(userid);
+            result.put("code", 0);
+            result.put("msg", "操作成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("code", -99);
+            result.put("msg", "操作失败");
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        }
+        return result;
+    }
+
+    public Map<String, Object> changeAccount(String userid, String status) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try {
+            userid = Des.decrypt(userid);
+            this.systemMapper.changeAccount(userid, status);
+            result.put("code", 0);
+            result.put("msg", "操作成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("code", -99);
+            result.put("msg", "操作失败");
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        }
+        return result;
+    }
 }

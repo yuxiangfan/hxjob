@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hx.hxjob.dao.SelectorMapper">
+    <sql id="acsql">
+            tac.id,
+            tac.type,
+            tac.title,
+            tac.author,
+            tac.image,
+            tac.content,
+            date_format(tac.createtime, '%Y-%m-%d %H:%i:%s')  as createtime,
+            tac.paycount,
+            tac.readcount,
+            tac.ishot,
+            tac.sort,
+            tac.isrecommend,
+            date_format(tac.publishtime, '%Y-%m-%d %H:%i:%s') as publishtime,
+            date_format(tac.shelftime, '%Y-%m-%d %H:%i:%s')   as shelftime,
+            tac.difficulty,
+            tac.duration,
+            tac.chapters,
+            tac.needpay,
+            tac.amount,
+            tac.brief
+    </sql>
+    <select id="getArticleCurriculumPage" resultType="com.hx.hxjob.model.ArticleCurriculum">
+        select
+        <include refid="acsql"/>
+        from article_curriculum tac
+        where 1=1
+        <if test="type!=null and type!=''">
+            and tac.type = #{type}
+        </if>
+        <if test="title!=null and title!=''">
+            and tac.title like concat("%",#{title},"%")
+        </if>
+        <if test="author!=null and author!=''">
+            and tac.author like concat("%",#{author},"%")
+        </if>
+        <if test="ishot!=null and ishot!=''">
+            and tac.ishot = #{ishot}
+        </if>
+        order by tac.ishot desc, tac.sort, tac.createtime desc
+        limit ${offset},${limit}
+    </select>
+
+    <select id="getArticleCommandPage" parameterType="java.util.Map"
+            resultType="com.hx.hxjob.model.ArticleCommand">
+        select id, title, nature, brief, date_format(publishtime, '%Y-%m-%d %H:%i:%s') as publishtime
+        from article_command ac
+        where 1=1
+        <if test="title!=null and title!=''">
+            and ac.title like concat("%",#{title},"%")
+        </if>
+        <if test="nature!=null and nature!=''">
+            and ac.nature like concat("%",#{nature},"%")
+        </if>
+        limit ${offset},${limit}
+    </select>
+
+    <select id="getArticleCurriculumPageCount" parameterType="java.util.Map" resultType="int">
+        select count(1)
+        from article_curriculum tac
+        where 1=1
+        <if test="type!=null and type!=''">
+            and tac.type = #{type}
+        </if>
+        <if test="title!=null and title!=''">
+            and tac.title like concat("%",#{title},"%")
+        </if>
+        <if test="author!=null and author!=''">
+            and tac.author like concat("%",#{author},"%")
+        </if>
+        <if test="ishot!=null and ishot!=''">
+            and tac.ishot = #{ishot}
+        </if>
+    </select>
+
+    <select id="getArticleCommandPageCount" resultType="int">
+        select count(1)
+        from article_command ac
+        where 1=1
+        <if test="title!=null and title!=''">
+            and ac.title like concat("%",#{title},"%")
+        </if>
+        <if test="nature!=null and nature!=''">
+            and ac.nature like concat("%",#{nature},"%")
+        </if>
+    </select>
+
+
+    <insert id="addAc" parameterType="java.util.Map">
+        insert into article_curriculum(`type`, title, author, image, content, creater, createtime, ishot, isrecommend,
+        sort,
+        publishtime, shelftime, difficulty, duration, chapters, needpay, amount, brief)
+        values (#{type}, #{title}, #{author}, #{image}, #{content}, ${creater}, now(), #{ishot}, #{isrecommend},
+        ${sort},
+        #{publishtime}, #{shelftime}, #{difficulty}, #{duration}, #{chapters}, #{needpay}, #{amount}, #{brief});
+    </insert>
+
+    <insert id="addACO" parameterType="java.util.Map">
+        insert into article_command(title, nature, brief, publishtime)
+        values (#{title}, #{nature}, #{brief}, #{publishtime});
+    </insert>
+    <select id="getArticleCurriculumById" parameterType="java.lang.String"
+            resultType="com.hx.hxjob.model.ArticleCurriculum">
+        select
+        <include refid="acsql"/>
+        from article_curriculum tac
+        where id = #{id}
+    </select>
+
+    <update id="editAc" parameterType="java.lang.String">
+        update article_curriculum
+        set `type`      = #{type},
+        title       = #{title},
+        author      = #{author},
+        image       = #{image},
+        content     = #{content},
+        ishot       = #{ishot},
+        sort        = #{sort},
+        isrecommend = #{isrecommend},
+        publishtime = #{publishtime},
+        shelftime   = #{shelftime},
+        difficulty  = #{difficulty},
+        duration    = #{duration},
+        chapters    = #{chapters},
+        needpay     = #{needpay},
+        amount      = #{amount},
+        brief       = #{brief},
+        updater     = #{updater},
+        updatetime  = now()
+        where id = #{id}
+    </update>
+    <delete id="deleteAc" parameterType="java.lang.String">
+        delete
+        from article_curriculum
+        where id = #{id}
+    </delete>
+    <select id="getCommandById" resultType="com.hx.hxjob.model.ArticleCommand">
+        select id, title, nature, brief, date_format(publishtime, '%Y-%m-%d %H:%i:%s') as publishtime
+        from article_command
+        where id = #{cid}
+    </select>
+    <update id="editACO">
+    update article_command
+    set title       = #{title},
+    nature      = #{nature},
+    brief       = #{brief},
+    publishtime = #{publishtime}
+    where id = #{id}
+    </update>
+    <delete id="deleteCommand">
+        delete *
+        from article_command
+        where id = #{cid}
+    </delete>
+</mapper>

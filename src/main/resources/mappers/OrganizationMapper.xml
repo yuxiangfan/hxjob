@@ -299,4 +299,108 @@
             #{item.publishtime}, #{item.shelftime});
         </foreach>
     </insert>
+    <select id="getCitiesPage" resultType="com.hx.hxjob.model.City">
+        select id,`name`,ishot,`status`,sort,date_format(createtime,'%Y-%m-%d %H:%i:%s') as createtime
+        from city
+        where `status` = 'ENABLE'
+        <if test="name!='' and name!=null">
+            and `name` like concat('%',#{name},'%')
+        </if>
+        <if test="ishot!='' and ishot!=null">
+            and `ishot` = #{ishot}
+        </if>
+        order by ishot desc,sort
+        limit ${offset},${limit}
+    </select>
+    <select id="getCitiesPageCount" resultType="int">
+        select count(1)
+        from city
+        where `status` = 'ENABLE'
+        <if test="name!='' and name!=null">
+            and `name` like concat('%',#{name},'%')
+        </if>
+        <if test="ishot!='' and ishot!=null">
+            and `ishot` = #{ishot}
+        </if>
+    </select>
+    <select id="getCityByName" parameterType="java.lang.String" resultType="com.hx.hxjob.model.City">
+        select id, `name`, ishot, `status`, sort
+        from city
+        where `name` = #{name}
+        and `status` = 'ENABLE'
+    </select>
+    <insert id="addCity" parameterType="com.hx.hxjob.model.City">
+        insert into city(`name`, ishot, `status`, sort, createtime)
+        values (#{name}, #{ishot}, #{status}, ${sort}, now())
+    </insert>
+    <select id="getCityById" parameterType="java.lang.String" resultType="com.hx.hxjob.model.City">
+        select id, `name`, ishot, `status`, sort
+        from city
+        where `id` = #{cid}
+        and `status` = 'ENABLE'
+    </select>
+    <update id="editCity" parameterType="java.lang.String">
+        update city
+        set `name` = #{name},
+        ishot  = #{ishot},
+        sort   = ${sort}
+        where id = #{id}
+    </update>
+    <delete id="deleteCity" parameterType='java.lang.String'>
+        delete
+        from city
+        where id = #{cid}
+    </delete>
+    <select id="getIndustriesPage" resultType="com.hx.hxjob.model.Industry">
+        select id,`name`,ishot,`status`,sort,date_format(createtime,'%Y-%m-%d %H:%i:%s') as createtime
+        from industry
+        where `status` = 'ENABLE'
+        <if test="name!='' and name!=null">
+            and `name` like concat('%',#{name},'%')
+        </if>
+        <if test="ishot!='' and ishot!=null">
+            and `ishot` = #{ishot}
+        </if>
+        order by ishot desc,sort
+        limit ${offset},${limit}
+    </select>
+    <select id="getIndustriesPageCount" resultType="int">
+        select count(1)
+        from industry
+        where `status` = 'ENABLE'
+        <if test="name!='' and name!=null">
+            and `name` like concat('%',#{name},'%')
+        </if>
+        <if test="ishot!='' and ishot!=null">
+            and `ishot` = #{ishot}
+        </if>
+    </select>
+    <select id="getIndustryByName" resultType="com.hx.hxjob.model.Industry">
+        select id, `name`, ishot, `status`, sort
+        from industry
+        where `name` = #{name}
+        and `status` = 'ENABLE'
+    </select>
+    <insert id="addIndustry" parameterType="com.hx.hxjob.model.Industry">
+        insert into industry(`name`, ishot, `status`, sort, createtime)
+        values (#{name}, #{ishot}, #{status}, ${sort}, now())
+    </insert>
+    <select id="getIndustryById" parameterType="java.lang.String" resultType="com.hx.hxjob.model.Industry">
+        select id, `name`, ishot, `status`, sort
+        from industry
+        where `id` = #{cid}
+        and `status` = 'ENABLE'
+    </select>
+    <update id="editIndustry" parameterType="java.lang.String">
+        update industry
+        set `name` = #{name},
+        ishot  = #{ishot},
+        sort   = ${sort}
+        where id = #{id}
+    </update>
+    <delete id="deleteIndustry">
+        delete
+         from industry
+        where id = #{cid}
+    </delete>
 </mapper>

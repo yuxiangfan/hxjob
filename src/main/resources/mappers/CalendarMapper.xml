@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hx.hxjob.dao.CalendarMapper">
+
+
+    <select id="examList" resultType="com.hx.hxjob.model.ApplyCalendar">
+        select id, org_code, apply_code, title, content, apply_time, apply_into, select_data, exam_before_consult,
+        exam_status, exam_title,
+        exam_content, exam_time, exam_into from apply_calendar ac
+        where 1=1
+        <if test="title!=null and title!=''">
+            and ac.title = #{title}
+        </if>
+        <if test="applyCode!=null and applyCode!=''">
+            and ac.apply_code = #{applyCode}
+        </if>
+        <if test="examStatus!='' and examStatus!=null">
+            and ac.exam_status = #{examStatus}
+        </if>
+        <if test="offset!='' and offset!=null">
+            limit ${offset},${limit}
+        </if>
+    </select>
+    <select id="examListCount" resultType="java.lang.Integer">
+        select count(1) from apply_calendar ac
+        where 1=1
+        <if test="title!=null and title!=''">
+            and ac.title = #{title}
+        </if>
+        <if test="applyCode!=null and applyCode!=''">
+            and ac.apply_code = #{applyCode}
+        </if>
+        <if test="examStatus!='' and examStatus!=null">
+            and ac.exam_status = #{examStatus}
+        </if>
+    </select>
+
+    <select id="addCalendar" parameterType="java.util.Map">
+        insert into apply_calendar(org_code, apply_code, title, apply_time, apply_into, select_data, exam_before_consult,
+                                   exam_status, exam_title, content, exam_time, exam_into)
+        VALUES (#{code}, #{applyCode}, #{title}, #{applyTime}, #{applyInto}, #{selectData}, #{examBeforeConsult}, #{examStatus}, #{examTitle},
+                #{content}, now(), #{examInto})
+
+    </select>
+
+    <select id="editExam" resultType="com.hx.hxjob.model.ApplyCalendar">
+        select id,
+               org_code,
+               apply_code,
+               title,
+               content,
+               apply_time,
+               apply_into,
+               select_data,
+               exam_before_consult,
+               exam_status,
+               exam_title,
+               exam_content,
+               exam_time,
+               exam_into
+        from apply_calendar ac
+
+        where ac.apply_code = #{code}
+    </select>
+
+    <insert id="addSign">
+        insert into sign_calendar(org_code, sign_code, title, apply_time, can_sign_into, exam_status)
+        values (#{code}, #{applyCode}, #{title}, #{applyTime}, #{applyInto}, #{examStatus});
+    </insert>
+
+    <insert id="addExam">
+        insert into exam_calendar(org_code, exam_code, title, content, exam_time, can_exam_into, select_data, exam_before_consult)
+        values (#{code}, #{applyCode}, #{examTitle}, #{content}, #{examTime}, #{examInto}, #{selectData}, #{examBeforeConsult})
+    </insert>
+
+    <delete id="deleteExam">
+        delete
+        from exam_calendar
+        where exam_code = #{code}
+    </delete>
+
+    <delete id="deleteSign">
+        delete
+        from sign_calendar
+        where sign_code = #{code}
+    </delete>
+    <delete id="deleteMain">
+        delete
+        from apply_calendar
+        where apply_code = #{code}
+    </delete>
+    <select id="selectExam" resultType="com.hx.hxjob.model.ApplyCalendar">
+        select ac.title, ac.exam_title
+        from apply_calendar ac
+        where ac.id = #{id}
+    </select>
+
+    <select id="getLastExamCode" resultType="java.lang.String">
+        select apply_code
+        from apply_calendar
+        order by id desc
+        limit 0,1
+    </select>
+
+    <update id="editCalendar" parameterType="java.util.Map">
+        update apply_calendar
+        set org_code           = #{code},
+            title              = #{title},
+            apply_into         = #{applyInto},
+            apply_time         =#{applyTime},
+            exam_status        = #{examStatus},
+            exam_title         = #{examTitle},
+            content            = #{content},
+            exam_title         = #{examTime},
+            exam_into          = #{examInto},
+            select_data        = #{selectData},
+            exam_before_consult=#{examBeforeConsult}
+        where apply_code = #{applyCode}
+    </update>
+
+    <select id="editCalendarSign" parameterType="java.util.Map">
+        update sign_calendar
+        set org_code      = #{code},
+            title         = #{title},
+            content       =#{content},
+            apply_time    = #{applyTime},
+            can_sign_into = #{apply_into},
+            exam_status   = #{examStatus}
+        where sign_code = #{applyCode}
+    </select>
+
+    <select id="editCalendarExam" parameterType="java.util.Map">
+        update exam_calendar
+        set org_code            = #{code},
+            title               = #{title},
+            content             =#{content},
+            exam_time           = #{examTime},
+            can_exam_into       = #{examInto},
+            select_data         = #{selectData},
+            exam_before_consult = #{examBeforeConsult}
+        where exam_code = #{applyCode}
+    </select>
+
+</mapper>
