@@ -21,7 +21,7 @@ import java.util.Map;
  * @description: 职业mvc
  * @created: 2020/01/16 15:10
  */
-@RequestMapping("Position")
+@RequestMapping("position")
 @Controller
 public class PositionController {
     @Autowired

@@ -63,7 +63,7 @@ public class AdviceController {
     @RequestMapping("adding")
     @ResponseBody
     /**
-    * @Description 新增新闻添加功能
+    * @Description 新增通知添加功能
     * @Params [params, image, session, request]
     * @Return java.util.Map<java.lang.String,java.lang.Object>
     * @Date 2020/1/19 15:39

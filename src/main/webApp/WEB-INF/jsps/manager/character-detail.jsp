@@ -17,7 +17,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<meta http-equiv="Cache-Control" content="no-transform ">
 		<meta name="viewport" content="width=device-width">
-		<title>贝睿招聘</title>
+		<title>校园智能招聘</title>
 		<link rel="stylesheet" href="resources/pc/css/public.css" />
 		<link rel="stylesheet" href="resources/pc/css/evaluation.css" />
 		<link rel="stylesheet" href="resources/pc/css/component.css" />
@@ -29,7 +29,7 @@
 			<div class="form-header-group ">
 				<div class="header-text httac htvam">
 					<h1 class="form-header" data-component="header">
-						贝睿性格测试
+						大学生性格测试
 					</h1>
 					<div class="form-subHeader">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是一份来自专业金融职前培训机构-贝睿的一份基于性格色彩学的测评，它将有助于测试者深入了解自己的深层次性格，从而帮助自己得到更好的职业定位。

@@ -403,4 +403,10 @@
          from industry
         where id = #{cid}
     </delete>
+    <select id="getLastOrgCode" resultType="java.lang.String">
+        select `code`
+        from organization
+        order by id desc
+        limit 0,1
+    </select>
 </mapper>

@@ -6,6 +6,7 @@ import com.hx.hxjob.model.ApplyCalendar;
 import com.hx.hxjob.system.CodeGenerator;
 import com.hx.hxjob.util.PageUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import javax.annotation.Resource;
@@ -18,6 +19,7 @@ import java.util.Map;
  * @description: 日历
  * @created: 2020/01/19 14:42
  */
+@Service
 public class CalendarService {
     @Resource
     private CalendarMapper calendarMapper;

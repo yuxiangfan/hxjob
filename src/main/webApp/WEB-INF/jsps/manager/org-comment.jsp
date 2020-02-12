@@ -18,7 +18,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<meta http-equiv="Cache-Control" content="no-transform ">
 		<meta name="viewport" content="width=device-width">
-		<title>贝睿招聘</title>
+		<title>校园智能招聘</title>
 		<link rel="stylesheet" href="resources/pc/css/public.css" />
 		<link rel="stylesheet" href="resources/pc/css/tocomment.css" />
 		<link href="resources/layui/css/layui.css" rel="stylesheet" type="text/css" />

@@ -1,6 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hx.hxjob.dao.MemberMapper">
+    <sql id="member">
+            tm.id,
+            tm.username,
+            tm.password,
+            tm.nickname,
+            tm.mobile,
+            tm.score,
+            tm.status,
+            date_format(tm.lastlogintime, '%Y-%m-%d %H:%i:%s') as lastlogintime,
+            date_format(tm.createtime, '%Y-%m-%d %H:%i:%s')    as createtime,
+            top.id                                             as topid,
+            top.orgcode                                        as topcode,
+            toc.id                                             as tocid,
+            toc.orgcode                                        as toccode,
+            toco.id                                            as tocoid,
+            toco.orgcode                                       as tococode,
+            tacc.id                                            as taccid,
+            tacc.acid
+
+    </sql>
+    <resultMap type="com.hx.hxjob.model.Member" id="memberMap">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="score" jdbcType="VARCHAR" property="score"/>
+        <result column="lastlogintime" jdbcType="VARCHAR" property="lastlogintime"/>
+        <result column="createtime" jdbcType="VARCHAR" property="createtime"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <collection property="organizationPraises" ofType="com.hx.hxjob.model.OrganizationPraise">
+            <id column="topid" jdbcType="BIGINT" property="id"/>
+            <result column="topcode" jdbcType="VARCHAR" property="orgcode"/>
+        </collection>
+        <collection property="organizationRemarks" ofType="com.hx.hxjob.model.OrganizationRemark">
+            <id column="tocid" jdbcType="BIGINT" property="id"/>
+            <result column="toccode" jdbcType="VARCHAR" property="orgcode"/>
+        </collection>
+        <collection property="organizationCollects" ofType="com.hx.hxjob.model.OrganizationCollect">
+            <id column="tocoid" jdbcType="BIGINT" property="id"/>
+            <result column="tococode" jdbcType="VARCHAR" property="orgcode"/>
+        </collection>
+        <collection property="aCCollects" ofType="com.hx.hxjob.model.ACCollect">
+            <id column="taccid" jdbcType="BIGINT" property="id"/>
+            <result column="acid" jdbcType="BIGINT" property="acid"/>
+        </collection>
+    </resultMap>
+    <resultMap type="com.hx.hxjob.model.Position" id="PositionGet">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="orgcode" jdbcType="VARCHAR" property="orgcode"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="department" jdbcType="VARCHAR" property="department"/>
+        <result column="rindex" jdbcType="VARCHAR" property="createtime"/>
+        <result column="contact" jdbcType="VARCHAR" property="contact"/>
+        <collection property="savePositionMember" ofType="com.hx.hxjob.model.SavePositionMember">
+            <id column="id" jdbcType="INTEGER" property="id"/>
+            <result column="member_id" jdbcType="VARCHAR" property="memberId"/>
+            <result column="position_code" jdbcType="VARCHAR" property="positionCode"/>
+        </collection>
+        <collection property="member" ofType="com.hx.hxjob.model.Member">
+            <id column="id" jdbcType="INTEGER" property="id"/>
+            <result column="username" jdbcType="VARCHAR" property="username"/>
+            <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+            <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        </collection>
+        <collection property="organization" ofType="com.hx.hxjob.model.Organization">
+            <id column="id" jdbcType="INTEGER" property="id"/>
+            <result column="fullname" jdbcType="VARCHAR" property="fullname"/>
+        </collection>
+        <collection property="city" ofType="com.hx.hxjob.model.City">
+            <id column="id" jdbcType="INTEGER" property="id"/>
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+        </collection>
+    </resultMap>
     <select id="getCityOfJob" resultType="com.hx.hxjob.model.City">
        select *
         from city;
@@ -69,4 +146,85 @@
         set `status` = #{status}
         where id = #{memberid}
     </update>
+
+    <select id="getPersonForm" resultType="com.hx.hxjob.model.Member">
+        select id,
+        username,
+        password,
+        nickname,
+        mobile,
+        head_photo as headPhoto,
+        score,
+        lastlogintime,
+        createtime,
+        status,
+        birthday,
+        gender,
+        address,
+        mail,
+        like_industry,
+        like_job,
+        introduce,
+        job_status
+        from member
+        where member.id = #{id}
+    </select>
+    <update id="addHeadPhoto" parameterType="java.util.Map">
+        update member
+        set address       = #{address},
+        birthday      = #{birthday},
+        gender        = #{gander},
+        mail          = #{mail},
+        mobile        = #{mobile},
+        nickname      = #{nickname},
+        job_status    = #{jobStatus},
+        like_industry = #{likeIndustry},
+        like_job      = #{liekeJob},
+        introduce     = #{introduce}
+        where id = #{id}
+    </update>
+    <select id="setHeadPhoto">
+        update member
+        set head_photo = #{headPhoto}
+        where id = #{id}
+    </select>
+    <select id="getMemberByUsername" parameterType="java.lang.String" resultMap="memberMap">
+        select
+        <include refid="member"/>,spm.id as spm ,spm.position_code, spm.member_id
+        from member tm
+        left join organization_praise top on tm.id = top.memberid
+        left join organization_remark toc on tm.id = toc.memberid
+        left join organization_collection toco on tm.id = toco.memberid
+        left join ac_collection tacc on tm.id = tacc.memberid
+        left join save_position_member spm on tm.id = spm.member_id
+        where username = #{username}
+    </select>
+    <update id="setLastLogintime" parameterType="java.lang.String">
+        update member
+        set lastlogintime = now()
+        where username = #{username}
+    </update>
+    <insert id="insertMember" parameterType="com.hx.hxjob.model.Member">
+        insert into member(username, password, nickname, mobile, score, createtime, `status`)
+        values (#{username}, #{password}, #{nickname}, #{mobile}, ${score}, NOW(), #{status});
+    </insert>
+    <select id="getCollect" resultMap="PositionGet">
+        SELECT *
+        FROM position p
+        LEFT JOIN save_position_member spm ON p.code = spm.position_code
+        LEFT JOIN member m ON m.id = spm.member_id
+        LEFT JOIN organization og ON og.`code` = p.`orgcode`
+        LEFT JOIN city cy ON cy.id = p.`address`
+        and now() > p.publishtime and p.shelftime > now()
+        WHERE m.id = #{id}
+    </select>
+    <select id="getCollectOrg" resultType="com.hx.hxjob.model.Organization">
+        SELECT organization.code, organization.fullname, organization.grade, organization.salary
+        FROM organization
+        LEFT JOIN organization_collection
+        ON organization.`code` = organization_collection.`orgcode`
+        LEFT JOIN member
+        ON member.`id` = organization_collection.`memberid`
+        WHERE member.`id` = #{id}
+    </select>
 </mapper>

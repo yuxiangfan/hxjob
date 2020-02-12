@@ -13,7 +13,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>贝睿招聘</title>
+    <title>校园智能招聘</title>
     <base href="<%=basePath%>"/>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -132,7 +132,7 @@
     <div class="main-header">
         <a href="javascript:void(0)" class="logo">
             <img src="resources/images/logo.png" style="width: 44px;">
-            <span class="logo-lg">贝睿招聘</span>
+            <span class="logo-lg">校园智能招聘</span>
         </a>
         <div class="navbar navbar-static-top" role="navigation">
             <a href="#" class="glyphicon glyphicon-align-justify" data-toggle="offcanvas" role="button">
@@ -333,7 +333,7 @@
     <!--右下角-->
 
     <div class="main-footer">
-        <strong class="text-danger">贝睿招聘</strong>
+        <strong class="text-danger">校园智能招聘</strong>
     </div>
 
 

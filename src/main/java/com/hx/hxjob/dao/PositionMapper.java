@@ -32,4 +32,6 @@ public interface PositionMapper {
 
     List<Organization> getOrgList();
 
+    String getLastPosCode();
+
 }

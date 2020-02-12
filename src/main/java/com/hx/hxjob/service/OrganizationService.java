@@ -10,6 +10,7 @@ import com.hx.hxjob.model.*;
 import com.hx.hxjob.system.CodeGenerator;
 import com.hx.hxjob.system.Constant;
 import com.hx.hxjob.util.PageUtil;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Service;
@@ -892,6 +893,68 @@ public class OrganizationService {
             result.put("code", -99);
             result.put("msg", "系统异常");
         }
+        return result;
+    }
+
+    public Map<String, Object> getOrgs(Map<String, String> params, Member member) {
+        Map<String, Object> result = new HashMap<>();
+        /*查询全部数据*/
+        List<Organization> orgs = this.organizationMapper.getPcOrganizations(params);
+        /*查询总数*/
+        int orgCount = this.organizationMapper.getPcOrganizationsCount(params);
+        if (member != null) {
+            member = this.memberMapper.getMemberByUsername(member.getUsername());
+        }
+        for (Organization organization : orgs) {
+            boolean praiseFlag = true;
+            boolean collectFlag = true;
+            boolean commentFlag = true;
+            if (member == null) {
+                organization.setPraiseFlag(true);
+                organization.setCollectFlag(true);
+                organization.setCommentFlag(true);
+                organization.setWhetherLogon(true);
+            } else {
+                /*点赞校验*/
+                if (CollectionUtils.isEmpty(member.getOrganizationPraises())) {
+                    organization.setPraiseFlag(true);
+                } else {
+                    for (OrganizationPraise organizationPraise : member.getOrganizationPraises()) {
+                        if (organizationPraise.getOrgcode().equals(organization.getCode())) {
+                            praiseFlag = false;
+                            break;
+                        }
+                    }
+                    organization.setPraiseFlag(praiseFlag);
+                }
+                /*评论校验*/
+                if (CollectionUtils.isEmpty(member.getOrganizationRemarks())) {
+                    organization.setCommentFlag(true);
+                } else {
+                    for (OrganizationRemark organizationRemark : member.getOrganizationRemarks()) {
+                        if (organizationRemark.getOrgcode().equals(organization.getCode())) {
+                            commentFlag = false;
+                            break;
+                        }
+                    }
+                    organization.setCommentFlag(commentFlag);
+                }
+                /*收藏校验*/
+                if (CollectionUtils.isEmpty(member.getOrganizationCollects())) {
+                    organization.setCollectFlag(true);
+                } else {
+                    for (OrganizationCollect organizationCollect : member.getOrganizationCollects()) {
+                        if (organizationCollect.getOrgcode().equals(organization.getCode())) {
+                            collectFlag = false;
+                            break;
+                        }
+                    }
+                    organization.setCollectFlag(collectFlag);
+                }
+            }
+        }
+        result.put("orgs", orgs);
+        result.put("orgCount", orgCount);
         return result;
     }
 }

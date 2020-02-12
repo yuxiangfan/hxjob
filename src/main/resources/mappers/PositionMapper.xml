@@ -36,7 +36,54 @@
             ti.name                                         as industryname,
             tu.real_name
     </sql>
-    <select id="getPositionPage" resultType="com.hx.hxjob.model.Position">
+    <resultMap type="com.hx.hxjob.model.Position" id="positionMap">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="workplace" jdbcType="VARCHAR" property="workplace"/>
+        <result column="job_salary" jdbcType="VARCHAR" property="jobSalary"/>
+        <result column="department" jdbcType="VARCHAR" property="department"/>
+        <result column="rindex" jdbcType="VARCHAR" property="rindex"/>
+        <result column="ishot" jdbcType="VARCHAR" property="ishot"/>
+        <result column="duty" jdbcType="VARCHAR" property="duty"/>
+        <result column="requirement" jdbcType="VARCHAR" property="requirement"/>
+        <result column="position_people_number" jdbcType="BIGINT" property="positionPeopleNumber"/>
+        <result column="mon_salary" jdbcType="VARCHAR" property="monSalary"/>
+        <result column="experience_require" jdbcType="VARCHAR" property="experienceRequire"/>
+        <result column="education_require" jdbcType="VARCHAR" property="educationRequire"/>
+        <result column="pos_brief" jdbcType="VARCHAR" property="posBrief"/>
+        <result column="pos_type" jdbcType="VARCHAR" property="posType"/>
+        <result column="contact" jdbcType="VARCHAR" property="contact"/>
+        <result column="page_view" jdbcType="INTEGER" property="pageView"/>
+        <result column="createtime" jdbcType="VARCHAR" property="createtime"/>
+        <result column="updatetime" jdbcType="VARCHAR" property="updatetime"/>
+        <result column="publishtime" jdbcType="VARCHAR" property="publishtime"/>
+        <result column="shelftime" jdbcType="VARCHAR" property="shelftime"/>
+        <result column="isstar" jdbcType="VARCHAR" property="isstar"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="posSaveCount" jdbcType="INTEGER" property="posSaveCount"/>
+        <association property="organization" javaType="com.hx.hxjob.model.Organization">
+            <id column="torid" jdbcType="BIGINT" property="id"/>
+            <result column="fullname" jdbcType="VARCHAR" property="fullname"/>
+            <result column="shortname" jdbcType="VARCHAR" property="shortname"/>
+            <result column="orgcode" jdbcType="VARCHAR" property="code"/>
+            <result column="logo" jdbcType="VARCHAR" property="logo"/>
+            <result column="brief" jdbcType="VARCHAR" property="brief"/>
+            <result column="description" jdbcType="VARCHAR" property="description"/>
+            <result column="city" jdbcType="VARCHAR" property="city"/>
+            <result column="cityname" jdbcType="VARCHAR" property="cityname"/>
+            <result column="industry" jdbcType="VARCHAR" property="industry"/>
+            <result column="industryname" jdbcType="VARCHAR" property="industryname"/>
+            <result column="tags" jdbcType="VARCHAR" property="tags"/>
+            <result column="salary" jdbcType="VARCHAR" property="salary"/>
+            <result column="grade" jdbcType="VARCHAR" property="grade"/>
+            <result column="score" jdbcType="VARCHAR" property="score"/>
+        </association>
+    </resultMap>
+    <select id="getPositionPage" resultType="com.hx.hxjob.model.Position" resultMap="positionMap">
         select tp.page_view,tp.workplace,tp.job_salary,
         <include refid="positionField"/>,
         (SELECT COUNT(1) FROM save_position_member spm WHERE tp.code = spm.position_code) AS posSaveCount
@@ -175,5 +222,11 @@
     <select id="getOrgList" resultType="com.hx.hxjob.model.Organization">
         select code
         from organization
+    </select>
+    <select id="getLastPosCode" resultType="java.lang.String">
+        select `code`
+        from position
+        order by id desc
+        limit 0,1
     </select>
 </mapper>

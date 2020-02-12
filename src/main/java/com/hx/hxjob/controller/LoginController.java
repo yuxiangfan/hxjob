@@ -1,4 +1,4 @@
-package com.hx.hxjob.controller.manager;
+package com.hx.hxjob.controller;
 
 import com.hx.hxjob.common.SystemConfig;
 import com.hx.hxjob.model.SystemRole;

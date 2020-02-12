@@ -78,4 +78,10 @@ public interface OrganizationMapper {
     void editIndustry(Industry industry);
 
     void deleteIndustry(String cid);
+
+    String getLastOrgCode();
+
+    List<Organization> getPcOrganizations(Map<String, String> params);
+
+    int getPcOrganizationsCount(Map<String, String> params);
 }
