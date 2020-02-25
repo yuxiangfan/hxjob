@@ -82,7 +82,7 @@ public class AdviceController {
     public String edit(@PathVariable String id, Model model) {
         model.addAttribute("news", this.adviceService.getAdviceById(id));
         model.addAttribute("author", this.adviceService.getAuthor());
-        return "manager/new-news";
+        return "manager/new-advice";
     }
     @RequestMapping("editing")
     @ResponseBody

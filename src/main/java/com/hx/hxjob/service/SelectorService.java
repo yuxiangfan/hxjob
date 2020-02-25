@@ -4,12 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.hx.hxjob.common.SystemConfig;
 import com.hx.hxjob.dao.MemberMapper;
 import com.hx.hxjob.dao.SelectorMapper;
-import com.hx.hxjob.model.ArticleCommand;
-import com.hx.hxjob.model.ArticleCurriculum;
-import com.hx.hxjob.model.SystemUser;
+import com.hx.hxjob.model.*;
 import com.hx.hxjob.system.Constant;
 import com.hx.hxjob.util.Des;
 import com.hx.hxjob.util.PageUtil;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +33,8 @@ public class SelectorService {
     private SelectorMapper selectorMapper;
     @Autowired
     private SystemConfig systemConfig;
+
+
 
     public Map<String, Object> getACPage(Map<String, String> params) {
         Map<String, Object> result = new HashMap<String, Object>();
@@ -326,5 +327,133 @@ public class SelectorService {
         }
         return result;
     }
+
+    public List<Advice> brOriginal2() {
+        List<Advice> brNews = this.selectorMapper.brOriginalList2();
+        return brNews;
+    }
+
+    public List<Advice> brOriginal(Map<String, String> params) {
+        List<Advice> brNews = this.selectorMapper.brOriginalList(params);
+        return brNews;
+    }
+
+    public Map<String, Object> getACPageForPC(Map<String, String> params) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        PageUtil.dealPageParamForLayer(params);
+        List<Advice> acs = this.selectorMapper.getArticleCurriculumPageForPC(params);
+        result.put("rows", acs);
+        result.put("total", this.selectorMapper.getArticleCurriculumPageCountForPC(params));
+        return result;
+    }
+
+    /*获取新闻详情页*/
+    public Advice toAdviceDetails(int id) {
+        return this.selectorMapper.toAdviceDetails(id);
+    }
+
+    public ArticleCommand getArticleCommand(int cid) {
+        return this.selectorMapper.getArticleCommand(cid);
+    }
+
+    public int getCommandNumber(int cid) {
+        return this.selectorMapper.getCommandNumber(cid);
+    }
+
+    /*设置热门所属列表*/
+    public List<ArticleCommand> gethotCommandList() {
+        return this.selectorMapper.gethotCommandList();
+    }
+
+
+    /*设置热门所属列表对应的评论*/
+    public List<ArticleCommand> getCommandNumberOfHot() {
+        List<ArticleCommand> commandNumberOfHot = this.selectorMapper.getCommandNumberOfHot();
+        System.out.println(commandNumberOfHot);
+        return commandNumberOfHot;
+    }
+
+    public List<ArticleCommand> getGoodsList(int id, Member member) {
+        List<ArticleCommand> commands = this.selectorMapper.getGoodsList(id);
+        if (member != null) {
+            member = this.selectorMapper.getMemberByUsername(member.getUsername());
+        }
+        for (ArticleCommand articleCommand : commands) {
+            /*验证判断用户是否拥有关注*/
+            boolean whetherAttention = true;
+            if (member == null) {
+                articleCommand.setWhetherAttention(true);
+            } else {
+                if (CollectionUtils.isEmpty(member.getArticleCommandAttention())) {
+                    articleCommand.setWhetherAttention(true);
+                } else {
+                    for (ArticleCommandAttention articleCommandAttention : member.getArticleCommandAttention()) {
+                        if (articleCommandAttention.getCommandid() == articleCommand.getId()) {
+                            whetherAttention = false;
+                            break;
+                        }
+                    }
+                    articleCommand.setWhetherAttention(whetherAttention);
+                }
+            }
+        }
+        return commands;
+    }
+    /*给所属关注*/
+    public synchronized Map<String, Object> attention(String id, Member member) {
+        Map<String, Object> result = new HashMap<>();
+        boolean whetherAttention = true;
+        try {
+            if (member == null) {
+                result.put("code", -9);
+                result.put("msg", "用户未登录");
+            } else {
+                ArticleCommandAttention attention = this.selectorMapper.getArticleCommandByMemberId(id, String.valueOf(member.getId()));
+                if (attention != null) {
+                    this.selectorMapper.deleteArticleCommandByMemberId(id, String.valueOf(member.getId()));
+                    result.put("code", 1);
+                    result.put("msg", "您已取消关注");
+                } else {
+                    this.selectorMapper.addArticleCommandByMemberId(id, String.valueOf(member.getId()));
+                    result.put("code", 0);
+                    result.put("msg", "您已关注");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("code", -99);
+            result.put("msg", "系统异常");
+        }
+        return result;
+    }
+
+    public synchronized Map<String, Object> acCollect(String id, Member member) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try {
+            if (member == null) {
+                result.put("code", -9);
+                result.put("msg", "用户未登录");
+                return result;
+            }
+            id = Des.decrypt(id);
+            //查询是否已有收藏
+            int collectCount = this.selectorMapper.getMemberACCollect(id, member.getId() + "");
+            if (collectCount > 0) {
+                result.put("code", -1);
+                result.put("msg", "您已有收藏");
+                return result;
+            }
+            this.selectorMapper.acCollect(id, member.getId() + "");
+            result.put("code", 0);
+            result.put("msg", "已收藏");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("code", -99);
+            result.put("msg", "系统异常");
+        }
+        return result;
+    }
+
+
 }
 

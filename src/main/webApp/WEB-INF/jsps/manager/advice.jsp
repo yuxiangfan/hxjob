@@ -103,7 +103,7 @@
       <div class="content-wrapper">
         <div class="content-header">
           <h1>
-           	新闻列表
+           	通知列表
           </h1>
          
         </div>
@@ -128,7 +128,7 @@
               		<button class='bt' onclick='reset()'>重置</button>
               	</div>
                <div class="panel-heading">
-                  <a href="JavaScript:void(0)" class="btn btn-default btn-flat" onclick="window.location.href='news/add'" >新增新闻</a>
+                  <a href="JavaScript:void(0)" class="btn btn-default btn-flat" onclick="window.location.href='advice/add'" >新增新闻</a>
                 </div>
                 <div class="panel-body">
                   <div class="table-responsive">

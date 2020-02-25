@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hx.hxjob.dao.OrganizationMapper">
-
+    <resultMap id="memberMap" type="com.hx.hxjob.model.Member">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <collection property="saveRemarkMembers" ofType="com.hx.hxjob.model.SaveRemarkMember">
+            <id column="srmId" jdbcType="BIGINT" property="id"/>
+            <result column="remarkid" jdbcType="VARCHAR" property="remarkid"/>
+            <result column="memberid" jdbcType="VARCHAR" property="memberid"/>
+        </collection>
+    </resultMap>
     <select id="getOrganizations" resultType="com.hx.hxjob.model.Organization">
           select id,
                `code`,
@@ -409,4 +416,378 @@
         order by id desc
         limit 0,1
     </select>
+    <select id="getPcOrganizations" parameterType="java.util.Map" resultType="com.hx.hxjob.model.Organization">
+        select
+        torg.`code`,torg.`fullname`,torg.shortname,torg.logo,torg.brief,torg.description,
+        torg.city,torg.industry,torg.tags,torg.salary,torg.grade,torg.`score`,torg.`sort`,torg.`ishot`,
+        date_format(torg.createtime,'%Y-%m-%d %H:%i:%s') as createtime,
+        date_format(torg.publishtime,'%Y-%m-%d %H:%i:%s') as publishtime,
+        date_format(torg.shelftime,'%Y-%m-%d %H:%i:%s') as shelftime,
+        date_format(torg.updatetime,'%Y-%m-%d %H:%i:%s') as updatetime,
+        tu.real_name,
+        tc.name as cityname,
+        ti.name as industryname,
+        (select count(1) from organization_praise where orgcode = torg.code) as praise_count,
+        (select count(1) from organization_remark where orgcode = torg.code) as commont_count,
+        (select count(1) from organization_collection where orgcode = torg.code) as collect_count
+        from organization torg
+        left join system_user tu on torg.creater = tu.id
+        left join city tc on torg.city = tc.id
+        left join industry ti on torg.industry = ti.id
+        where 1=1
+        <if test="name!=null and name!=''">
+            and (torg.fullname like concat('%',#{name},'%') or torg.shortname like concat('%',#{name},'%'))
+        </if>
+        <if test="industry!=null and industry!=''">
+            and torg.industry = #{industry}
+        </if>
+        <if test="city!=null and city!=''">
+            and torg.city = #{city}
+        </if>
+        <if test="ishot!=null and ishot!=''">
+            and torg.ishot = #{ishot}
+        </if>
+        <if test="searchContent!=null and searchContent!=''">
+            and
+            (
+            instr(torg.fullname,#{searchContent}) > 0
+            or
+            instr(torg.shortname,#{searchContent}) > 0
+            )
+        </if>
+        order by torg.ishot desc,torg.sort
+        limit ${pageStart},${pageSize}
+    </select>
+    <select id="getPcOrganizationsCount" resultType="int">
+        select count(1)
+        from organization torg
+        left join system_user tu on torg.creater = tu.id
+        left join city tc on torg.city = tc.id
+        left join industry ti on torg.industry = ti.id
+        where 1=1
+        <if test="name!=null and name!=''">
+            and (torg.fullname like concat('%',#{name},'%') or torg.shortname like concat('%',#{name},'%'))
+        </if>
+        <if test="industry!=null and industry!=''">
+            and torg.industry = #{industry}
+        </if>
+        <if test="city!=null and city!=''">
+            and torg.city = #{city}
+        </if>
+        <if test="ishot!=null and ishot!=''">
+            and torg.ishot = #{ishot}
+        </if>
+        <if test="searchContent!=null and searchContent!=''">
+            and
+            (
+            instr(torg.fullname,#{searchContent}) > 0
+            or
+            instr(torg.shortname,#{searchContent}) > 0
+            )
+        </if>
+        order by torg.ishot desc,torg.sort
+    </select>
+    <select id="getPcHotOrganizations" parameterType="java.util.Map"
+            resultType="com.hx.hxjob.model.Organization">
+        select
+        torg.`code`,torg.`fullname`,torg.shortname,torg.logo,torg.brief,torg.description,
+        torg.city,torg.industry,torg.tags,torg.salary,torg.grade,torg.`score`,torg.`sort`,torg.`ishot`,
+        date_format(torg.createtime,'%Y-%m-%d %H:%i:%s') as createtime,
+        date_format(torg.publishtime,'%Y-%m-%d %H:%i:%s') as publishtime,
+        date_format(torg.shelftime,'%Y-%m-%d %H:%i:%s') as shelftime,
+        date_format(torg.updatetime,'%Y-%m-%d %H:%i:%s') as updatetime,
+        tu.real_name,
+        tc.name as cityname,
+        ti.name as industryname,
+        (select count(1) from organization_praise where orgcode = torg.code) as praise_count,
+        (select count(1) from organization_remark where orgcode = torg.code) as commont_count,
+        (select count(1) from organization_collection where orgcode = torg.code) as collect_count
+        from organization torg
+        left join system_user tu on torg.creater = tu.id
+        left join city tc on torg.city = tc.id
+        left join industry ti on torg.industry = ti.id
+        where 1=1
+        <if test="name!=null and name!=''">
+            and (torg.fullname like concat('%',#{name},'%') or torg.shortname like concat('%',#{name},'%'))
+        </if>
+        <if test="industry!=null and industry!=''">
+            and torg.industry = #{industry}
+        </if>
+        <if test="city!=null and city!=''">
+            and torg.city = #{city}
+        </if>
+        <if test="ishot!=null and ishot!=''">
+            and torg.ishot = #{ishot}
+        </if>
+        order by praise_count desc
+        limit ${pageStart},${pageSize}
+    </select>
+    <select id="getPcHotOrganizationsCount" resultType="int">
+        select count(1)
+        from organization torg
+        left join system_user tu on torg.creater = tu.id
+        left join city tc on torg.city = tc.id
+        left join industry ti on torg.industry = ti.id
+        where 1=1
+        <if test="name!=null and name!=''">
+            and (torg.fullname like concat('%',#{name},'%') or torg.shortname like concat('%',#{name},'%'))
+        </if>
+        <if test="industry!=null and industry!=''">
+            and torg.industry = #{industry}
+        </if>
+        <if test="city!=null and city!=''">
+            and torg.city = #{city}
+        </if>
+        <if test="ishot!=null and ishot!=''">
+            and torg.ishot = #{ishot}
+        </if>
+    </select>
+    <select id="orgsIndexDatas" resultType="com.hx.hxjob.model.Organization">
+        select torg.`code`,
+        torg.`fullname`,
+        torg.shortname,
+        torg.logo,
+        torg.brief,
+        torg.description,
+        torg.city,
+        torg.industry,
+        torg.tags,
+        torg.salary,
+        torg.grade,
+        torg.`score`,
+        torg.`sort`,
+        torg.`ishot`,
+        date_format(torg.createtime, '%Y-%m-%d %H:%i:%s') as createtime,
+        date_format(torg.publishtime, '%Y-%m-%d %H:%i:%s') as publishtime,
+        date_format(torg.shelftime, '%Y-%m-%d %H:%i:%s') as shelftime,
+        date_format(torg.updatetime, '%Y-%m-%d %H:%i:%s') as updatetime,
+        tu.real_name,
+        tc.name as cityname,
+        ti.name as industryname,
+        (select count(1) from organization_praise where orgcode = torg.code) as praise_count,
+        (select count(1) from organization_remark o where orgcode = torg.code) as commont_count,
+        (select count(1) from organization_collection where orgcode = torg.code) as collect_count
+        from organization torg
+        left join system_user tu on torg.creater = tu.id
+        left join city tc on torg.city = tc.id
+        left join industry ti on torg.industry = ti.id
+        where 1 = 1
+        <if test="name!=null and name!=''">
+            and (torg.fullname like concat('%',#{name},'%') or torg.shortname like concat('%',#{name},'%'))
+        </if>
+        <if test="industry!=null and industry!=''">
+            and torg.industry = #{industry}
+        </if>
+        <if test="city!=null and city!=''">
+            and torg.city = #{city}
+        </if>
+        <if test="ishot!=null and ishot!=''">
+            and torg.ishot = #{ishot}
+        </if>
+        order by praise_count desc
+        limit 0,5;
+    </select>
+
+
+    <select id="getOrganizationPraiseByCodeAndMemberid" resultType="com.hx.hxjob.model.OrganizationPraise">
+        select id, orgcode, memberid, date_format(createtime, '%Y-%m-%d %H:%i:%s') as createtime
+        from organization_praise
+        where orgcode = #{code}
+        and memberid = #{memberid}
+    </select>
+
+    <delete id="deleteOrgPraise">
+        delete
+        from organization_praise
+        where orgcode = #{code}
+        and memberid = #{memberid}
+    </delete>
+
+    <insert id="addPraise">
+        insert into organization_praise(orgcode, memberid, createtime)
+        values (#{code}, #{memberid}, now());
+    </insert>
+
+    <select id="getOrganizationCollectByCodeAndMemberid" resultType="com.hx.hxjob.model.OrganizationCollect">
+        select id, orgcode, memberid, date_format(createtime, '%Y-%m-%d %H:%i:%s') as createtime
+        from organization_collection
+        where orgcode = #{code}
+        and memberid = #{memberid}
+    </select>
+
+    <delete id="deleteOrgCollect">
+        delete
+        from organization_collection
+        where orgcode = #{code}
+        and memberid = #{memberid}
+    </delete>
+    <insert id="addCollect">
+        insert into organization_collection(orgcode, memberid, createtime)
+        values (#{code}, ${memberid}, now());
+    </insert>
+    <select id="getOrganizationCommentByCodeAndMemberid" resultType="com.hx.hxjob.model.OrganizationRemark">
+        select id,
+        memberid,
+        orgcode,
+        orgname,
+        memberPhoto,
+        city,
+        workyear,
+        post_status,
+        salary_pre_tax,
+        other_benefit,
+        year_end_money,
+        growth,
+        workload,
+        cultural_context,
+        satisfaction,
+        theme,
+        writing_evaluation,
+        evaluate_label,
+        img_upload,
+        date_format(createtime, '%Y-%m-%d %H:%i:%s') as createtime
+        from organization_remark o
+        where orgcode = #{orgcode}
+        and memberid = #{memberid}
+    </select>
+
+    <insert id="userOrgComment" parameterType="java.util.Map">
+        insert into organization_remark(memberid, orgcode, orgname, city, workyear, post_status, salary_pre_tax,
+        other_benefit, year_end_money, growth, workload, cultural_context, satisfaction,
+        theme,
+        writing_evaluation, evaluate_label, remake_lable, createtime, img_upload)
+        values (#{memberid}, #{orgCode}, #{orgname}, #{city}, #{workyear}, #{postStatus}, #{salaryPreTax},
+        #{otherBenefit}, #{yearEndMoney}, #{growth}, #{workload}, #{culturalContext}, #{satisfaction}, #{theme},
+        #{writingEvaluation}, #{evaluateLabel}, #{remakeLable}, now(), #{imgUpload});
+    </insert>
+
+    <select id="getwhetherByName" resultType="java.lang.String">
+        select toc.orgcode as orgcode
+        from member tm
+        left join organization_remark toc on tm.id = toc.memberid
+        where toc.orgcode = #{code}
+        AND toc.memberId = #{memberId}
+    </select>
+    <select id="getOrganizationCommenIndexHot" resultType="com.hx.hxjob.model.OrganizationRemark">
+        select toc.id,
+               toc.memberid,
+               toc.orgcode,
+               toc.orgname,
+               toc.memberPhoto,
+               toc.city,
+               toc.workyear,
+               toc.post_status,
+               toc.salary_pre_tax,
+               toc.other_benefit,
+               toc.year_end_money,
+               toc.growth,
+               toc.workload,
+               toc.cultural_context,
+               toc.satisfaction,
+               toc.theme,
+               toc.writing_evaluation,
+               toc.evaluate_label,
+               toc.img_upload,
+               date_format(toc.createtime, '%Y-%m-%d %H:%i:%s')                          as createtime,
+               tm.nickname,
+               tm.head_photo,
+               o.fullname,
+               o.tags,
+               (select count(1) from save_remark_member srm where srm.remarkid = toc.id) as remark_count
+        from organization_remark toc
+                 join member tm on toc.memberid = tm.id
+                 join organization o on o.code = toc.orgcode
+        order by remark_count desc
+        limit 0,3;
+    </select>
+    <select id="orgCommentsWhetherPraise" resultMap="memberMap">
+        select m.id, srm.id as srmId, srm.memberid, srm.remarkid
+        from member m
+        left join save_remark_member srm on m.id = srm.memberid
+        where m.username = #{username}
+    </select>
+
+    <select id="getOrganizationCommentPageCount" parameterType="java.util.Map" resultType="int">
+        select count(1)
+        from organization_comment
+        order by createtime desc
+        <if test="offset!=null and offset!=''">
+            limit ${offset},${limit}
+        </if>
+    </select>
+    <select id="getOrganizationCommentPage" parameterType="java.util.Map"
+            resultType="com.hx.hxjob.model.OrganizationRemark">
+        select
+        toc.id,toc.memberid,toc.orgcode,toc.orgname,toc.memberPhoto,toc.city,toc.workyear,toc.post_status,toc.salary_pre_tax,toc.other_benefit,toc.year_end_money,toc.growth,toc.workload,
+        toc.cultural_context,toc.satisfaction,toc.theme,toc.writing_evaluation,toc.evaluate_label,toc.img_upload,
+        date_format(toc.createtime,'%Y-%m-%d') as createtime,
+        substring_index(toc.evaluate_label, ',', 2) as evaluateLabel,
+        tm.nickname,
+        tm.head_photo,
+        o.fullname,
+        o.tags,
+        (select count(1) from save_remark_member srm where srm.remarkid = toc.id) as remark_count
+        from organization_remark toc join member tm on toc.memberid = tm.id
+        join organization o on o.code = toc.orgcode
+        where toc.orgcode = #{orgcode}
+        order by toc.createtime desc
+        <if test="offset!=null and offset!=''">
+            limit ${offset},${limit}
+        </if>
+    </select>
+    <select id="getOrganizationCommenRecommend" resultType="com.hx.hxjob.model.OrganizationRemark">
+        select
+        toc.id,toc.memberid,toc.orgcode,toc.orgname,toc.memberPhoto,toc.city,toc.workyear,toc.post_status,toc.salary_pre_tax,toc.other_benefit,toc.year_end_money,toc.growth,toc.workload,
+        toc.cultural_context,toc.satisfaction,toc.theme,toc.writing_evaluation,toc.evaluate_label,toc.img_upload,
+        date_format(toc.createtime,'%Y-%m-%d') as createtime,
+        tm.nickname,
+        o.fullname,
+        o.tags,
+        (select count(1) from save_remark_member srm where srm.remarkid = toc.id) as remark_count
+        from organization_remark toc join member tm on toc.memberid = tm.id
+        join organization o on o.code = toc.orgcode
+        where toc.orgcode = #{orgcode} AND toc.post_status LIKE '%实习%'
+        order by remark_count desc
+        <if test="offset!=null and offset!=''">
+            limit ${offset},${limit}
+        </if>
+    </select>
+    <select id="getOrganizationCommentPageOnJob" parameterType="java.util.Map" resultType="com.hx.hxjob.model.OrganizationRemark">
+        select
+        toc.id,toc.memberid,toc.orgcode,toc.orgname,toc.memberPhoto,toc.city,toc.workyear,toc.post_status,toc.salary_pre_tax,toc.other_benefit,toc.year_end_money,toc.growth,toc.workload,
+        toc.cultural_context,toc.satisfaction,toc.theme,toc.writing_evaluation,toc.evaluate_label,toc.img_upload,
+        date_format(toc.createtime,'%Y-%m-%d %H:%i:%s') as createtime,
+        tm.nickname,
+        tm.head_photo,
+        o.fullname,
+        o.tags,
+        (select count(1) from save_remark_member srm where srm.remarkid = toc.id) as remark_count
+        from organization_remark toc join member tm on toc.memberid = tm.id
+        join organization o on o.code = toc.orgcode
+        where toc.orgcode = #{orgcode} AND toc.post_status LIKE '%在职%'
+        order by toc.createtime desc
+        <if test="offset!=null and offset!=''">
+            limit ${offset},${limit}
+        </if>
+    </select>
+    <select id="getOrganizationCommenPractice" resultType="com.hx.hxjob.model.OrganizationRemark">
+        select
+        toc.id,toc.memberid,toc.orgcode,toc.orgname,toc.memberPhoto,toc.city,toc.workyear,toc.post_status,toc.salary_pre_tax,toc.other_benefit,toc.year_end_money,toc.growth,toc.workload,
+        toc.cultural_context,toc.satisfaction,toc.theme,toc.writing_evaluation,toc.evaluate_label,toc.img_upload,
+        date_format(toc.createtime,'%Y-%m-%d %H:%i:%s') as createtime,
+        tm.nickname,
+        tm.head_photo,
+        o.fullname,
+        o.tags,
+        (select count(1) from save_remark_member srm where srm.remarkid = toc.id) as remark_count
+        from organization_remark toc join member tm on toc.memberid = tm.id
+        join organization o on o.code = toc.orgcode
+        where toc.orgcode = #{orgcode} AND toc.post_status LIKE '%实习%'
+        order by toc.createtime desc
+        <if test="offset!=null and offset!=''">
+            limit ${offset},${limit}
+        </if>
+    </select>
+
+
 </mapper>

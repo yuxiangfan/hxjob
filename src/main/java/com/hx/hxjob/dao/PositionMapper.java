@@ -2,6 +2,7 @@ package com.hx.hxjob.dao;
 
 import com.hx.hxjob.model.Organization;
 import com.hx.hxjob.model.Position;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -12,26 +13,46 @@ import java.util.Map;
  * @created: 2020/01/16 17:47
  */
 public interface PositionMapper {
-    List<Position> getPositionPage(Map<String, String> params);
+    public List<Position> getPositionPage(Map<String, String> params);
 
-    Object getPositionPageCount(Map<String, String> params);
+    public int getPositionPageCount(Map<String, String> params);
 
-    void addPosition(Position position);
+    public void addPosition(Position position);
 
-    Position getPositionById(String id);
+    public void editPosition(Position position);
 
-    void editPosition(Position position);
+    public Position getPositionById(String id);
 
-    void deletePosition(String positionid);
+    public void deletePosition(String positionid);
+
+    public String getLastPosCode();
+
+    public List<Position> getPcPositions(Map<String, Object> params);
+
+    public String getHotPosKeyWords(String id);
+
+    void insertJobExcel(@Param("list") List<Position> list);
 
     List<Position> getPositionList();
 
-    List<String> getOrgOfList();
-
-    void insertJobExcel(List<Position> list);
-
     List<Organization> getOrgList();
 
-    String getLastPosCode();
+    List<String> getOrgOfList();
 
+
+    List<String> getPositionByTitle(String sc);
+
+    int getPcPositionCount(Map<String, Object> params);
+
+    List<Position> getPcPositionsHot(Map<String, Object> params);
+
+    int getPcPositionsCount(Map<String, Object> params);
+
+    List<Position> posIndexDatas(Map<String, Object> params);
+
+    public Position getPositionByCode(String code);
+
+    public List<Map<String, Object>> getPcHotPos();
+
+    public List<Position> getPositionByOrgCode(String orgcode);
 }

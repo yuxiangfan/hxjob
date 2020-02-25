@@ -155,4 +155,212 @@
         from article_command
         where id = #{cid}
     </delete>
+    <select id="brOriginalList2" resultType="com.hx.hxjob.model.Advice">
+        select tac.id,
+               tac.title,
+               tac.author,
+               tac.editor,
+               tac.image,
+               tac.brief,
+               tac.original,
+               tac.looktime,
+               tac.content,
+               tac.keywords,
+               tac.sort,
+               tac.publishtime,
+               tac.shelftime,
+               tac.istop,
+               tac.createtime,
+               tac.creater,
+               tac.updatetime,
+               tac.updater,
+               tac.type,
+               tac.url,
+               ac.id    as cid,
+               ac.title as title1,
+               ac.nature
+        from advice tac
+                 left join article_command ac on tac.author = ac.id
+
+        where now() > tac.publishtime
+          and ac.title like "%贝睿%"
+          and (tac.shelftime > now() or tac.shelftime is null)
+        order by tac.createtime desc
+    </select>
+    <select id="brOriginalList" resultType="com.hx.hxjob.model.Advice">
+        select tac.id,
+               tac.title,
+               tac.author,
+               tac.editor,
+               tac.image,
+               tac.brief,
+               tac.original,
+               tac.looktime,
+               tac.content,
+               tac.keywords,
+               tac.sort,
+               tac.publishtime,
+               tac.shelftime,
+               tac.istop,
+               tac.createtime,
+               tac.creater,
+               tac.updatetime,
+               tac.updater,
+               tac.type,
+               tac.url,
+               ac.id    as cid,
+               ac.title as title1,
+               ac.nature
+        from advice tac
+                 left join article_command ac on tac.author = ac.id
+        where now() > tac.publishtime
+          and ac.title like "%贝睿%"
+          and (tac.shelftime > now() or tac.shelftime is null)
+        order by tac.createtime desc
+
+    </select>
+    <select id="getArticleCurriculumPageForPC" parameterType="java.util.Map"
+            resultType="com.hx.hxjob.model.Advice">
+        select tac.id,
+        tac.title,
+        tac.author,
+        tac.image,
+        tac.brief,
+        tac.original,
+        tac.looktime,
+        tac.content,
+        tac.keywords,
+        tac.sort,
+        tac.publishtime,
+        tac.shelftime,
+        tac.istop,
+        tac.createtime,
+        tac.creater,
+        tac.updatetime,
+        tac.updater,
+        tac.type,
+        tac.url,
+        ac.id    as cid,
+        ac.title as title1,
+        ac.nature
+        from advice tac
+        left join article_command ac on tac.author = ac.id
+        where now() > tac.publishtime
+        and (tac.shelftime > now() or tac.shelftime is null)
+        order by tac.createtime desc
+        limit ${offset},${limit}
+    </select>
+    <select id="getArticleCurriculumPageCountForPC" parameterType="java.util.Map" resultType="int">
+        select count(1)
+        from advice n
+        where now() > publishtime
+          and (shelftime > now() or shelftime is null)
+    </select>
+    <select id="toAdviceDetails" resultType="com.hx.hxjob.model.Advice">
+        select *
+        from advice
+        where id = #{id}
+    </select>
+    <select id="getArticleCommand" resultType="com.hx.hxjob.model.ArticleCommand">
+        select *
+        from article_command
+        where id = #{cid}
+    </select>
+    <select id="getCommandNumber" resultType="int">
+        select count(commandid)
+        from article_command_attention
+        where commandid = #{id};
+    </select>
+    <select id="gethotCommandList" resultType="com.hx.hxjob.model.ArticleCommand">
+        SELECT ac.id,
+               ac.title,
+               ac.nature,
+               ac.brief,
+               ac.publishtime,
+               n.id          AS cid,
+               n.title       AS title1,
+               n.editor,
+               n.image,
+               n.brief       AS brief1,
+               n.content,
+               n.publishtime AS publishtime1
+        FROM article_command ac
+                 LEFT JOIN news n ON ac.id = n.author
+        ORDER BY n.`publishtime` DESC
+
+    </select>
+    <!--获取热门所属列表对应的关注-->
+    <select id="getCommandNumberOfHot" resultType="com.hx.hxjob.model.ArticleCommand">
+        SELECT ac.`id`,
+               ac.`title`,
+               ac.`brief`,
+               ac.`nature`,
+               ac.`publishtime`,
+               (SELECT COUNT(1) FROM article_command_attention WHERE commandid = ac.id ORDER BY COUNT(1) DESC) AS commandCount
+        FROM article_command ac
+        order by commandCount desc
+        limit 0,5;
+
+    </select>
+    <select id="getMemberByUsername" resultMap="memberMap">
+        select m.id, aca.id, aca.commandid, aca.memberid, aca.createtime
+        from member m
+        left join article_command_attention aca on m.id = aca.memberid
+        where m.username = #{username}
+    </select>
+    <resultMap id="memberMap" type="com.hx.hxjob.model.Member">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <collection property="articleCommandAttention" ofType="com.hx.hxjob.model.ArticleCommandAttention">
+            <id column="id" jdbcType="BIGINT" property="id"/>
+            <result column="commandid" jdbcType="VARCHAR" property="commandid"/>
+            <result column="memberid" jdbcType="VARCHAR" property="memberid"/>
+        </collection>
+    </resultMap>
+    <select id="getGoodsList" resultType="com.hx.hxjob.model.ArticleCommand">
+        select ac.id,
+        ac.title,
+        ac.nature,
+        ac.brief,
+        ac.publishtime,
+        n.id                                            as cid,
+        n.title                                         as title1,
+        n.editor,
+        n.image                                         as imagenew,
+        n.brief                                         as brief1,
+        n.content,
+        date_format(n.publishtime, '%Y-%m-%d %H:%i:%s') as publishtime1
+        from article_command ac
+        left join news n on ac.id = n.author
+        where ac.id = #{id}
+        order by publishtime1 desc;
+    </select>
+    <!--新增关注-->
+    <insert id="addArticleCommandByMemberId">
+        insert into article_command_attention(commandid, memberid, createtime)
+        values (#{id}, #{memberid}, now())
+    </insert>
+    <select id="getArticleCommandByMemberId" resultType="com.hx.hxjob.model.ArticleCommandAttention">
+        select id, commandid, memberid, date_format(createtime, '%Y-%m-%d %H:%i:%s') as createtime
+        from article_command_attention
+        where commandid = #{id}
+        and memberid = #{memberid}
+    </select>
+    <!--取消关注-->
+    <delete id="deleteArticleCommandByMemberId">
+        delete
+        from article_command_attention
+        where commandid = #{id}
+        and memberid = #{memberid}
+    </delete>
+    <select id="getMemberACCollect" parameterType="java.lang.String" resultType="int">
+        select count(1)
+        from ac_collection
+        where memberid = #{memberid}
+        and acid = #{acid}
+    </select>
+    <insert id="acCollect" parameterType="java.lang.String">
+        insert into ac_collection(memberid, acid, createtime)
+        values (${memberid}, ${acid}, now());
+    </insert>
+
 </mapper>

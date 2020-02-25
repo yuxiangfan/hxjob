@@ -52,4 +52,56 @@ public interface MemberMapper {
 
     /*PC——>获得收藏*/
     List<Organization> getCollectOrg(String valueOf);
+
+    String getMemberIdByVal(@Param(value = "val") String val);
+
+    void setReplyOk(@Param(value = "val") String val, @Param(value = "memberId") String memberId, @Param(value = "code") String code, @Param(value = "replyData") String replyData, @Param(value = "fid") String fid);
+
+    Member getMemberJobByUsername(String username);
+
+    SavePositionMember getPositionAndMember(@Param(value = "code") String code, @Param(value = "memberId") String memberId);
+
+    int deletePositionAndMember(@Param(value = "code") String code, @Param(value = "memberId") String memberId);
+
+    int savePositionAndMember(@Param(value = "code") String code, @Param(value = "memberId") String memberId);
+
+    void deleteCollectOrg(@Param(value = "code") String code, @Param(value = "memberId") String memberId);
+
+    List<OrganizationRemark> getRemark(String id);
+
+    void deleteRemark(@Param(value = "id") String id);
+
+    void deleteRemarkSave(String id);
+
+    List<Member> alreadyPraise(@Param(value = "id") String id);
+
+    List<organizationReply> letter(@Param(value = "id") String id);
+
+    void clearLetter(String id);
+
+    ArticleCommandAttention getNewWhether(@Param(value = "id") String id, @Param(value = "memberId") String memberId);
+
+    SaveRemarkMember getPraiseRemark(@Param(value = "id") String id, @Param(value = "memberId") String memberId);
+
+    int deletePraiseRemark(@Param(value = "id") String id, @Param(value = "memberId") String memberId);
+
+    Member getMemberById(@Param(value = "memberId") String memberId);
+
+    int savePraiseRemark(@Param(value = "id") String id, @Param(value = "nickname") String nickname, @Param(value = "memberId") String memberId);
+
+    Organization getEveryoneSay(String orgcode);
+
+    List<Organization> orgGet(@Param(value = "id") Integer id);
+
+    List<Position> posGet(@Param(value = "id") Integer id);
+
+    List<ApplyCalendar> getApplyCalendar();
+
+    List<SignCalendar> applyList(String code);
+
+    List<ExamCalendar> examList(String code);
+
+    List<Download> downList(Map<String, String> params);
+
+    int downListCount(Map<String, String> params);
 }

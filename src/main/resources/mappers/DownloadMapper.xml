@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hx.hxjob.dao.DownloadMapper">
+
+
+    <insert id="addDown">
+        insert into down_load(title, link, code, validTime, pay, member, create_time)
+        values (#{title}, #{link}, #{code}, #{validTime}, #{pay}, #{member}, NOW());
+    </insert>
+
+    <update id="submitEditDown">
+        update down_load
+        set title     = #{title},
+            link      = #{link},
+            code      = #{code},
+            validTime = #{validTime},
+            pay       = #{pay},
+            member    = #{member}
+        where id = #{cid}
+    </update>
+
+    <delete id="deleteDown">
+        delete
+        from down_load
+        where id = #{id}
+    </delete>
+
+    <select id="downList" resultType="com.hx.hxjob.model.Download">
+        select * from down_load
+        <if test="title!='' and title!=null">
+            and title = #{title}
+        </if>
+        <if test="offset!='' and offset!=null">
+            limit ${offset},${limit}
+        </if>
+    </select>
+    <select id="downListCount" resultType="java.lang.Integer">
+        select count(1)
+        from down_load where 1=1
+        <if test="examStatus!='' and examStatus!=null">
+            and title = #{title}
+        </if>
+    </select>
+    <select id="editDown" resultType="com.hx.hxjob.model.Download">
+        select *
+        from down_load
+        where id = #{id}
+    </select>
+</mapper>

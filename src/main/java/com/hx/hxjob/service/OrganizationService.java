@@ -957,4 +957,491 @@ public class OrganizationService {
         result.put("orgCount", orgCount);
         return result;
     }
+
+    public Map<String, Object> getOrgsHot(Map<String, String> params, Member member) {
+        Map<String, Object> result = new HashMap<>();
+        /*查询全部热度机构*/
+        List<Organization> orgsHot = this.organizationMapper.getPcHotOrganizations(params);
+        /*查询总量*/
+        int countOrgHot = this.organizationMapper.getPcHotOrganizationsCount(params);
+        if (member != null) {
+            member = this.memberMapper.getMemberByUsername(member.getUsername());
+        }
+        for (Organization organization : orgsHot) {
+            boolean praiseFlag = true;
+            boolean collectFlag = true;
+            boolean commentFlag = true;
+            if (member == null) {
+                organization.setPraiseFlag(true);
+                organization.setCollectFlag(true);
+                organization.setCommentFlag(true);
+                organization.setWhetherLogon(true);
+            } else {
+                if (CollectionUtils.isEmpty(member.getOrganizationPraises())) {
+                    organization.setPraiseFlag(true);
+                } else {
+                    for (OrganizationPraise organizationPraise : member.getOrganizationPraises()) {
+                        if (organizationPraise.getOrgcode().equals(organization.getCode())) {
+                            praiseFlag = false;
+                            break;
+                        }
+                    }
+                    organization.setPraiseFlag(praiseFlag);
+                }
+                if (CollectionUtils.isEmpty(member.getOrganizationRemarks())) {
+                    organization.setCommentFlag(true);
+                } else {
+                    for (OrganizationRemark organizationRemark : member.getOrganizationRemarks()) {
+                        if (organizationRemark.getOrgcode().equals(organization.getCode())) {
+                            commentFlag = false;
+                            break;
+                        }
+                    }
+                    organization.setCommentFlag(commentFlag);
+                }
+
+                if (CollectionUtils.isEmpty(member.getOrganizationCollects())) {
+                    organization.setCollectFlag(true);
+                } else {
+                    for (OrganizationCollect organizationCollect : member.getOrganizationCollects()) {
+                        if (organizationCollect.getOrgcode().equals(organization.getCode())) {
+                            collectFlag = false;
+                            break;
+                        }
+                    }
+                    organization.setCollectFlag(collectFlag);
+                }
+            }
+        }
+        result.put("orgsHot", orgsHot);
+        result.put("countOrgHot", countOrgHot);
+        return result;
+    }
+
+    public List<Organization> orgsIndexDatas(Map<String, String> params, Member member) {
+        List<Organization> orgs = this.organizationMapper.orgsIndexDatas(params);
+        if (member != null) {
+            member = this.memberMapper.getMemberByUsername(member.getUsername());
+        }
+        for (Organization organization : orgs) {
+            boolean praiseFlag = true;
+            boolean collectFlag = true;
+            boolean commentFlag = true;
+            if (member == null) {
+                organization.setPraiseFlag(true);
+                organization.setCollectFlag(true);
+                organization.setCommentFlag(true);
+                organization.setWhetherLogon(true);
+            } else {
+                if (CollectionUtils.isEmpty(member.getOrganizationPraises())) {
+                    organization.setPraiseFlag(true);
+                } else {
+                    for (OrganizationPraise organizationPraise : member.getOrganizationPraises()) {
+                        if (organizationPraise.getOrgcode().equals(organization.getCode())) {
+                            praiseFlag = false;
+                            break;
+                        }
+                    }
+                    organization.setPraiseFlag(praiseFlag);
+                }
+                if (CollectionUtils.isEmpty(member.getOrganizationRemarks())) {
+                    organization.setCommentFlag(true);
+                } else {
+                    for (OrganizationRemark organizationRemark : member.getOrganizationRemarks()) {
+                        if (organizationRemark.getOrgcode().equals(organization.getCode())) {
+                            commentFlag = false;
+                            break;
+                        }
+                    }
+                    organization.setCommentFlag(commentFlag);
+                }
+
+                if (CollectionUtils.isEmpty(member.getOrganizationCollects())) {
+                    organization.setCollectFlag(true);
+                } else {
+                    for (OrganizationCollect organizationCollect : member.getOrganizationCollects()) {
+                        if (organizationCollect.getOrgcode().equals(organization.getCode())) {
+                            collectFlag = false;
+                            break;
+                        }
+                    }
+                    organization.setCollectFlag(collectFlag);
+                }
+            }
+        }
+        return orgs;
+    }
+
+    public synchronized Map<String, Object> orgPraise(String code, Member member) {
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+
+            if (member == null) {
+                result.put("code", -9);
+                result.put("msg", "用户未登录");
+            } else {
+
+                OrganizationPraise queryOrgPraise = this.organizationMapper.getOrganizationPraiseByCodeAndMemberid(code, String.valueOf(member.getId()));
+
+                if (queryOrgPraise != null) {
+                    this.organizationMapper.deleteOrgPraise(code, String.valueOf(member.getId()));
+                    result.put("code", 1);
+                    result.put("msg", "取消点赞");
+                } else {
+                    this.organizationMapper.addPraise(code, String.valueOf(member.getId()));
+                    result.put("code", 0);
+                    result.put("msg", "点赞成功");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("code", -99);
+            result.put("msg", "系统异常");
+        }
+        return result;
+    }
+
+    public synchronized Map<String, Object> orgCollect(String code, Member member) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try {
+            if (member == null) {
+                result.put("code", -9);
+                result.put("msg", "用户未登录");
+            } else {
+                OrganizationCollect queryCollect = this.organizationMapper.getOrganizationCollectByCodeAndMemberid(code, String.valueOf(member.getId()));
+                if (queryCollect != null) {
+                    this.organizationMapper.deleteOrgCollect(code, String.valueOf(member.getId()));
+                    result.put("code", 1);
+                    result.put("msg", "取消收藏");
+                } else {
+                    this.organizationMapper.addCollect(code, String.valueOf(member.getId()));
+                    result.put("code", 0);
+                    result.put("msg", "收藏成功");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("code", -99);
+            result.put("msg", "系统异常");
+        }
+        return result;
+    }
+
+    @Transactional
+    public Map<String, Object> userOrgComment(Map<String, Object> params, MultipartFile imgUpload, Member member, HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        InputStream fileIs = null;
+        OutputStream fileOs = null;
+        try {
+            Map<String, Object> datas = JSON.parseObject((String) params.get("datas"));
+            /*用户登录评价凭证*/
+            if (member == null) {
+                result.put("code", -9);
+                result.put("msg", "用户未登录");
+            } else {
+                OrganizationRemark orgcode = this.organizationMapper.getOrganizationCommentByCodeAndMemberid((String) datas.get("orgcode"), String.valueOf(member.getId()));
+                if (orgcode != null) {
+                    result.put("code", -10);
+                    result.put("msg", "您已评论");
+                } else {
+                    /*检查元素*/
+                    result = this.checkCommentParam(datas);
+                    if ((int) result.get("code") < 0) {
+                        return result;
+                    }
+                    if (StringUtils.isEmpty((String) datas.get("undefined"))) {
+                        datas.put("undefined", "5");
+                    }
+                    if (imgUpload != null) {
+                        String filename = imgUpload.getOriginalFilename();
+                        String fileType = filename.substring(filename.lastIndexOf(".") + 1);
+
+                        if (!"PNG,JPG,GIF,BMP,JPEG,RWA".contains(fileType.toUpperCase())) {
+                            result.put("code", -1);
+                            result.put("msg", "logo请上传以下格式(PNG,JPG,GIF,BMP,JPEG,RWA)文件");
+                            return result;
+                        }
+                        String relativePath = "/remark/" + Constant.sdf_yyyymmdd.format(new Date());
+                        String fileNewName = System.currentTimeMillis() + "." + fileType;
+                        /*图片保存路径*/
+                        String realPath = request.getServletContext().getRealPath("/upload");
+                        String savePath = realPath + relativePath;
+                        File fileSavePath = new File(savePath);
+                        if (!fileSavePath.exists()) {
+                            fileSavePath.mkdirs();
+                        }
+                        fileIs = imgUpload.getInputStream();
+                        fileOs = new FileOutputStream(new File(savePath + "/" + fileNewName));
+                        byte[] b = new byte[1024];
+                        while (fileIs.read(b) > -1) {
+                            fileOs.write(b);
+                        }
+                        datas.put("imgUpload", "/upload" + relativePath + "/" + fileNewName);
+                    }
+                }
+            }
+            //插入新的机构数据
+            this.organizationMapper.userOrgComment(datas);
+            result.put("code", 0);
+            result.put("msg", "评论成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("code", -99);
+            result.put("msg", "系统异常");
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        } finally {
+            if (fileIs != null) {
+                try {
+                    fileIs.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (fileOs != null) {
+                try {
+                    fileOs.flush();
+                    fileOs.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return result;
+    }
+
+    private Map<String, Object> checkCommentParam(Map<String, Object> datas) {
+        Map<String, Object> result = new HashMap<>();
+
+        if (StringUtils.isEmpty((String) datas.get("postStatus"))) {
+            result.put("code", -1);
+            result.put("msg", "岗位状态未填写");
+            return result;
+        } else if (StringUtils.isEmpty((String) datas.get("workyear"))) {
+            result.put("code", -1);
+            result.put("msg", "工作年限未填");
+            return result;
+        } else if (StringUtils.isEmpty((String) datas.get("salaryPreTax"))) {
+            result.put("code", -1);
+            result.put("msg", "税前工资未填");
+            return result;
+        } else if (StringUtils.isEmpty((String) datas.get("otherBenefit"))) {
+            result.put("code", -1);
+            result.put("msg", "额外福利未填");
+            return result;
+        } else if (StringUtils.isEmpty((String) datas.get("yearEndMoney"))) {
+            result.put("code", -1);
+            result.put("msg", "年终奖金未填");
+            return result;
+        } else if (StringUtils.isEmpty((String) datas.get("writingEvaluation"))) {
+            result.put("code", -1);
+            result.put("msg", "文字描述未填");
+            return result;
+        }
+        return result;
+    }
+
+    public SavePositionMember whetherRemark(String code, Member member) {
+        SavePositionMember whetherRemark = new SavePositionMember();
+        if (member == null) {
+            whetherRemark.setWhetherRemark(true);
+        } else {
+            String orgCode = this.organizationMapper.getwhetherByName(code, String.valueOf(member.getId()));
+            if (StringUtils.isEmpty(orgCode)) {
+                whetherRemark.setWhetherRemark(true);
+            } else {
+                whetherRemark.setWhetherRemark(false);
+            }
+        }
+        return whetherRemark;
+    }
+
+    public Map<String, Object> getIndexRemark(Map<String, String> params, Member member) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        PageUtil.dealPageParamForLayer(params);
+        /*评论列表*/
+        List<OrganizationRemark> remarkList = this.organizationMapper.getOrganizationCommenIndexHot(params);
+        /*验证用户是否有点赞*/
+        if (member != null) {
+            member = this.organizationMapper.orgCommentsWhetherPraise(member.getUsername());
+        }
+        for (OrganizationRemark organizationRemark : remarkList) {
+            boolean whetherRemark = true;
+            if (member == null) {
+                organizationRemark.setWhetherRemark(true);
+            } else {
+                if (CollectionUtils.isEmpty(member.getSaveRemarkMembers())) {
+                    organizationRemark.setWhetherRemark(true);
+                } else {
+                    for (SaveRemarkMember saveRemarkMember : member.getSaveRemarkMembers()) {
+                        if (saveRemarkMember.getRemarkid() == organizationRemark.getId()) {
+                            whetherRemark = false;
+                            break;
+                        }
+                    }
+                    organizationRemark.setWhetherRemark(whetherRemark);
+                }
+            }
+        }
+        result.put("rows", remarkList);
+        result.put("total", this.organizationMapper.getOrganizationCommentPageCount(params));
+
+        return result;
+    }
+
+    public Map<String, Object> orgComments(Map<String, String> params, Member member) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        PageUtil.dealPageParamForLayer(params);
+        List<OrganizationRemark> remarkList = this.organizationMapper.getOrganizationCommentPage(params);
+        /*验证用户是否有点赞*/
+        if (member != null) {
+            member = this.organizationMapper.orgCommentsWhetherPraise(member.getUsername());
+        }
+        for (OrganizationRemark organizationRemark : remarkList) {
+            boolean whetherRemark = true;
+            if (member == null) {
+                organizationRemark.setWhetherRemark(true);
+            } else {
+                if (CollectionUtils.isEmpty(member.getSaveRemarkMembers())) {
+                    organizationRemark.setWhetherRemark(true);
+                } else {
+                    for (SaveRemarkMember saveRemarkMember : member.getSaveRemarkMembers()) {
+                        if (saveRemarkMember.getRemarkid() == organizationRemark.getId()) {
+                            whetherRemark = false;
+                            break;
+                        }
+                    }
+                    organizationRemark.setWhetherRemark(whetherRemark);
+                }
+            }
+        }
+        result.put("rows", remarkList);
+        result.put("total", this.organizationMapper.getOrganizationCommentPageCount(params));
+        return result;
+    }
+
+    /*插入评论数据*/
+    @Transactional(rollbackFor = Exception.class)
+    public Map<String, Object> replyOk(Map<String, String> params, Member member) {
+        Map<String, Object> result = new HashMap<>();
+        String val = params.get("val");
+        String code = params.get("code");
+        String replyData = params.get("replyData");
+        String memberId = this.memberMapper.getMemberIdByVal(params.get("val"));
+        try {
+            if (member == null) {
+                result.put("code", -1);
+                result.put("msg", "您未登录，请登录");
+                return result;
+            } else {
+                String fid = String.valueOf(member.getId());
+                this.memberMapper.setReplyOk(val, memberId, code, replyData, fid);
+            }
+            result.put("code", 0);
+            result.put("msg", "操作成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("code", -99);
+            result.put("msg", "系统异常");
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        }
+        return result;
+    }
+
+    public Map<String, Object> orgCommentsRecommend(Map<String, String> params, Member member) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        PageUtil.dealPageParamForLayer(params);
+        /*评论列表*/
+        List<OrganizationRemark> remarkList = this.organizationMapper.getOrganizationCommenRecommend(params);
+        System.out.println(remarkList);
+        /*验证用户是否有点赞*/
+        if (member != null) {
+            member = this.organizationMapper.orgCommentsWhetherPraise(member.getUsername());
+        }
+        for (OrganizationRemark organizationRemark : remarkList) {
+            boolean whetherRemark = true;
+            if (member == null) {
+                organizationRemark.setWhetherRemark(true);
+            } else {
+                if (CollectionUtils.isEmpty(member.getSaveRemarkMembers())) {
+                    organizationRemark.setWhetherRemark(true);
+                } else {
+                    for (SaveRemarkMember saveRemarkMember : member.getSaveRemarkMembers()) {
+                        if (saveRemarkMember.getRemarkid() == organizationRemark.getId()) {
+                            whetherRemark = false;
+                            break;
+                        }
+                    }
+                    organizationRemark.setWhetherRemark(whetherRemark);
+                }
+            }
+        }
+        result.put("rows", remarkList);
+        result.put("total", this.organizationMapper.getOrganizationCommentPageCount(params));
+        return result;
+    }
+
+    public Map<String, Object> orgCommentsOnJob(Map<String, String> params, Member member) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        PageUtil.dealPageParamForLayer(params);
+        /*评论列表*/
+        List<OrganizationRemark> remarkList = this.organizationMapper.getOrganizationCommentPageOnJob(params);
+        /*验证用户是否有点赞*/
+        if (member != null) {
+            member = this.organizationMapper.orgCommentsWhetherPraise(member.getUsername());
+        }
+        for (OrganizationRemark organizationRemark : remarkList) {
+            boolean whetherRemark = true;
+            if (member == null) {
+                organizationRemark.setWhetherRemark(true);
+            } else {
+                if (CollectionUtils.isEmpty(member.getSaveRemarkMembers())) {
+                    organizationRemark.setWhetherRemark(true);
+                } else {
+                    for (SaveRemarkMember saveRemarkMember : member.getSaveRemarkMembers()) {
+                        if (saveRemarkMember.getRemarkid() == organizationRemark.getId()) {
+                            whetherRemark = false;
+                            break;
+                        }
+                    }
+                    organizationRemark.setWhetherRemark(whetherRemark);
+                }
+            }
+        }
+        result.put("rows", remarkList);
+        result.put("total", this.organizationMapper.getOrganizationCommentPageCount(params));
+        return result;
+    }
+
+    public Map<String, Object> orgCommentsPractice(Map<String, String> params, Member member) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        PageUtil.dealPageParamForLayer(params);
+        /*评论列表*/
+        List<OrganizationRemark> remarkList = this.organizationMapper.getOrganizationCommenPractice(params);
+        /*验证用户是否有点赞*/
+        if (member != null) {
+            member = this.organizationMapper.orgCommentsWhetherPraise(member.getUsername());
+        }
+        for (OrganizationRemark organizationRemark : remarkList) {
+            boolean whetherRemark = true;
+            if (member == null) {
+                organizationRemark.setWhetherRemark(true);
+            } else {
+                if (CollectionUtils.isEmpty(member.getSaveRemarkMembers())) {
+                    organizationRemark.setWhetherRemark(true);
+                } else {
+                    for (SaveRemarkMember saveRemarkMember : member.getSaveRemarkMembers()) {
+                        if (saveRemarkMember.getRemarkid() == organizationRemark.getId()) {
+                            whetherRemark = false;
+                            break;
+                        }
+                    }
+                    organizationRemark.setWhetherRemark(whetherRemark);
+                }
+            }
+        }
+        result.put("rows", remarkList);
+        result.put("total", this.organizationMapper.getOrganizationCommentPageCount(params));
+        return result;
+    }
 }

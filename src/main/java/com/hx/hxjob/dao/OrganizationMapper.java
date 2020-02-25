@@ -1,9 +1,6 @@
 package com.hx.hxjob.dao;
 
-import com.hx.hxjob.model.City;
-import com.hx.hxjob.model.Industry;
-import com.hx.hxjob.model.Organization;
-import com.hx.hxjob.model.OrganizationRemark;
+import com.hx.hxjob.model.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -25,7 +22,7 @@ public interface OrganizationMapper {
 
     int getOrganizationsPageCount(Map<String, String> params);
 
-     Organization getOrganizationByFullNameAndShortName(@Param(value = "fullname") String fullname, @Param(value = "shortname") String shortname);
+    Organization getOrganizationByFullNameAndShortName(@Param(value = "fullname") String fullname, @Param(value = "shortname") String shortname);
 
     void addNewOrg(Map<String, Object> params);
 
@@ -61,7 +58,7 @@ public interface OrganizationMapper {
 
     City getCityById(String cid);
 
-     void editCity(City city);
+    void editCity(City city);
 
     void deleteCity(String cid);
 
@@ -84,4 +81,42 @@ public interface OrganizationMapper {
     List<Organization> getPcOrganizations(Map<String, String> params);
 
     int getPcOrganizationsCount(Map<String, String> params);
+
+    List<Organization> getPcHotOrganizations(Map<String, String> params);
+
+    int getPcHotOrganizationsCount(Map<String, String> params);
+
+    List<Organization> orgsIndexDatas(Map<String, String> params);
+
+    public OrganizationPraise getOrganizationPraiseByCodeAndMemberid(@Param(value = "code") String code, @Param(value = "memberid") String memberid);
+
+    public int deleteOrgPraise(@Param(value = "code") String code, @Param(value = "memberid") String memberid);
+
+    public int addPraise(@Param(value = "code") String code, @Param(value = "memberid") String memberid);
+
+    public OrganizationCollect getOrganizationCollectByCodeAndMemberid(@Param(value = "code") String code, @Param(value = "memberid") String memberid);
+
+    public int deleteOrgCollect(@Param(value = "code") String code, @Param(value = "memberid") String memberid);
+
+    public int addCollect(@Param(value = "code") String code, @Param(value = "memberid") String memberid);
+
+    OrganizationRemark getOrganizationCommentByCodeAndMemberid(@Param(value = "orgcode") String orgcode, @Param(value = "memberid") String memberid);
+
+    void userOrgComment(Map<String, Object> params);
+
+    String getwhetherByName(@Param(value = "code") String code, @Param(value = "memberId") String memberId);
+
+    List<OrganizationRemark> getOrganizationCommenIndexHot(Map<String, String> params);
+
+    Member orgCommentsWhetherPraise(String username);
+
+    public int getOrganizationCommentPageCount(Map<String, String> params);
+
+    public List<OrganizationRemark> getOrganizationCommentPage(Map<String, String> params);
+
+    List<OrganizationRemark> getOrganizationCommenRecommend(Map<String, String> params);
+
+    List<OrganizationRemark> getOrganizationCommentPageOnJob(Map<String, String> params);
+
+    List<OrganizationRemark> getOrganizationCommenPractice(Map<String, String> params);
 }

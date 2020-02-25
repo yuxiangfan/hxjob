@@ -4,6 +4,7 @@ package com.hx.hxjob.dao;
 import com.hx.hxjob.model.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Map;
@@ -38,4 +39,35 @@ public interface SelectorMapper {
 
     void deleteCommand(String cid);
 
+    List<Advice> brOriginalList2();
+
+    List<Advice> brOriginalList(Map<String, String> params);
+
+    public List<Advice> getArticleCurriculumPageForPC(Map<String, String> params);
+
+    public int getArticleCurriculumPageCountForPC(Map<String, String> params);
+
+    Advice toAdviceDetails(int id);
+
+    ArticleCommand getArticleCommand(int cid);
+
+    int getCommandNumber(int cid);
+
+    List<ArticleCommand> gethotCommandList();
+
+    List<ArticleCommand> getCommandNumberOfHot();
+
+    List<ArticleCommand> getGoodsList(int id);
+
+    Member getMemberByUsername(String username);
+
+    ArticleCommandAttention getArticleCommandByMemberId(@Param("id") String id, @Param("memberid") String memberid);
+
+    int deleteArticleCommandByMemberId(@Param("id") String id, @Param("memberid") String memberid);
+
+    int addArticleCommandByMemberId(@Param("id") String id, @Param("memberid") String memberid);
+
+    public int getMemberACCollect(@Param(value = "acid") String acid, @Param(value = "memberid") String memberid);
+
+    public int acCollect(@Param(value = "acid") String acid, @Param(value = "memberid") String memberid);
 }

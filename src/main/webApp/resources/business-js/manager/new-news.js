@@ -33,7 +33,7 @@ var submit = function () {
     if (datas.id == undefined || datas.id.trim().length == 0) {
         datas.id = 0;
         $.ajax({
-            url: 'news/adding',
+            url: 'advice/adding',
             data: formData,
             dataType: 'json',
             type: 'post',
@@ -59,7 +59,7 @@ var submit = function () {
     //编辑
     else {
         $.ajax({
-            url: 'news/editing',
+            url: 'advice/editing',
             data: formData,
             dataType: 'json',
             type: 'post',
@@ -70,7 +70,7 @@ var submit = function () {
             success: function (data) {
                 if (data.code == 0) {
                     layer.confirm("编辑成功", {btn: ['新增新闻', '保留当前']}, function () {
-                            window.location.href = 'news/add';
+                            window.location.href = 'advice/add';
                         },
                         function (index) {
                             layer.close(index);

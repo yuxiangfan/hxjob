@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hx.hxjob.dao.MemberTestMapper">
+
+    <sql id="PosAndCom">
+        tm.id as memberid,tm.username,tm.nickname,
+		tpct.id,tpct.name as testname,tpct.gender,
+		DATE_FORMAT(tpct.birthday,'%Y-%m-%d') as birthday,tpct.native_place,tpct.political_background,
+		tpct.contact,date_format(tpct.createtime,'%Y-%m-%d %H:%i:%s') as createtime,
+		tpct.score,tpct.result,
+		teb.id as ebid,teb.starttime as ebstarttime,teb.endtime as ebendtime,teb.school,teb.major,teb.degree,
+		tie.id as ieid,tie.starttime as iestarttime,tie.endtime as ieendtime,tie.category,tie.name as iename,tie.department,
+		tse.id as seid,tse.type as setype,tse.selector,tse.selector_code,
+		tsp.id as spid,tsp.starttime as spstarttime,tsp.endtime as spendtime,tsp.project,tsp.prize,
+		tc.id as cid,tc.type as ctype,tc.certificate,tc.certificate_code
+    </sql>
+
+    <resultMap type="com.hx.hxjob.model.PosAndComTest" id="PosAndComMap">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="testname" jdbcType="VARCHAR" property="name"/>
+        <result column="gender" jdbcType="VARCHAR" property="gender"/>
+        <result column="birthday" jdbcType="VARCHAR" property="birthday"/>
+        <result column="native_place" jdbcType="VARCHAR" property="nativePlace"/>
+        <result column="political_background" jdbcType="VARCHAR" property="politicalBackground"/>
+        <result column="contact" jdbcType="VARCHAR" property="contact"/>
+        <result column="createtime" jdbcType="VARCHAR" property="createtime"/>
+        <result column="score" jdbcType="VARCHAR" property="score"/>
+        <result column="result" jdbcType="VARCHAR" property="result"/>
+        <association property="member" javaType="com.hx.hxjob.model.Member">
+            <id column="memberid" jdbcType="BIGINT" property="id"/>
+            <result column="username" jdbcType="VARCHAR" property="username"/>
+            <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        </association>
+        <collection property="educationalBackground" ofType="com.hx.hxjob.model.EducationalBackground">
+            <id column="ebid" jdbcType="BIGINT" property="id"/>
+            <result column="ebstarttime" jdbcType="VARCHAR" property="starttime"/>
+            <result column="ebendtime" jdbcType="VARCHAR" property="endtime"/>
+            <result column="school" jdbcType="VARCHAR" property="school"/>
+            <result column="major" jdbcType="VARCHAR" property="major"/>
+            <result column="degree" jdbcType="VARCHAR" property="degree"/>
+        </collection>
+        <collection property="internshipExperience" ofType="com.hx.hxjob.model.InternshipExperience">
+            <id column="ieid" jdbcType="BIGINT" property="id"/>
+            <result column="iestarttime" jdbcType="VARCHAR" property="starttime"/>
+            <result column="ieendtime" jdbcType="VARCHAR" property="endtime"/>
+            <result column="category" jdbcType="VARCHAR" property="category"/>
+            <result column="iename" jdbcType="VARCHAR" property="name"/>
+            <result column="department" jdbcType="VARCHAR" property="department"/>
+        </collection>
+        <collection property="certificate" ofType="com.hx.hxjob.model.Certificate">
+            <id column="cid" jdbcType="BIGINT" property="id"/>
+            <result column="ctype" jdbcType="VARCHAR" property="type"/>
+            <result column="certificate" jdbcType="VARCHAR" property="certificate"/>
+            <result column="certificate_code" jdbcType="VARCHAR" property="certificateCode"/>
+        </collection>
+        <collection property="selfEvaluation" ofType="com.hx.hxjob.model.SelfEvaluation">
+            <id column="seid" jdbcType="BIGINT" property="id"/>
+            <result column="setype" jdbcType="VARCHAR" property="type"/>
+            <result column="selector" jdbcType="VARCHAR" property="selector"/>
+            <result column="selector_code" jdbcType="VARCHAR" property="selectorCode"/>
+        </collection>
+        <collection property="socialPractice" ofType="com.hx.hxjob.model.SocialPractice">
+            <id column="spid" jdbcType="BIGINT" property="id"/>
+            <result column="spstarttime" jdbcType="VARCHAR" property="starttime"/>
+            <result column="spendtime" jdbcType="VARCHAR" property="endtime"/>
+            <result column="project" jdbcType="VARCHAR" property="project"/>
+            <result column="prize" jdbcType="VARCHAR" property="prize"/>
+        </collection>
+    </resultMap>
+
+    <select id="getPosAndComTest" parameterType="java.util.Map" resultMap="PosAndComMap">
+        select
+        <include refid="PosAndCom"/>
+        from member tm
+        join position_competion_test tpct on tm.id = tpct.memberid
+        left join educational_background teb on tpct.id = teb.testid
+        left join internship_experience tie on tpct.id = tie.testid
+        left join self_evaluation tse on tpct.id = tse.testid
+        left join social_practice tsp on tpct.id = tsp.testid
+        left join certificate tc on tpct.id = tc.testid
+        where 1=1
+        <if test="nickname!=null and nickname!=''">
+            and tm.nickname like concat("%",#{nickname},"%")
+        </if>
+        <if test="minscore!=null and minscore!=''">
+            and tpct.score >= ${minscore}
+        </if>
+        <if test="maxscore!=null and maxscore!=''">
+            and ${maxscore} >= tpct.score
+        </if>
+        <if test="starttime!=null and starttime!=''">
+            and tpct.createtime >= #{starttime}
+        </if>
+        <if test="endtime!=null and endtime!=''">
+            and concat(#{endtime},' 23:59:59') >= tpct.createtime
+        </if>
+        order by tpct.createtime desc
+        <if test="offset != null and offset != ''">
+            limit ${offset},${limit}
+        </if>
+    </select>
+
+    <select id="getPosAndComTestCount" parameterType="java.util.Map" resultType="int">
+        select count(1)
+        from member tm
+        join position_competion_test tpct on tm.id = tpct.memberid
+        where 1=1
+        <if test="nickname!=null and nickname!=''">
+            and tm.nickname like concat("%",#{nickname},"%")
+        </if>
+        <if test="minscore!=null and minscore!=''">
+            and tpct.score >= ${minscore}
+        </if>
+        <if test="maxscore!=null and maxscore!=''">
+            and ${maxscore} >= tpct.score
+        </if>
+        <if test="starttime!=null and starttime!=''">
+            and tpct.createtime >= #{starttime}
+        </if>
+        <if test="endtime!=null and endtime!=''">
+            and concat(#{endtime},' 23:59:59') >= tpct.createtime
+        </if>
+    </select>
+
+    <insert id="addPoscomTest" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="id">
+        insert into position_competion_test(memberid, `name`, gender, birthday, native_place, political_background, exchange_student, social_sractice,
+                                            genderGrade, birthdayGrade,
+                                            politicalBackgroundGrade, nativePlaceGrade, exchangeStudentGrade, socialSracticeGrade, createtime, score, result)
+        values (${memberid}, #{name}, #{gender}, #{birthday}, #{native_place}, #{political_background}, #{exchange_student}, #{social_sractice}, #{genderGrade},
+                #{birthdayGrade},
+                #{politicalBackgroundGrade}, #{nativePlaceGrade}, #{exchangeStudentGrade}, #{socialSracticeGrade}, now(), 0, "");
+    </insert>
+
+    <!--    <insert id="addEdus" parameterType="java.util.Map">
+            insert into educational_background(testid,starttime,endtime,school,major,degree)
+            values
+            <foreach collection="edus" separator="," item='item'>
+                (${testid},#{item.starttime},#{item.endtime},#{item.school},#{item.major},#{item.degree})
+            </foreach>
+        </insert>-->
+
+    <!--   <insert id="addExps" parameterType="java.util.Map">
+           insert into internship_experience(testid,starttime,endtime,category,`name`,department)
+           values
+           <foreach collection="exps" separator="," item='item'>
+               (${testid},#{item.starttime},#{item.endtime},#{item.category},#{item.name},#{item.department})
+           </foreach>
+       </insert>-->
+
+    <insert id="addPros" parameterType="java.util.Map">
+        insert into social_practice(testid,starttime,endtime,project,prize)
+        values
+        <foreach collection="pros" separator="," item='item'>
+            (${testid},#{item.starttime},#{item.endtime},#{item.project},#{item.prize})
+        </foreach>
+    </insert>
+
+    <insert id="addCers" parameterType="java.util.Map">
+        insert into certificate(testid,`type`,certificate,certificate_code)
+        values
+        <foreach collection="cers" separator="," item='item'>
+            (${testid},#{item.type},#{item.certificate},#{item.certificate_code})
+        </foreach>
+    </insert>
+
+    <insert id="addSels" parameterType="java.util.Map">
+        insert into self_evaluation(testid,`type`,selector,selector_code)
+        values
+        <foreach collection="sels" separator="," item='item'>
+            (${testid},#{item.type},#{item.selector},#{item.selector_code})
+        </foreach>
+    </insert>
+
+    <select id="getPoscomTestByMemberid" parameterType="java.lang.String" resultType='int'>
+        select count(1)
+        from position_competion_test
+        where memberid = #{memberid}
+    </select>
+
+    <select id="getPosAndComTestById" parameterType="java.lang.String" resultMap="PosAndComMap">
+        select
+        <include refid="PosAndCom"/>
+        from member tm
+        join position_competion_test tpct on tm.id = tpct.memberid
+        left join educational_background teb on tpct.id = teb.testid
+        left join internship_experience tie on tpct.id = tie.testid
+        left join self_evaluation tse on tpct.id = tse.testid
+        left join social_practice tsp on tpct.id = tsp.testid
+        left join certificate tc on tpct.id = tc.testid
+        where tpct.id = #{id}
+
+    </select>
+
+    <insert id="addCharacter" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="id">
+        insert into character_test(memberid, score, result, createtime)
+        values (${memberid}, '0', '', now());
+    </insert>
+
+    <insert id="addCharacterDetail" parameterType="java.util.Map">
+        insert into character_test_detail(testid,selector,selectorContent)
+        values
+        <foreach collection="character" separator="," item='item'>
+            (${testid},#{item.selector},#{item.selectorContent})
+        </foreach>
+    </insert>
+
+    <select id="getSelectGrade" resultType="com.hx.hxjob.model.SelectGrade">
+        select count(1),
+               (select count(1) from character_test_detail where substring_index(selector, '_', -1) = '1') as one,
+               (select count(1) from character_test_detail where substring_index(selector, '_', -1) = '2') as two,
+               (select count(1) from character_test_detail where substring_index(selector, '_', -1) = '3') as three,
+               (select count(1) from character_test_detail where substring_index(selector, '_', -1) = '4') as four
+        from character_test_detail
+        where testid = #{testid}
+    </select>
+
+
+    <select id="getCharacter" parameterType="java.lang.String" resultType='int'>
+        select count(1)
+        from character_test
+        where memberid = #{memberid}
+    </select>
+
+    <select id="getCharacterMember" parameterType="java.util.Map" resultType="java.util.Map">
+        select
+        tt.score,tt.result,date_format(tt.createtime,'%Y-%m-%d %H:%i:%s') as createtime,
+        tm.id,tm.nickname
+        from character_test tt join member tm on tt.memberid = tm.id
+        where 1=1
+        <if test="nickname!=null and nickname!=''">
+            and tm.nickname like concat("%",#{nickname},"%")
+        </if>
+        <if test="minscore!=null and minscore!=''">
+            and tt.score >= ${minscore}
+        </if>
+        <if test="maxscore!=null and maxscore!=''">
+            and ${maxscore} >= tt.score
+        </if>
+        <if test="starttime!=null and starttime!=''">
+            and tt.createtime >= #{starttime}
+        </if>
+        <if test="endtime!=null and endtime!=''">
+            and concat(#{endtime},' 23:59:59') >= tt.createtime
+        </if>
+        order by tt.createtime desc
+        limit ${offset},${limit}
+    </select>
+
+    <select id="getCharacterMemberCount" parameterType="java.util.Map" resultType="int">
+        select
+        count(1)
+        from character_test tt join member tm on tt.memberid = tm.id
+        where 1=1
+        <if test="nickname!=null and nickname!=''">
+            and tm.nickname like concat("%",#{nickname},"%")
+        </if>
+        <if test="minscore!=null and minscore!=''">
+            and tt.score >= ${minscore}
+        </if>
+        <if test="maxscore!=null and maxscore!=''">
+            and ${maxscore} >= tt.score
+        </if>
+        <if test="starttime!=null and starttime!=''">
+            and tt.createtime >= #{starttime}
+        </if>
+        <if test="endtime!=null and endtime!=''">
+            and concat(#{endtime},' 23:59:59') >= tt.createtime
+        </if>
+    </select>
+
+    <select id="getMemberCharacters" parameterType="java.lang.String" resultType="java.util.Map">
+        select ttd.*
+        from character_test tt
+                 left join character_test_detail ttd on tt.id = ttd.testid
+        where tt.memberid = #{memberid}
+    </select>
+    <select id="addSchoolBen" parameterType="java.util.Map">
+        insert into school_major_ben(testid, `school`, major_ben, schoolGrade, majorBenGrade)
+        values (${memberid}, #{school}, #{major_ben}, #{schoolGrade}, #{majorBenGrade});
+    </select>
+    <select id="addSchoolShuo" parameterType="java.util.Map">
+        insert into school_major_shuo(testid, `school_plus`, major_shuo, schoolPlusGrade, majorShuoGrade, majorGroupGrade)
+        values (${memberid}, #{school_plus}, #{major_shuo}, #{schoolPlusGrade}, #{majorShuoGrade}, #{majorGroupGrade});
+    </select>
+    <select id="addSkillBook" parameterType="java.util.Map">
+        insert into certificate_book(testid, skill_book1, skill_book2, skill_book3, skill_book4, skillBookGrade1, skillBookGrade2, skillBookGrade3,
+                                     skillBookGrade4)
+        values (${memberid}, #{skill_book1}, #{skill_book2}, #{skill_book3}, #{skill_book4}, #{skillBookGrade1}, #{skillBookGrade2}, #{skillBookGrade3},
+                #{skillBookGrade4})
+    </select>
+    <select id="addlanguageBook" parameterType="java.util.Map">
+        insert into language_book(testid, language_book1, language_book2, language_book3, language_book4, languageBookGrade1, languageBookGrade2,
+                                  languageBookGrade3, languageBookGrade4)
+        VALUEs (${memberid}, #{language_book1}, #{language_book2}, #{language_book3}, #{language_book4}, #{languageBookGrade1}, #{languageBookGrade2},
+                #{languageBookGrade3}, #{languageBookGrade4})
+    </select>
+    <select id="addHighBook" parameterType="java.util.Map">
+        insert into high_book(testid, high_book, highBookGrade)
+        VALUES (${memberid}, #{high_book}, #{highBookGrade});
+    </select>
+    <select id="addNationBook" parameterType="java.util.Map">
+        insert into nation_book(testid, nation_book1, nation_book2, nation_book3, nation_book4, nationBookGrade1, nationBookGrade2, nationBookGrade3,
+                                nationBookGrade4)
+        VALUES (${memberid}, #{nation_book1}, #{nation_book2}, #{nation_book3}, #{nation_book4}, #{nationBookGrade1}, #{nationBookGrade2}, #{nationBookGrade3},
+                #{nationBookGrade4});
+    </select>
+    <select id="addPracticeUnit" parameterType="java.util.Map">
+        insert into practice_unit(testid, practice_unit_one, practice_unit_two, practice_unit_three, practiceUnitOneGrade, practiceUnitTwoGrade,
+                                  practiceUnitThreeGrade, practiceGroupUnit)
+        VALUES (${memberid}, #{practice_unit_one}, #{practice_unit_two}, #{practice_unit_three}, #{practiceUnitOneGrade}, #{practiceUnitTwoGrade},
+                #{practiceUnitThreeGrade}, #{practiceGroupUnit});
+    </select>
+
+    <select id="finalScore" resultType="int">
+        select IFNULL(pct.genderGrade, 0) + IFNULL(pct.birthdayGrade, 0) + IFNULL(pct.nativePlaceGrade, 0) + IFNULL(pct.politicalBackgroundGrade, 0) +
+               IFNULL(pct.exchangeStudentGrade, 0) + IFNULL(pct.socialSracticeGrade, 0) +
+               IFNULL(smb.schoolGrade, 0) + IFNULL(smb.majorBenGrade, 0) + IFNULL(sms.schoolPlusGrade, 0) + IFNULL(sms.majorShuoGrade, 0) +
+               IFNULL(sms.majorGroupGrade, 0) +
+               IFNULL(cb.skillBookGrade1, 0) + IFNULL(cb.skillBookGrade2, 0) +
+               IFNULL(cb.skillBookGrade3, 0) + IFNULL(cb.skillBookGrade4, 0) + IFNULL(lb.languageBookGrade1, 0) + IFNULL(lb.languageBookGrade2, 0) +
+               IFNULL(lb.languageBookGrade3, 0)
+                   + IFNULL(lb.languageBookGrade4, 0) + IFNULL(nb.nationBookGrade1, 0) + IFNULL(nb.nationBookGrade2, 0) + IFNULL(nb.nationBookGrade3, 0)
+                   + IFNULL(nb.nationBookGrade4, 0) + IFNULL(pu.practiceUnitOneGrade, 0) + IFNULL(pu.practiceUnitTwoGrade, 0) +
+               IFNULL(pu.practiceGroupUnit, 0) +
+               IFNULL(pu.practiceUnitThreeGrade, 0)
+        from position_competion_test pct
+                 left join school_major_ben smb on smb.testid = pct.memberid
+                 left join school_major_shuo sms on sms.testid = pct.memberid
+                 left join school_major_bo s on s.testid = pct.memberid
+                 left join certificate_book cb on cb.testid = pct.memberid
+                 left join language_book lb on lb.testid = pct.memberid
+                 left join nation_book nb on nb.testid = pct.memberid
+                 left join practice_unit pu on pu.testid = pct.memberid
+        where pct.memberid = #{memberid}
+    </select>
+
+    <select id="setfinalScore">
+        update position_competion_test
+        set score = #{finalScore}
+        where memberid = #{memberid}
+    </select>
+    <select id="defeatCompetitionPeople" resultType="int">
+        select count(*)
+        from position_competion_test pct
+        where pct.memberid + 0 &lt; #{memberid}
+        order by score DESC;
+    </select>
+    <select id="getGoodBad" resultType="com.hx.hxjob.model.SchoolMajorBen">
+        select major_ben
+        from school_major_ben
+        where testid = #{memberid} ;
+    </select>
+    <select id="getSuggest" resultType="com.hx.hxjob.model.PositionCompetionTest">
+
+        select pct.memberid,
+               cb.skill_book1         as SkillBook1,
+               cb.skill_book2         as skillBook2,
+               cb.skill_book3         as skillBook3,
+               cb.skill_book4         as skillBook4,
+               lb.language_book1      as languageBook1,
+               language_book2         as languageBook2,
+               nb.nation_book1        as nationBook1,
+               nation_book2           as nationBook2,
+               pu.practice_unit_one   as practiceUnitOne,
+               pu.practice_unit_two   as practiceUnitTwo,
+               pu.practice_unit_three as practiceUnitThree,
+               pct.social_sractice    as socialSractice
+        from position_competion_test pct
+                 left join certificate_book cb on cb.testid = pct.memberid
+                 left join language_book lb on lb.testid = pct.memberid
+                 left join nation_book nb on nb.testid = pct.memberid
+                 left join practice_unit pu on pu.testid = pct.memberid
+        where pct.memberid = #{memberid}
+    </select>
+    <select id="getTestId" resultType="java.lang.Integer">
+        select id
+        from character_test
+        where memberid = #{id}
+    </select>
+
+    <delete id="clearGrade">
+        delete
+        from character_test
+        where memberid = #{id}
+    </delete>
+    <delete id="clearTopic">
+        delete
+        from character_test_detail
+        where testid = #{testId}
+    </delete>
+
+    <select id="finalScoreSub" resultType="int">
+        select IFNULL(score, 0) as score
+        from position_competion_test
+        where memberid = #{memberid}
+    </select>
+
+
+</mapper>

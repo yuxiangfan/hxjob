@@ -84,13 +84,13 @@ var initAccount = function () {
 };
 
 var editNews = function (id) {
-    window.location.href = "news/edit/" + id;
+    window.location.href = "advice/edit/" + id;
 };
 
 var deleteNews = function (id) {
     layer.confirm('确定删除?', function () {
         $.ajax({
-            url: 'news/deleteNews/' + id,
+            url: 'advice/deleteNews/' + id,
             dataType: 'json',
             success: function (data) {
 
@@ -132,7 +132,7 @@ var getPositions = function (curr) {
     var datas = getData();
     datas.page = currPage;
     $.ajax({
-        url: 'news/page',
+        url: 'advice/page',
         data: datas,
         dataType: 'json',
         success: function (data) {

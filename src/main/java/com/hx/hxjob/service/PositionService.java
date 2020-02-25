@@ -3,11 +3,14 @@ package com.hx.hxjob.service;
 import com.hx.hxjob.dao.MemberMapper;
 import com.hx.hxjob.dao.PositionMapper;
 import com.hx.hxjob.model.City;
+import com.hx.hxjob.model.Member;
 import com.hx.hxjob.model.Position;
+import com.hx.hxjob.model.SavePositionMember;
 import com.hx.hxjob.system.CodeGenerator;
 import com.hx.hxjob.system.Constant;
 import com.hx.hxjob.util.Des;
 import com.hx.hxjob.util.PageUtil;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Service;
@@ -260,7 +263,7 @@ public class PositionService {
                 break;
             /*城市*/
             case 2:
-                    List<City> cities = this.memberMapper.getCityOfJob();
+                List<City> cities = this.memberMapper.getCityOfJob();
                 for (City city : cities) {
                     if (cellStr.equals(city.getName())) {
                         job.setAddress(String.valueOf(city.getId()));
@@ -418,4 +421,142 @@ public class PositionService {
         }
         return result;
     }
+
+    public List<String> getPositionByTitle(String sc) {
+        List<String> positionList = positionMapper.getPositionByTitle(sc);
+        return positionList;
+    }
+
+    public Map<String, Object> getPoss(Map<String, Object> params, Member member) {
+        Map<String, Object> result = new HashMap<>();
+        String searchContentId = (String) params.get("searchContentId");
+        String[] hotPosKeyWordsArr = null;
+        if (StringUtils.isNotEmpty(searchContentId)) {
+            String hotPosKeyWords = this.positionMapper.getHotPosKeyWords(searchContentId);
+            if (StringUtils.isNotEmpty(hotPosKeyWords)) {
+                hotPosKeyWords = hotPosKeyWords.trim().replaceAll("\\s+", ",");
+                hotPosKeyWords = hotPosKeyWords.trim().replaceAll("\\，+", ",");
+                hotPosKeyWordsArr = hotPosKeyWords.split(",");
+            }
+        }
+        params.put("hotPosKeyWordsArr", hotPosKeyWordsArr);
+        /*查询全部部门数据*/
+        List<Position> poss = this.positionMapper.getPcPositions(params);
+        /*查询数据总和*/
+        int possCount = this.positionMapper.getPcPositionCount(params);
+        if (member != null) {
+            member = this.memberMapper.getMemberJobByUsername(member.getUsername());
+        }
+        for (Position position : poss) {
+            boolean collectJob = true;
+            if (member == null) {
+                position.setCollectJob(true);
+            } else {
+                if (CollectionUtils.isEmpty(member.getSavePositionMembers())) {
+                    position.setCollectJob(true);
+                } else {
+                    for (SavePositionMember savePositionMember : member.getSavePositionMembers()) {
+                        if (savePositionMember.getPositionCode().equals(position.getCode())) {
+                            collectJob = false;
+                            break;
+                        }
+                    }
+                    position.setCollectJob(collectJob);
+                }
+            }
+        }
+        result.put("poss", poss);
+        result.put("count", possCount);
+        return result;
+    }
+
+    public Map<String, Object> getPossHot(Map<String, Object> params, Member member) {
+        Map<String, Object> result = new HashMap<>();
+        String searchContentId = (String) params.get("searchContentId");
+        String[] hotPosKeyWordsArr = null;
+        if (StringUtils.isNotEmpty(searchContentId)) {
+            String hotPosKeyWords = this.positionMapper.getHotPosKeyWords(searchContentId);
+            if (StringUtils.isNotEmpty(hotPosKeyWords)) {
+                hotPosKeyWords = hotPosKeyWords.trim().replaceAll("\\s+", ",");
+                hotPosKeyWords = hotPosKeyWords.trim().replaceAll("\\，+", ",");
+                hotPosKeyWordsArr = hotPosKeyWords.split(",");
+            }
+        }
+        params.put("hotPosKeyWordsArr", hotPosKeyWordsArr);
+        /*查询全部部门数据*/
+        List<Position> poss = this.positionMapper.getPcPositionsHot(params);
+        /*查询总数*/
+        int possCount = this.positionMapper.getPcPositionsCount(params);
+        if (member != null) {
+            member = this.memberMapper.getMemberJobByUsername(member.getUsername());
+        }
+        for (Position position : poss) {
+            boolean collectJob = true;
+            if (member == null) {
+                position.setCollectJob(true);
+            } else {
+                if (CollectionUtils.isEmpty(member.getSavePositionMembers())) {
+                    position.setCollectJob(true);
+                } else {
+                    for (SavePositionMember savePositionMember : member.getSavePositionMembers()) {
+                        if (savePositionMember.getPositionCode().equals(position.getCode())) {
+                            collectJob = false;
+                            break;
+                        }
+                    }
+                    position.setCollectJob(collectJob);
+                }
+            }
+        }
+        result.put("possHot", poss);
+        result.put("countHot", possCount);
+        return result;
+    }
+
+    public List<Position> posIndexDatas(Map<String, Object> params, Member member) {
+        /*查询全部部门数据*/
+        List<Position> poss = this.positionMapper.posIndexDatas(params);
+        if (member != null) {
+            member = this.memberMapper.getMemberJobByUsername(member.getUsername());
+        }
+        for (Position position : poss) {
+            boolean collectJob = true;
+            if (member == null) {
+                position.setCollectJob(true);
+            } else {
+                if (CollectionUtils.isEmpty(member.getSavePositionMembers())) {
+                    position.setCollectJob(true);
+                } else {
+                    for (SavePositionMember savePositionMember : member.getSavePositionMembers()) {
+                        if (savePositionMember.getPositionCode().equals(position.getCode())) {
+                            collectJob = false;
+                            break;
+                        }
+                    }
+                    position.setCollectJob(collectJob);
+                }
+            }
+        }
+        return poss;
+    }
+
+    public Position getPosByCode(String code) {
+        Position pos = this.positionMapper.getPositionByCode(code);
+        return pos;
+    }
+
+    public Map<String, Object> getPcHotPosition() {
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        result.put("rows", this.positionMapper.getPcHotPos());
+
+        return result;
+    }
+
+    public Map<String, Object> getOrgPosiitons(String orgcode) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("rows", this.positionMapper.getPositionByOrgCode(orgcode));
+        return result;
+    }
+
 }

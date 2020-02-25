@@ -21,6 +21,31 @@
             tacc.acid
 
     </sql>
+    <resultMap type="com.hx.hxjob.model.Organization" id="organizationGet">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="fullname" jdbcType="VARCHAR" property="fullname"/>
+        <result column="shortname" jdbcType="VARCHAR" property="shelftime"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="logo" jdbcType="VARCHAR" property="logo"/>
+        <result column="brief" jdbcType="VARCHAR" property="brief"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="city" jdbcType="VARCHAR" property="city"/>
+        <result column="industry" jdbcType="VARCHAR" property="industry"/>
+        <result column="tags" jdbcType="VARCHAR" property="tags"/>
+        <result column="salary" jdbcType="VARCHAR" property="salary"/>
+        <result column="grade" jdbcType="VARCHAR" property="grade"/>
+        <result column="score" jdbcType="VARCHAR" property="score"/>
+        <result column="publishtime" jdbcType="VARCHAR" property="publishtime"/>
+        <collection property="organizationCollect" ofType="com.hx.hxjob.model.OrganizationCollect">
+            <id column="id" jdbcType="INTEGER" property="id"/>
+            <result column="orgcode" jdbcType="VARCHAR" property="orgcode"/>
+            <result column="memberid" jdbcType="VARCHAR" property="memberid"/>
+        </collection>
+        <collection property="member" jdbcType="VARCHAR" ofType="com.hx.hxjob.model.Member">
+            <id column="id" jdbcType="INTEGER" property="id"/>
+            <id column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        </collection>
+    </resultMap>
     <resultMap type="com.hx.hxjob.model.Member" id="memberMap">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="username" jdbcType="VARCHAR" property="username"/>
@@ -226,5 +251,215 @@
         LEFT JOIN member
         ON member.`id` = organization_collection.`memberid`
         WHERE member.`id` = #{id}
+    </select>
+
+    <select id="getMemberIdByVal" resultType="java.lang.String">
+        select memberid
+        from organization_remark
+        where id = #{val}
+    </select>
+    <insert id="setReplyOk" parameterType="java.util.Map">
+        insert into organization_reply(org_code, member_id, head_people_id, foot_people_id, replyData, puplish_time)
+        VALUES (#{code}, #{memberId}, #{val}, #{fid}, #{replyData}, now())
+    </insert>
+    <select id="getMemberJobByUsername" resultMap="memberJobMap">
+        select tm.id, spm.id as spmId, spm.position_code, spm.member_id
+        from member tm
+        left join save_position_member spm on tm.id = spm.member_id
+        where username = #{username}
+    </select>
+    <resultMap type="com.hx.hxjob.model.Member" id="memberJobMap">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <collection property="savePositionMembers" ofType="com.hx.hxjob.model.SavePositionMember">
+            <id column="spmId" jdbcType="BIGINT" property="id"/>
+            <result column="position_code" jdbcType="VARCHAR" property="positionCode"/>
+        </collection>
+    </resultMap>
+    <select id="getPositionAndMember" resultType="com.hx.hxjob.model.SavePositionMember">
+        select *
+        from save_position_member
+        where member_id = #{memberId}
+        AND position_code = #{code}
+    </select>
+    <delete id="deletePositionAndMember">
+        delete
+        FROM save_position_member
+        where member_id = #{memberId}
+        AND position_code = #{code}
+    </delete>
+    <insert id="savePositionAndMember">
+        insert into save_position_member(position_code, member_id)
+        VALUE (#{code}, #{memberId})
+    </insert>
+    <delete id="deleteCollectOrg">
+        delete
+        FROM organization_collection
+        where memberid = #{memberId}
+        AND orgcode = #{code}
+    </delete>
+    <select id="getRemark" resultType="com.hx.hxjob.model.OrganizationRemark">
+        select orr.id,
+        orr.memberid,
+        orr.orgcode,
+        orr.orgname,
+        orr.post_status,
+        orr.other_benefit,
+        orr.growth,
+        orr.workload,
+        orr.cultural_context,
+        orr.satisfaction,
+        orr.theme,
+        orr.writing_evaluation,
+        orr.evaluate_label,
+        o.logo as logo,
+        o.fullname
+        from organization_remark orr
+        left join organization o on orr.orgcode = o.code
+        where orr.memberid = #{id};
+    </select>
+    <delete id="deleteRemark">
+        delete
+        from organization_remark
+        where id = #{id}
+    </delete>
+    <delete id="deleteRemarkSave">
+        delete
+        from save_remark_member
+        where remarkid = #{id}
+    </delete>
+    <select id="alreadyPraise" resultType="com.hx.hxjob.model.Member">
+        SELECT o2.fullname, m.nickname, date_format(srm.remarkTime, '%Y-%m-%d %H:%i:%s') as remarkTime
+        FROM save_remark_member srm
+        LEFT JOIN organization_remark o ON srm.remarkid = o.id
+        LEFT JOIN organization o2 ON o.orgcode = o2.code
+        LEFT JOIN member m ON m.id = o.memberid
+        WHERE srm.memberid = #{id}
+        order by srm.remarkTime DESC
+        limit 0,10
+    </select>
+    <select id="letter" resultType="com.hx.hxjob.model.organizationReply">
+        SELECT o.replyData, date_format(o.puplish_time, '%Y-%m-%d %H:%i:%s') as publishTime, m.nickname, o2.fullname
+        FROM organization_reply o
+        LEFT JOIN member m ON o.foot_people_id = m.id
+        LEFT JOIN organization o2 ON o.org_code = o2.code
+        WHERE o.member_id = #{id}
+        order by o.puplish_time desc;
+    </select>
+    <delete id="clearLetter">
+        delete
+        from organization_reply
+        where member_id = #{id}
+    </delete>
+    <select id="getNewWhether" resultType="com.hx.hxjob.model.ArticleCommandAttention">
+        select *
+        from article_command_attention
+        where commandid = #{id}
+        AND memberid = #{memberId}
+    </select>
+    <select id="getPraiseRemark" resultType="com.hx.hxjob.model.SaveRemarkMember">
+        select *
+        from save_remark_member srm
+        where srm.memberid = #{memberId}
+        AND srm.remarkid = #{id};
+    </select>
+    <delete id="deletePraiseRemark">
+        delete
+        from save_remark_member
+        where memberid = #{memberId}
+        AND remarkid = #{id};
+    </delete>
+    <select id="getMemberById" resultType="com.hx.hxjob.model.Member">
+        select job_status, nickname
+        from member
+        where id = #{memberId}
+    </select>
+    <insert id="savePraiseRemark">
+        insert into save_remark_member (memberid, nickname, remarkid, remarkTime)
+        values (#{memberId}, #{nickname}, #{id}, now());
+    </insert>
+    <select id="getEveryoneSay" resultType="com.hx.hxjob.model.Organization">
+        select o.id,
+        (select substring_index(evaluate_label, ',', 2)
+        from organization_remark or3
+        where o.code = or3.orgcode
+        AND or2.evaluate_label like ('%不大%'))                                                                                as evaluate_label,
+        IFNULL((select count(1) from organization_remark r where o.code = r.orgcode AND r.other_benefit like ('%五险一金%')), 0)    as other_benefit,
+        IFNULL((select count(1) from organization_remark r where o.code = r.orgcode AND r.growth like ('%成长快%')), 0)            as growth,
+        IFNULL((select count(1) from organization_remark r where o.code = r.orgcode AND r.workload like ('%非常清闲%')), 0)         as workload,
+        IFNULL((select count(1) from organization_remark r where o.code = r.orgcode AND r.cultural_context like ('%氛围极好%')), 0) as cultural_context
+        from organization o
+        left join organization_remark or2 on o.code = or2.orgcode
+        where o.code = #{orgcode} ;
+    </select>
+    <select id="orgGet" parameterType="integer" resultMap="organizationGet">
+        SELECT *
+        FROM organization
+        LEFT JOIN organization_collection
+        ON organization.`code` = organization_collection.`orgcode`
+        LEFT JOIN member
+        ON member.`id` = organization_collection.`memberid`
+        WHERE member.`id` = #{id}
+    </select>
+    <select id="posGet" parameterType="integer" resultMap="PositionGet">
+        SELECT *
+        FROM POSITION p
+        LEFT JOIN save_position_member spm ON p.code = spm.position_code
+        LEFT JOIN member m ON m.id = spm.member_id
+        LEFT JOIN organization og ON og.`code` = p.`orgcode`
+        LEFT JOIN city cy ON cy.id = p.`address`
+        WHERE m.id = #{id}
+    </select>
+    <select id="getApplyCalendar" resultType="com.hx.hxjob.model.ApplyCalendar">
+        SELECT id,
+               org_code,
+               apply_code,
+               title,
+               content,
+               apply_time,
+               apply_into,
+               select_data,
+               exam_before_consult,
+               exam_status,
+               exam_title,
+               exam_content,
+               exam_time,
+               exam_into,
+               COUNT(DISTINCT a.apply_code)
+        FROM apply_calendar a
+        GROUP BY a.`apply_code`
+    </select>
+    <select id="applyList" resultType="com.hx.hxjob.model.SignCalendar">
+        select s.id,
+        s.org_code,
+        s.sign_code,
+        s.title,
+        s.content,
+        s.apply_time,
+        s.can_sign_into,
+        s.exam_status
+        from sign_calendar s
+        where month(substring_index(s.apply_time, ' ', 1)) = #{code} || month(substring_index(s.apply_time, ' ', -1)) = #{code}
+    </select>
+    <select id="examList" resultType="com.hx.hxjob.model.ExamCalendar">
+        select e.id,
+        e.org_code,
+        e.exam_code,
+        e.title,
+        e.exam_time,
+        e.can_exam_into,
+        e.select_data,
+        e.exam_before_consult
+        from exam_calendar e
+        where month(substring_index(e.exam_time, ' ', 1)) = #{code} || month(substring_index(e.exam_time, ' ', -1)) = #{code}
+    </select>
+    <select id="downList" resultType="com.hx.hxjob.model.Download">
+        select id, title, link, code, validTime, pay, member, create_time from down_load where 1=1
+        <if test="offset!='' and offset!=null">
+            limit ${offset},${limit}
+        </if>
+    </select>
+    <select id="downListCount" resultType="java.lang.Integer">
+        select count(1)
+        from down_load
     </select>
 </mapper>
