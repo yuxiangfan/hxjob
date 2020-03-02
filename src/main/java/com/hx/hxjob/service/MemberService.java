@@ -185,16 +185,16 @@ public class MemberService {
         return savePositionMember;
     }
 
-    public ArticleCommandAttention getNewWhether(String id, Member member) {
+    public ArticleCommandAttention getAdviceWhether(String id, Member member) {
         ArticleCommandAttention commandAttention = new ArticleCommandAttention();
         if (member == null) {
-            commandAttention.setNewWhether(true);
+            commandAttention.setAdviceWhether(true);
         } else {
-            commandAttention = this.memberMapper.getNewWhether(id, String.valueOf(member.getId()));
+            commandAttention = this.memberMapper.getAdviceWhether(id, String.valueOf(member.getId()));
             if (commandAttention.getCommandid() == 0) {
-                commandAttention.setNewWhether(true);
+                commandAttention.setAdviceWhether(true);
             } else {
-                commandAttention.setNewWhether(false);
+                commandAttention.setAdviceWhether(false);
             }
         }
         return commandAttention;

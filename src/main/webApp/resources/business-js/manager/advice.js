@@ -90,7 +90,7 @@ var editNews = function (id) {
 var deleteNews = function (id) {
     layer.confirm('确定删除?', function () {
         $.ajax({
-            url: 'advice/deleteNews/' + id,
+            url: 'advice/deleteAdvice/' + id,
             dataType: 'json',
             success: function (data) {
 

@@ -71,7 +71,7 @@
     <select id="getPosAndComTest" parameterType="java.util.Map" resultMap="PosAndComMap">
         select
         <include refid="PosAndCom"/>
-        from member tm
+        from `member` tm
         join position_competion_test tpct on tm.id = tpct.memberid
         left join educational_background teb on tpct.id = teb.testid
         left join internship_experience tie on tpct.id = tie.testid
@@ -102,7 +102,7 @@
 
     <select id="getPosAndComTestCount" parameterType="java.util.Map" resultType="int">
         select count(1)
-        from member tm
+        from `member` tm
         join position_competion_test tpct on tm.id = tpct.memberid
         where 1=1
         <if test="nickname!=null and nickname!=''">
@@ -180,7 +180,7 @@
     <select id="getPosAndComTestById" parameterType="java.lang.String" resultMap="PosAndComMap">
         select
         <include refid="PosAndCom"/>
-        from member tm
+        from `member` tm
         join position_competion_test tpct on tm.id = tpct.memberid
         left join educational_background teb on tpct.id = teb.testid
         left join internship_experience tie on tpct.id = tie.testid
@@ -225,7 +225,7 @@
         select
         tt.score,tt.result,date_format(tt.createtime,'%Y-%m-%d %H:%i:%s') as createtime,
         tm.id,tm.nickname
-        from character_test tt join member tm on tt.memberid = tm.id
+        from character_test tt join `member` tm on tt.memberid = tm.id
         where 1=1
         <if test="nickname!=null and nickname!=''">
             and tm.nickname like concat("%",#{nickname},"%")
@@ -249,7 +249,7 @@
     <select id="getCharacterMemberCount" parameterType="java.util.Map" resultType="int">
         select
         count(1)
-        from character_test tt join member tm on tt.memberid = tm.id
+        from character_test tt join `member` tm on tt.memberid = tm.id
         where 1=1
         <if test="nickname!=null and nickname!=''">
             and tm.nickname like concat("%",#{nickname},"%")

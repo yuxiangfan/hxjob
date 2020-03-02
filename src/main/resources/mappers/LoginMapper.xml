@@ -100,7 +100,7 @@
         where id = #{id}
     </update>
     <select id="editPassword" parameterType="com.hx.hxjob.model.Member">
-        update member
+        update `member`
         set password = #{password}
         where id = #{id}
     </select>

@@ -79,7 +79,7 @@ public interface MemberMapper {
 
     void clearLetter(String id);
 
-    ArticleCommandAttention getNewWhether(@Param(value = "id") String id, @Param(value = "memberId") String memberId);
+    ArticleCommandAttention getAdviceWhether(@Param(value = "id") String id, @Param(value = "memberId") String memberId);
 
     SaveRemarkMember getPraiseRemark(@Param(value = "id") String id, @Param(value = "memberId") String memberId);
 

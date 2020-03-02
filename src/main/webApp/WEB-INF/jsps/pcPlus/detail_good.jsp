@@ -50,12 +50,12 @@
             <em></em>
         </section>
         <section class="con_r job_con_r">
-            <h3 class="bt">热门主题</h3>
+            <h3 class="bt">热门校园主题</h3>
             <ul id="hotCommand">
 
                 <c:forEach items="${commandNumberOfHot}" var="hot">
                     <li class="home_con_li good_word">
-                        <h3><a href=${path}/pcviews/toNewsList/${hot.id}>${hot.title}</a></h3>
+                        <h3><a href=${path}/pcviews/toAdviceList/${hot.id}>${hot.title}</a></h3>
                         <p><span style="display: none;">简介:</span>&nbsp;&nbsp;<span
                                 style="margin-top: -20px; overflow: hidden; text-overflow: ellipsis;  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">${hot.brief}</span>
                         </p>

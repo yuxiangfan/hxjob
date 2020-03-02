@@ -25,7 +25,7 @@
                 <a href="${path}/pcviews/index" id="1" class="home">首页</a>
                 <a href="${path}/pcviews/pos" id="2">招聘信息</a>
                 <a href="${path}/pcviews/org" id="3">机构点评</a>
-                <a href="${path}/pcviews/selector" id="4">贝睿精选</a>
+                <a href="${path}/pcviews/selector" id="4">校园杂志</a>
                 <a href="${path}/pcviews/character" id="5">智能职测</a>
                 <a href="${path}/pcviews/calendar" id="6">考试日历</a>
             </nav>

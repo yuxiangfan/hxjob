@@ -285,7 +285,7 @@
                n.content,
                n.publishtime AS publishtime1
         FROM article_command ac
-                 LEFT JOIN news n ON ac.id = n.author
+                 LEFT JOIN advice n ON ac.id = n.author
         ORDER BY n.`publishtime` DESC
 
     </select>
@@ -304,7 +304,7 @@
     </select>
     <select id="getMemberByUsername" resultMap="memberMap">
         select m.id, aca.id, aca.commandid, aca.memberid, aca.createtime
-        from member m
+        from `member` m
         left join article_command_attention aca on m.id = aca.memberid
         where m.username = #{username}
     </select>
@@ -330,7 +330,7 @@
         n.content,
         date_format(n.publishtime, '%Y-%m-%d %H:%i:%s') as publishtime1
         from article_command ac
-        left join news n on ac.id = n.author
+        left join advice n on ac.id = n.author
         where ac.id = #{id}
         order by publishtime1 desc;
     </select>

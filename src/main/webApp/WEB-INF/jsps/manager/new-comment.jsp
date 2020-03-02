@@ -249,9 +249,9 @@
                         <div class="form-group">
                             <select name="postStatus" id="postStatus" value="${com.postStatus}" class="form-control">
                                 <option value="">请选择</option>
-                                <option value="在职" <c:if test="${'在职' eq com.postStatus}">selected</c:if>>在职</option>
-                                <option value="离职" <c:if test="${'离职' eq com.postStatus}">selected</c:if>>离职</option>
-                                <option value="实习" <c:if test="${'实习' eq com.postStatus}">selected</c:if>>实习</option>
+                                <option value='应届生' <c:if test="${position.type=='应届生'}">selected</c:if>>应届生</option>
+                                <option value='实习生' <c:if test="${position.type=='实习生'}">selected</c:if>>实习生</option>
+                                <option value='培训生' <c:if test="${position.type=='培训生'}">selected</c:if>>培训生</option>
                             </select>
                         </div>
                     </div>

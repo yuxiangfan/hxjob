@@ -13,6 +13,12 @@ public class WebAppConfigurer implements WebMvcConfigurer {
     @Resource
     private SystemManagerInterceptor systemManagerInterceptor;
 
+    @Resource
+    private SystemPageInterceptor systemPageInterceptor;
+
+    @Resource
+    private SystemMemberInterceptor systemMemberInterceptor;
+
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -27,8 +33,19 @@ public class WebAppConfigurer implements WebMvcConfigurer {
                 .addPathPatterns("/selector/**")
                 .addPathPatterns("/member/**")
                 .addPathPatterns("/calendar/**")
-                .addPathPatterns("/news/**")
-                .addPathPatterns("/load/**")
-                .addPathPatterns("/news/**");
+                .addPathPatterns("/advice/**")
+                .addPathPatterns("/load/**");
+
+        registry.addInterceptor(systemPageInterceptor)
+                .addPathPatterns("/pcviews/**")
+                .addPathPatterns("/h5views/**");
+
+        registry.addInterceptor(systemMemberInterceptor)
+                .addPathPatterns("/pcviews/character")
+                .addPathPatterns("/pcviews/poscom")
+                .addPathPatterns("/pcviews/tocomment/**")
+                .addPathPatterns("/h5views/character")
+                .addPathPatterns("/h5views/poscom")
+                .addPathPatterns("/h5views/tocomment/**");
     }
 }

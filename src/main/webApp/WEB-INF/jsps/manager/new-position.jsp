@@ -222,9 +222,9 @@
                         <td class='td1'>选择类型</td>
                         <td class='td2'>
                             <select id='type'>
-                                <option value='社招' <c:if test="${position.type=='社招'}">selected</c:if>>社招</option>
-                                <option value='校招' <c:if test="${position.type=='校招'}">selected</c:if>>校招</option>
-                                <option value='实习' <c:if test="${position.type=='实习'}">selected</c:if>>实习</option>
+                                <option value='应届生' <c:if test="${position.type=='应届生'}">selected</c:if>>应届生</option>
+                                <option value='实习生' <c:if test="${position.type=='实习生'}">selected</c:if>>实习生</option>
+                                <option value='培训生' <c:if test="${position.type=='培训生'}">selected</c:if>>培训生</option>
                             </select>
                         </td>
                     </tr>

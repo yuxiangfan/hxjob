@@ -1,6 +1,6 @@
 var currentDustry = "";
 var currentCity = "";
-var path = "/smartBR";
+var path = "/hxjob";
 
 /*初始化*/
 var counter = 0; /*计数器*/
@@ -91,14 +91,14 @@ var praise = function (code) {
             } else if (data.code == 0) {
                 var x1 = document.getElementById("praiseCount" + code).innerText;
                 document.getElementById("praiseCount" + code).innerText = parseInt(x1) + 1;
-                $("#p" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/z2.png)');
+                $("#p" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/z2.png)');
                 layer.msg(data.msg);
 
             } else if (data.code == 1) {
                 var x2 = document.getElementById("praiseCount" + code).innerText;
                 document.getElementById("praiseCount" + code).innerText = parseInt(x2) - 1;
                 layer.msg(data.msg);
-                $("#p" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/z1.png)');
+                $("#p" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/z1.png)');
             } else {
                 layer.msg(data.msg);
             }
@@ -121,12 +121,12 @@ var collect = function (code) {
             } else if (data.code == 0) {
                 var x1 = document.getElementById("collectCount" + code).innerText;
                 document.getElementById("collectCount" + code).innerText = parseInt(x1) + 1;
-                $("#c" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/xin1.png)');
+                $("#c" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/xin1.png)');
                 layer.msg(data.msg);
             } else if (data.code == 1) {
                 var x2 = document.getElementById("collectCount" + code).innerText;
                 document.getElementById("collectCount" + code).innerText = parseInt(x2) - 1;
-                $("#c" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/xin2.png)');
+                $("#c" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/xin2.png)');
                 layer.msg(data.msg);
             } else {
                 layer.msg(data.msg);
@@ -148,13 +148,13 @@ var praiseHot = function (code) {
             } else if (data.code == 0) {
                 var x1 = document.getElementById("praiseCountHot" + code).innerText;
                 document.getElementById("praiseCountHot" + code).innerText = parseInt(x1) + 1;
-                $("#pH" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/z2.png)');
+                $("#pH" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/z2.png)');
                 layer.msg(data.msg);
             } else if (data.code == 1) {
                 var x2 = document.getElementById("praiseCountHot" + code).innerText;
                 document.getElementById("praiseCountHot" + code).innerText = parseInt(x2) - 1;
                 layer.msg(data.msg);
-                $("#pH" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/z1.png)');
+                $("#pH" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/z1.png)');
             } else {
                 layer.msg(data.msg);
             }
@@ -175,12 +175,12 @@ var collectHot = function (code) {
             } else if (data.code == 0) {
                 var x1 = document.getElementById("collectCountHot" + code).innerText;
                 document.getElementById("collectCountHot" + code).innerText = parseInt(x1) + 1;
-                $("#cH" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/xin1.png)');
+                $("#cH" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/xin1.png)');
                 layer.msg(data.msg);
             } else if (data.code == 1) {
                 var x2 = document.getElementById("collectCountHot" + code).innerText;
                 document.getElementById("collectCountHot" + code).innerText = parseInt(x2) - 1;
-                $("#cH" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/xin2.png)');
+                $("#cH" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/xin2.png)');
             } else {
                 layer.msg(data.msg);
             }
@@ -193,7 +193,11 @@ var getOrgs = function (industry, city, pageStart, pageSize) {
     $.ajax({
         url: 'orgDatas',
         data: {
-            "industry": industry, "city": city, "searchContent": $("#header-search").val(), "pageStart": pageStart, "pageSize": pageSize
+            "industry": industry,
+            "city": city,
+            "searchContent": $("#header-search").val(),
+            "pageStart": pageStart,
+            "pageSize": pageSize
         },
         dataType: 'json',
         type: 'post',
@@ -208,10 +212,10 @@ var getOrgs = function (industry, city, pageStart, pageSize) {
                     var collectCSS = "";
                     var rindexPercent = orgs[i].score / 0.05;
                     if (!orgs[i].praiseFlag) {
-                        praiseCSS = "style='background-image:url(/smartBR/resources/pcPlus/images/z2.png);'";
+                        praiseCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/z2.png);'";
                     }
                     if (!orgs[i].collectFlag) {
-                        collectCSS = "style='background-image:url(/smartBR/resources/pcPlus/images/xin1.png);'";
+                        collectCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/xin1.png);'";
                     }
                     if (orgs[i].whetherLogon) {
                         comment = "<li style='padding-left: 25px'><a class='btn_btn1' onclick='notLog()'>写点评</a></li>";
@@ -222,28 +226,31 @@ var getOrgs = function (industry, city, pageStart, pageSize) {
                     }
                     var org =
                         " <li class=\"li_home_a\">" +
-                        "                <div class=\"hoho\">" +
+                        "                <ul class=\"hoho\">" +
+                        "                <li>" +
                         "                    <a class=\"img_a\" href=tocommentlist/" + orgs[i].code + " target=\"_blank\">" +
-                        "                        <img class=\"li_images_a\"  src=/smartBR" + orgs[i].logo + " alt=\"#\">" +
+                        "                        <img class=\"li_images_a\"  src=/hxjob" + orgs[i].logo + " alt=\"#\">" +
                         "                    </a>" +
-                        "                    <div class=\"h_c_l_wrap_a\">" +
-                        "                        <div class=\"h_c_l_wrap_a_a\">" +
-                        "                            <h3><a href=tocommentlist/" + orgs[i].code + " target=\"_blank\">" + orgs[i].fullname + "</a></h3>" +
-                        "                            <span  class=\"salary_a\">薪酬:<i>" + orgs[i].salary + "</i>&nbsp;K/月</span>" +
-                        "<span class='grade_star' style='left: 557px; top:22px'><i style='width:" + rindexPercent + "%;'></i></span>" +
+                        "                        </li>" +
+                        "                <li>" +
+                        "<span>"+
+                        "<a href=tocommentlist/" + orgs[i].code + " target=\"_blank\">" + orgs[i].fullname + "</a>" +
+                        "<span class='grade_star'><i style='width:" + rindexPercent + "%;'></i></span>" +
                         "</span>" +
-                        "                        </div>" +
+                        "</li>" +
+                        " <li style='float: right'>" +
+                        "<span   class=\"salary_a\">薪酬:<i>" + orgs[i].salary + "</i>&nbsp;K/月</span>" +
+                        "                        </li>" +
+                        "                        </ul>" +
                         "                        <br>" +
                         "                        <div class=\"p_sn_a\" style=' overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;'>" + orgs[i].brief +
                         "                        </div>" +
-                        "                        <ul style=' margin-left: 150px;' class=\"class_ul_a\">" +
-                        "                            <li><a class=\"a_li_z\" href='javascrpt:void(0)' " + praiseCSS + " id=p" + orgs[i].code + " onclick=praise('" + orgs[i].code + "')></a><span id=praiseCount" + orgs[i].code + " style='position: relative;left: 300px;top: -17px;font-size: 13px'>" + orgs[i].praiseCount + "</span></li>" +
-                        "                            <li style='padding-left: 25px'><a class=\"a_li_sc\" href='javascrpt:void(0)' " + collectCSS + " id=c" + orgs[i].code + "   onclick=collect('" + orgs[i].code + "')></a><span id=collectCount" + orgs[i].code + " style='position: relative;left: 31px;top: -17px;font-size: 13px'>" + orgs[i].collectCount + "</span></li>" +
-                        "                            <li style='padding-left: 25px'><a href=tocommentlist/" + orgs[i].code + " class=\"a_li_dp\" style=''></a><span style='position: relative;font-size: 13px;left: 31px;top: -17px;'>" + orgs[i].commontCount + "</span></li>" +
+                        "                        <ul class='p_sn_f'>" +
+                        "                            <li><a class=\"a_li_z\" href='javascrpt:void(0)' " + praiseCSS + " id=p" + orgs[i].code + " onclick=praise('" + orgs[i].code + "')></a><span id=praiseCount" + orgs[i].code + " style='position: relative;top: -17px;left:21px;'>" + orgs[i].praiseCount + "</span></li>" +
+                        "                            <li style='padding-left: 25px'><a class=\"a_li_sc\" href='javascrpt:void(0)' " + collectCSS + " id=c" + orgs[i].code + "   onclick=collect('" + orgs[i].code + "')></a><span id=collectCount" + orgs[i].code + " style='position: relative;top: -16px;left:30px;'>" + orgs[i].collectCount + "</span></li>" +
+                        "                            <li style='padding-left: 25px'><a href=tocommentlist/" + orgs[i].code + " class=\"a_li_dp\" style=''></a><span style='position: relative;left: 30px;top: -17px;'>" + orgs[i].commontCount + "</span></li>" +
                         comment +
                         "                        </ul>" +
-                        "                    </div>" +
-                        "                </div>" +
                         "            </li>";
                     $("#orgs").append(org);
                 }
@@ -277,10 +284,10 @@ var getOrgsHot = function (industry, city, pageStart, pageSize) {
                     var collectCSS = "";
                     var rindexPercent = orgsHot[i].score / 0.05;
                     if (!orgsHot[i].praiseFlag) {
-                        praiseCSS = "style='background-image:url(/smartBR/resources/pcPlus/images/z2.png);'";
+                        praiseCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/z2.png);'";
                     }
                     if (!orgsHot[i].collectFlag) {
-                        collectCSS = "style='background-image:url(/smartBR/resources/pcPlus/images/xin1.png);'";
+                        collectCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/xin1.png);'";
                     }
                     if (orgsHot[i].whetherLogon) {
                         comment = "<li style='padding-left: 25px'><a class='btn_btn1' onclick='notLog()'>写点评</a></li>";
@@ -291,28 +298,31 @@ var getOrgsHot = function (industry, city, pageStart, pageSize) {
                     }
                     var org =
                         " <li class=\"li_home_a\">" +
-                        "                <div class=\"hoho\">" +
+                        "                <ul class=\"hoho\">" +
+                        "                <li>" +
                         "                    <a class=\"img_a\" href=tocommentlist/" + orgsHot[i].code + " target=\"_blank\">" +
-                        "                        <img class=\"li_images_a\" src=/smartBR" + orgsHot[i].logo + " alt=\"#\">" +
+                        "                        <img class=\"li_images_a\" src=/hxjob" + orgsHot[i].logo + " alt=\"#\">" +
                         "                    </a>" +
-                        "                    <div class=\"h_c_l_wrap_a\">" +
-                        "                        <div class=\"h_c_l_wrap_a_a\">" +
-                        "                            <h3><a href=tocommentlist/" + orgsHot[i].code + " target=\"_blank\">" + orgsHot[i].fullname + "</a></h3>" +
-                        "                            <span  class=\"salary_a\">薪酬:<i>" + orgsHot[i].salary + "</i>&nbsp;K/月</span>" +
-                        "<span class='grade_star' style='left: 557px; top:22px'><i style='width:" + rindexPercent + "%;'></i></span>" +
+                        "                        </li>" +
+                        "                <li>" +
+                        " <a href=tocommentlist/" + orgsHot[i].code + " target=\"_blank\">" + orgsHot[i].fullname + "</a>" +
+                        "<span  class='grade_star' style='left: 557px; top:22px'><i style='width:" + rindexPercent + "%;'></i></span>" +
                         "</span>" +
-                        "                        </div>" +
+                        "                <li style='float: right'>" +
+                        "                            <span  class=\"salary_a\">薪酬:<i>" + orgsHot[i].salary + "</i>&nbsp;K/月</span>" +
+
+                        "                </li>" +
+                        "</li>" +
+                        "                        </ul>" +
                         "                        <br>" +
                         "                        <div class=\"p_sn_a\" style=' overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;'>" + orgsHot[i].brief +
                         "                        </div>" +
-                        "                        <ul style=' margin-left: 150px;' class=\"class_ul_a\">" +
-                        "                            <li><a class=\"a_li_z\" href='javascrpt:void(0)' " + praiseCSS + " id=pH" + orgsHot[i].code + " onclick=praiseHot('" + orgsHot[i].code + "')></a><span id=praiseCountHot" + orgsHot[i].code + " style='position: relative;left: 300px;top: -17px;font-size: 13px'>" + orgsHot[i].praiseCount + "</span></li>" +
-                        "                            <li style='padding-left: 25px'><a class=\"a_li_sc\" href='javascrpt:void(0)' " + collectCSS + " id=cH" + orgsHot[i].code + "   onclick=collectHot('" + orgsHot[i].code + "')></a><span id=collectCountHot" + orgsHot[i].code + " style='position: relative;left: 31px;top: -17px;font-size: 13px'>" + orgsHot[i].collectCount + "</span></li>" +
-                        "                            <li style='padding-left: 25px'><a class=\"a_li_dp\" style=''></a><span style='position: relative;font-size: 13px;left: 31px;top: -17px;'>" + orgsHot[i].commontCount + "</span></li>" +
+                        "                        <ul class='p_sn_f'>" +
+                        "                            <li><a class=\"a_li_z\" href='javascrpt:void(0)' " + praiseCSS + " id=pH" + orgsHot[i].code + " onclick=praiseHot('" + orgsHot[i].code + "')></a><span id=praiseCountHot" + orgsHot[i].code + " style='position: relative;top: -17px;left:21px;'>" + orgsHot[i].praiseCount + "</span></li>" +
+                        "                            <li style='padding-left: 25px'><a class=\"a_li_sc\" href='javascrpt:void(0)' " + collectCSS + " id=cH" + orgsHot[i].code + "   onclick=collectHot('" + orgsHot[i].code + "')></a><span id=collectCountHot" + orgsHot[i].code + " style='position: relative;top: -16px;left:30px;'>" + orgsHot[i].collectCount + "</span></li>" +
+                        "                            <li style='padding-left: 25px'><a class=\"a_li_dp\" style=''></a><span style='position: relative;left: 30px;top: -17px;'>" + orgsHot[i].commontCount + "</span></li>" +
                         comment +
                         "                        </ul>" +
-                        "                    </div>" +
-                        "                </div>" +
                         "            </li>";
                     $("#orgsHot").append(org);
                 }
@@ -326,6 +336,9 @@ var getOrgsHot = function (industry, city, pageStart, pageSize) {
         }
     });
 };
+
+
+
 
 /*未登录判断*/
 function notLog() {

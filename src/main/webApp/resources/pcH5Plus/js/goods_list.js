@@ -52,7 +52,7 @@ var newList = function (id) {
     })
 };
 
-/*获得热门主题（根据关注的人数 取前十位）*/
+/*获得Advice（根据关注的人数 取前十位）*/
 /*var hotCommand = function () {
     $.ajax({
         url: "/pcview/hotCommand",

@@ -773,8 +773,8 @@
     <div class="container" id="container" style="height: 670px;">
         <div class="wrapper">
             <section style="width: 720px" class="detail_con_m test1_r">
-                <h2>贝睿性格测试</h2>
-                <p>这是一份来自专业金融职前培训机构贝睿的一份基于性格色彩学的测试,它有助于测试者深入了解自己深层次性格,从而帮助自己得到更好的职业定位.</p>
+                <h2>校园智能招聘题目测试</h2>
+                <p>这是一份来自各高校的求职测评,一份基于性格色彩学的测评，它将有助于测试者深入了解自己的深层次性格，从而帮助自己得到更好的职业定位。</p>
                 <p>[本测试共30道题目,请您根据第一感觉作答,现在就开始吧]</p>
                 <div class="test_con_btn" style="width: 700px;">
                     <%-- <span id="last" class="glyphicon  glyphicon-chevron-left"></span>

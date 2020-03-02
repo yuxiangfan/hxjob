@@ -147,7 +147,7 @@
     <div class="content-wrapper">
         <div class="content-header">
             <h1>
-                精选所属
+                通知所属
             </h1>
         </div>
         <div class="content">

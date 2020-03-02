@@ -33,7 +33,7 @@ public class SelectorController {
 
     @RequestMapping("command")
     /**
-    * @Description 精选所属界面
+    * @Description 通知所属界面
     * @Params []
     * @Return java.lang.String
     * @Date 2020/1/19 16:02
@@ -45,7 +45,7 @@ public class SelectorController {
     @RequestMapping("pages")
     @ResponseBody
     /**
-    * @Description 精选所属列表页
+    * @Description 通知所属列表页
     * @Params [params]
     * @Return java.util.Map<java.lang.String,java.lang.Object>
     * @Date 2020/1/19 16:03
@@ -63,7 +63,7 @@ public class SelectorController {
         return "manager/new-article-curriculum";
     }
 
-    /*精选所属*/
+    /*通知所属*/
     @RequestMapping("new_command")
     public String newPageCommand() {
         return "manager/new-article-command";

@@ -1348,7 +1348,7 @@ footer {
     position: relative;
     top: 6px;
     left: 12px;
-    background-image: url("/smartBR/resources/pcPlus/images/xin2.png");
+    background-image: url("/hxjob/resources/pcPlus/images/xin2.png");
     background-repeat: no-repeat;
 }
 .saveStar{
@@ -1356,7 +1356,7 @@ footer {
 }
 
 .detailPos {
-    background-image: url("/smartBR/resources/pcPlus/images/details.png");
+    background-image: url("/hxjob/resources/pcPlus/images/details.png");
     background-size: 21px 19px;
     height: 5px;
     display: block;
@@ -1375,7 +1375,7 @@ footer {
     display: block;
     width: 21px;
     position: relative;
-    background-image: url("/smartBR/resources/pcPlus/images/z1.png");
+    background-image: url("/hxjob/resources/pcPlus/images/z1.png");
     background-repeat: no-repeat;
 }
 
@@ -1386,7 +1386,7 @@ footer {
     display: block;
     width: 21px;
     position: relative;
-    background-image: url("/smartBR/resources/pcPlus/images/xin2.png");
+    background-image: url("/hxjob/resources/pcPlus/images/xin2.png");
     background-repeat: no-repeat;
 }
 
@@ -1396,7 +1396,7 @@ footer {
     display: block;
     width: 21px;
     position: relative;
-    background-image: url("/smartBR/resources/pcPlus/images/remark.png");
+    background-image: url("/hxjob/resources/pcPlus/images/remark.png");
     background-repeat: no-repeat;
 }
 
@@ -1411,6 +1411,6 @@ footer {
     width: 21px;
     position: relative;
     margin-bottom: -35px;
-    background-image: url("/smartBR/resources/pcPlus/images/z1.png");
+    background-image: url("/hxjob/resources/pcPlus/images/z1.png");
     background-repeat: no-repeat;
 }

@@ -6,7 +6,7 @@ var counter = 0; /*计数器*/
 var pageStart = 0; /*offset*/
 var pageSize = 6; /*size*/
 
-var path = "/smartBR";
+var path = "/hxjob";
 $(function () {
 
     layui.use('layer', function () {
@@ -71,15 +71,15 @@ var getSelectors = function (pageStart, pageSize) {
                     var add =
                         " <li class=\"home_con_li\">" +
                         "                <a href=\"detail_article.html\" target=\"_blank\">" +
-                        "                    <img  src=/smartBR" + rows[i].image + ">" +
+                        "                    <img  src=/hxjob" + rows[i].image + ">" +
                         "                </a>" +
                         "                <div class=\"h_c_l_wrap\">" +
                         "                    <div>" +
-                        "                        <h3 class=\"com_name\"><a href=/smartBR/pcviews/toNewsDetails/" + rows[i].id + ">" + rows[i].title + "</a></h3>" +
+                        "                        <h3 class=\"com_name\"><a href=/hxjob/pcviews/toAdviceDetails/" + rows[i].id + ">" + rows[i].title + "</a></h3>" +
                         "                    </div>" +
                         "                    <div class=\"p_jx\" style=' height: 48px; overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;'>" + rows[i].content + "</div>" +
                         "                    <ul>" +
-                        "                        <li><a class=\"hyjd\" href=/smartBR/pcviews/toNewsList/" + rows[i].cid + ">" + rows[i].title1 + "&nbsp;&nbsp;" + "[" + rows[i].nature +
+                        "                        <li><a class=\"hyjd\" href=/hxjob/pcviews/toAdviceList/" + rows[i].cid + ">" + rows[i].title1 + "&nbsp;&nbsp;" + "[" + rows[i].nature +
                         "]</a></li>" +
                         "                        <li>|</li>" +
                         "                        <li>" + rows[i].original + "</li>" +

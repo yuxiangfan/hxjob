@@ -94,10 +94,6 @@
                 <ul id="refresh">
 
                 </ul>
-                <div class="inform" style="position: relative;">
-                    <h3 class="r_tt">请关注我们哦！</h3>
-                    <img width="165px" src="${path}/resources/pcPlus/images/erweimaBr.jpg" alt="">
-                </div>
             </section>
         </div>
     </div>

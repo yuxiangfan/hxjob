@@ -11,7 +11,7 @@ public class ArticleCommandAttention {
     private int commandid;
     private int memberid;
     private String createtime;
-    private boolean newWhether;
+    private boolean adviceWhether;
 
 
     public int getId() {
@@ -46,12 +46,11 @@ public class ArticleCommandAttention {
         this.createtime = createtime;
     }
 
-
-    public boolean isNewWhether() {
-        return newWhether;
+    public boolean isAdviceWhether() {
+        return adviceWhether;
     }
 
-    public void setNewWhether(boolean newWhether) {
-        this.newWhether = newWhether;
+    public void setAdviceWhether(boolean adviceWhether) {
+        this.adviceWhether = adviceWhether;
     }
 }

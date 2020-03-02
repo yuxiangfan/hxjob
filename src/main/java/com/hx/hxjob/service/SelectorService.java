@@ -369,7 +369,6 @@ public class SelectorService {
     /*设置热门所属列表对应的评论*/
     public List<ArticleCommand> getCommandNumberOfHot() {
         List<ArticleCommand> commandNumberOfHot = this.selectorMapper.getCommandNumberOfHot();
-        System.out.println(commandNumberOfHot);
         return commandNumberOfHot;
     }
 

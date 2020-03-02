@@ -96,7 +96,7 @@ public class AdviceController {
         SystemUser user = (SystemUser) session.getAttribute(Constant.SYSTEM_USER);
         return this.adviceService.editing(params, image, user,request);
     }
-    @RequestMapping("deleteNews/{id}")
+    @RequestMapping("deleteAdvice/{id}")
     @ResponseBody
     /**
     * @Description 删除通知

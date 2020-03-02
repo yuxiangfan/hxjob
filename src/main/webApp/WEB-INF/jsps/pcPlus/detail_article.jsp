@@ -20,8 +20,8 @@
         <div class="wrapper">
             <!--中间-->
             <section class="con_l job_con_l">
-                <h1>${NewsDetails.title}</h1>
-                <p> ${NewsDetails.content} </p>
+                <h1>${AdviceDetails.title}</h1>
+                <p> ${AdviceDetails.content} </p>
                 <img class="detail_img" src="images/1132.png" alt="">
                 <em class="dashed"></em>
             </section>

@@ -128,7 +128,7 @@
               		<button class='bt' onclick='reset()'>重置</button>
               	</div>
                <div class="panel-heading">
-                  <a href="JavaScript:void(0)" class="btn btn-default btn-flat" onclick="window.location.href='advice/add'" >新增新闻</a>
+                  <a href="JavaScript:void(0)" class="btn btn-default btn-flat" onclick="window.location.href='advice/add'" >新增通知</a>
                 </div>
                 <div class="panel-body">
                   <div class="table-responsive">
@@ -211,7 +211,7 @@
     <script src="resources/js/jquery.metisMenu.js"></script>
     <script src="resources/js/app.min.js" type="text/javascript"></script>
     <script src="resources/layui/layui.js"></script>
-    <script src="resources/business-js/manager/news.js"></script>
+    <script src="resources/business-js/manager/advice.js"></script>
     <script src="resources/business-js/common.js"></script>
     <script>
     </script>

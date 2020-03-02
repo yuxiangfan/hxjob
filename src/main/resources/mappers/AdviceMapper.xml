@@ -97,7 +97,7 @@
     </update>
     <delete id="deleteAdvice" parameterType="java.lang.String">
         delete
-        from news
+        from advice
         where id = #{id}
     </delete>
 

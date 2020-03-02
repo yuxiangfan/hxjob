@@ -124,9 +124,9 @@
                         <div class="form-group">
                             <select name="postStatus" id="postStatus" class="form-control">
                                 <option value="">请选择</option>
-                                <option value="在职">在职</option>
-                                <option value="离职">离职</option>
-                                <option value="实习">实习</option>
+                                <option value="应届生">应届生</option>
+                                <option value="实习生">实习生</option>
+                                <option value="培训生">培训生</option>
                             </select>
                         </div>
                     </div>
@@ -314,7 +314,7 @@
                 contentType: false, //必须
                 success: function (data) {
                     if (data.code == 0) {
-                        window.location.href = "/smartBR/pcviews/tocommentlist/" + orgCode;
+                        window.location.href = "/hxjob/pcviews/tocommentlist/" + orgCode;
                     } else {
                         layer.alert(data.msg);
                     }

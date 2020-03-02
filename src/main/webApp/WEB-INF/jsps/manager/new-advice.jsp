@@ -192,8 +192,8 @@
     <div class="content-wrapper">
         <div class="content-header">
             <h1>
-                <c:if test="${decEntryId==null }">新增新闻</c:if>
-                <c:if test="${decEntryId!=null }">编辑新闻</c:if>
+                <c:if test="${decEntryId==null }">新增通知</c:if>
+                <c:if test="${decEntryId!=null }">编辑通知</c:if>
             </h1>
 
         </div>

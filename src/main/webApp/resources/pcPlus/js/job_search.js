@@ -7,7 +7,7 @@ var counter = 0; /*计数器*/
 var pageStart = 0; /*offset*/
 var pageSize = 6; /*size*/
 
-var path = "/smartBR";
+var path = "/hxjob";
 
 $(function () {
     var id = $("#smi").val();
@@ -121,7 +121,7 @@ var getPoss = function (industry, city, type, pageStart, pageSize) {
                     var collectCSS = "";
 
                     if (!poss[i].collectJob) {
-                        collectCSS = "style='background-image:url(/smartBR/resources/pcPlus/images/xin1.png);'";
+                        collectCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/xin1.png);'";
                         replaceWith = $("#saveJob").replaceWith("<a>已收藏</a>");
                     }
                     var rindexPercent = poss[i].rindex / 0.05;
@@ -175,7 +175,7 @@ function getPossHot(industry, city, type, pageStart, pageSize) {
                     var collectCSS = "";
 
                     if (!poss[i].collectJob) {
-                        collectCSS = "style='background-image:url(/smartBR/resources/pcPlus/images/xin1.png);'";
+                        collectCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/xin1.png);'";
                     }
                     var rindexPercent = poss[i].rindex / 0.05;
                     var pos =
@@ -221,10 +221,10 @@ var savePosition = function (code) {
             if (data.code == -9) {
                 layer.msg(data.msg);
             } else if (data.code == 0) {
-                $("#p" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/xin1.png)');
+                $("#p" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/xin1.png)');
                 layer.msg(data.msg);
             } else if (data.code == 1) {
-                $("#p" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/xin2.png)');
+                $("#p" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/xin2.png)');
                 layer.msg(data.msg);
             } else {
                 layer.msg(data.msg);
@@ -245,9 +245,9 @@ var savePositionHot = function (code) {
             if (data.code == -9) {
                 layer.msg(data.msg);
             } else if (data.code == 0) {
-                $("#pH" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/xin1.png)');
+                $("#pH" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/xin1.png)');
             } else if (data.code == 1) {
-                $("#pH" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/xin2.png)');
+                $("#pH" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/xin2.png)');
             } else {
                 layer.msg(data.msg);
             }

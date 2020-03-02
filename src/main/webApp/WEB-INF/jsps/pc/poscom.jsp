@@ -41,7 +41,7 @@
 						<a href="pcviews/org">机构点评</a>
 						<a href="pcviews/character">个人性格测评</a>
 						<a href="pcviews/poscom">个人职业测评</a>
-						<a href="pcviews/selector">贝睿精选</a>
+						<a href="pcviews/selector">校园杂志</a>
 						<a href="pcviews/about">关于</a>
 					</div>
 				</nav>

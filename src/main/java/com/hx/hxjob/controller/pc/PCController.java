@@ -641,11 +641,11 @@ public class PCController {
         return this.memberService.getMenJobWhether(code, member);
     }
 
-    @RequestMapping("getNewWhether/{id}")
+    @RequestMapping("getAdviceWhether/{id}")
     @ResponseBody
-    private ArticleCommandAttention getNewWhether(@PathVariable String id, HttpSession session) {
+    private ArticleCommandAttention getAdviceWhether(@PathVariable String id, HttpSession session) {
         Member member = this.getMember(session);
-        return this.memberService.getNewWhether(id, member);
+        return this.memberService.getAdviceWhether(id, member);
     }
 
     @RequestMapping("praiseRemark/{id}")

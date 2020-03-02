@@ -32,9 +32,9 @@
                     <dt>类型:</dt>
                     <dd class="a" id="types">
                         <a href="javascript:void(0)" style='color:#fb8341' val=''>全部</a>
-                        <a class="group_body" href="javascript:void(0)" val='实习'>实习</a>
-                        <a class="group_body" href="javascript:void(0)" val='校招'>校招</a>
-                        <a class="group_body" href="javascript:void(0)" val='社招'>社招</a>
+                        <a class="group_body" href="javascript:void(0)" val='毕业生'>毕业生</a>
+                        <a class="group_body" href="javascript:void(0)" val='实习生'>实习生</a>
+                        <a class="group_body" href="javascript:void(0)" val='培训生'>培训生</a>
                     </dd>
                 </dl>
                 <dl>
@@ -96,10 +96,6 @@
                 </h3>
                 <ul id="getJob">
                 </ul>
-                <div style="position: relative;" class="inform">
-                    <h3 class="r_tt">请关注我们哦！</h3>
-                    <img width="165px" src="${path}/resources/pcPlus/images/erweimaBr.jpg" alt="">
-                </div>
             </section>
         </div>
     </div>

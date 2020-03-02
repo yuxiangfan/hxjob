@@ -19,12 +19,12 @@
         <div class="wrapper">
             <section class="con_l job_con_l">
                 <div class="test_con open_test" onclick="character()">
-                    <p class="bt">贝睿性格测试初阶</p>
-                    <p>简介:原型为彩色性格测试,经过贝睿团队多次测试改版,可简易方便地测出被测试者性格的优劣势.</p>
+                    <p class="bt">校园智能招聘题目测试初阶</p>
+                    <p>简介:原型为彩色性格测试,经过各校同学老师多次测试改版,可简易方便地测出被测试者职前的优劣势.</p>
                 </div>
                 <div class="test_con job_test" onclick="compete()">
-                    <p class="bt">职业竞争力测试2019版</p>
-                    <p>简介:贝睿原创职业竞争力测试指南,可清晰明了地了解求职者的江湖地位...</p>
+                    <p class="bt">职业竞争力测试报告单</p>
+                    <p>简介:完整的职业竞争力测试指南,可清晰明了地了解求职者的江湖地位...</p>
                 </div>
                 <div class="test_con disabled_test">
                     <p class="bt">更多测试工具密集开发ing</p>

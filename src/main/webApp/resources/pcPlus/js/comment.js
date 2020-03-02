@@ -1,6 +1,6 @@
 var layer;
 var laypage;
-var path = "/smartBR";
+var path = "/hxjob";
 var currentIndex;
 
 $(function () {
@@ -50,37 +50,33 @@ var getOrgComments = function (curr) {
                     var praiseCSS = "";
                     var rindexPercent = rows[i].satisfaction / 0.05;
                     if (!rows[i].whetherRemark) {
-                        praiseCSS = "style='background-image:url(/smartBR/resources/pcPlus/images/z2.png);'";
+                        praiseCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/z2.png);'";
                     }
                     var org = "  <li class=\"li_home_a\">" +
-                        "<div class=\"hoho\">" +
-                        " <a class=\"img_a_a\" target=\"_blank\">" +
-                        " <img class=\"li_images_a_a\" src=/smartBR" + rows[i].headPhoto + " alt=\"#\">" +
+                        "<ul class=\"comment\">" +
+                        "<li style='float: left;border-right: 1px solid #e7e7e7;'>" +
+                        " <a class=\"comment_1\" target=\"_blank\">" +
+                        " <img class=\"li_images_a_a\" src=/hxjob" + rows[i].headPhoto + " alt=\"#\">" +
+                        "<a style='display:block'>" + rows[i].nickname + "</a>" +
                         " </a>" +
-                        " <button class=\"btn_btn_sx\" onclick=reply('" + rows[i].id + "','" + rows[i].nickname + "')>写私信</button>" +
-                        "<div class=\"h_c_l_wrap_a\">" +
-                        "  <div class=\"h_c_l_wrap_a_a\">" +
-                        "  <h3 ><a>" + rows[i].nickname + "</a>" +
-                        "</h3>" +
-                        "<span class='grade_star' style='position: relative;left: 137px;top: 20px;'><i style='width:" + rindexPercent + "%;'></i></span>" +
-                        "  <span style='position: relative; left: 382px; top: 21px;' class=\"span_a\">" + rows[i].postStatus + rows[i].workyear + "年" + "</span>" +
-                        "    </div>" +
-                        "   <br>" +
-                        "   <div class=\"p_pj\">" +
-                        "   <p class=\"p_an_e\">" +
+                        "<span class='grade_star' style='position: relative;top: -59px;left: 56px'><i style='width:" + rindexPercent + "%;'></i></span>" +
+                        "  <span style='position: relative; right: 32px; top: -40px;' class=\"span_a\">" + rows[i].postStatus + rows[i].workyear + "年" + "</span>" +
+                        "</li>" +
+                        "<p style='height: 75px'>" + rows[i].writingEvaluation +
                         "</p>" +
-                        " <p style='width: 500px;padding-left: 136px;padding-top: 26px'>" + rows[i].writingEvaluation +
-                        "</p>" +
-                        "  </div>" +
-                        " <ul class=\"class_ul_a\">" +
+                        " <ul class=\"class_ul_a\" style='position: relative;'>" +
                         "  <li style=\"color: #1b6d85\">" + rows[i].fullname +
                         "</li>" +
                         "  <li class=\"li_xz\">" + rows[i].createtime +
                         "</li>" +
-                        " <li><a style='position: absolute;left: 300px' class='a_li_z' " + praiseCSS + " id=p" + rows[i].id + " onclick=praiseRemark('" + rows[i].id + "')></a><a id=remarkCount" + rows[i].id + " style=' margin-top: 6px; position: absolute; left: 602px;font-size: 13px'>" + rows[i].remarkCount + "</a></li>" +
+                        " <li><a class='a_li_z' " + praiseCSS + " id=p" + rows[i].id + " onclick=praiseRemark('" + rows[i].id + "')></a>" +
+                        "<a id=remarkCount" + rows[i].id + " style='position: relative;left: 20px;top: -11px'>" + rows[i].remarkCount + "</a></li>" +
+                        "<li>" +
+                        " <button class=\"btn_btn_sx\" onclick=reply('" + rows[i].id + "','" + rows[i].nickname + "')>写私信</button>" +
+                        "</li>" +
                         "  </ul>" +
                         "  </div>" +
-                        "  </div>" +
+                        "  </li>" +
                         "</li>";
                     $("#comments").append(org);
                 }
@@ -129,7 +125,7 @@ var replyOk = function (val, code) {
 };
 
 
-/*推荐*/
+/*毕业生*/
 var getOrgCommentsRecommend = function (curr) {
 
     var datas = {};
@@ -158,34 +154,30 @@ var getOrgCommentsRecommend = function (curr) {
                         praiseCSS = "style='color:#fb8341'";
                     }
                     var org = "  <li class=\"li_home_a\">" +
-                        "<div class=\"hoho\">" +
-                        " <a class=\"img_a_a\" target=\"_blank\">" +
-                        " <img class=\"li_images_a_a\" src=/smartBR" + rows[i].headPhoto + " alt=\"#\">" +
+                        "<ul class=\"comment\">" +
+                        "<li style='float: left;border-right: 1px solid #e7e7e7;'>" +
+                        " <a class=\"comment_1\" target=\"_blank\">" +
+                        " <img class=\"li_images_a_a\" src=/hxjob" + rows[i].headPhoto + " alt=\"#\">" +
+                        "<a style='display:block'>" + rows[i].nickname + "</a>" +
                         " </a>" +
-                        " <button class=\"btn_btn_sx\" onclick=reply('" + rows[i].id + "','" + rows[i].nickname + "')>写私信</button>" +
-                        "<div class=\"h_c_l_wrap_a\">" +
-                        "  <div class=\"h_c_l_wrap_a_a\">" +
-                        "  <h3 ><a>" + rows[i].nickname + "</a>" +
-                        "</h3>" +
-                        "<span class='grade_star' style='position: relative;left: 137px;top: 20px;'><i style='width:" + rindexPercent + "%;'></i></span>" +
-                        "  <span style='position: relative; left: 382px; top: 21px;' class=\"span_a\">" + rows[i].postStatus + rows[i].workyear + "年" + "</span>" +
-                        "    </div>" +
-                        "   <br>" +
-                        "   <div class=\"p_pj\">" +
-                        "   <p class=\"p_an_e\">" +
+                        "<span class='grade_star' style='position: relative;top: -59px;left: 56px'><i style='width:" + rindexPercent + "%;'></i></span>" +
+                        "  <span style='position: relative; right: 32px; top: -40px;' class=\"span_a\">" + rows[i].postStatus + rows[i].workyear + "年" + "</span>" +
+                        "</li>" +
+                        "<p style='height: 75px'>" + rows[i].writingEvaluation +
                         "</p>" +
-                        " <p style='width: 500px;padding-left: 136px;padding-top: 26px'>" + rows[i].writingEvaluation +
-                        "</p>" +
-                        "  </div>" +
-                        " <ul class=\"class_ul_a\">" +
+                        " <ul class=\"class_ul_a\" style='position: relative;'>" +
                         "  <li style=\"color: #1b6d85\">" + rows[i].fullname +
                         "</li>" +
-                        "  <li class=\"li_xz\">" + rows[i].tags +
+                        "  <li class=\"li_xz\">" + rows[i].createtime +
                         "</li>" +
-                        " <li><a style='position: absolute;left: 300px' class='a_li_z' " + praiseCSS + " id=p" + rows[i].id + " onclick=praiseRemark('" + rows[i].id + "')></a><a id=remarkCount" + rows[i].id + " style='margin-top: 6px; position: absolute; left: 602px;font-size: 13px'>" + rows[i].remarkCount + "</a></li>" +
+                        " <li><a class='a_li_z' " + praiseCSS + " id=p" + rows[i].id + " onclick=praiseRemark('" + rows[i].id + "')></a>" +
+                        "<a id=remarkCount" + rows[i].id + " style='position: relative;left: 20px;top: -11px'>" + rows[i].remarkCount + "</a></li>" +
+                        "<li>" +
+                        " <button class=\"btn_btn_sx\" onclick=reply('" + rows[i].id + "','" + rows[i].nickname + "')>写私信</button>" +
+                        "</li>" +
                         "  </ul>" +
                         "  </div>" +
-                        "  </div>" +
+                        "  </li>" +
                         "</li>";
                     $("#recommend").append(org);
                 }
@@ -197,7 +189,7 @@ var getOrgCommentsRecommend = function (curr) {
     });
 };
 
-/*在职*/
+/*实习生*/
 var getOrgCommentsOnJob = function (curr) {
     var datas = {};
     if (curr == null || curr == undefined) {
@@ -225,34 +217,30 @@ var getOrgCommentsOnJob = function (curr) {
                         praiseCSS = "style='color:#fb8341'";
                     }
                     var org = "  <li class=\"li_home_a\">" +
-                        "<div class=\"hoho\">" +
-                        " <a class=\"img_a_a\" target=\"_blank\">" +
-                        " <img class=\"li_images_a_a\" src=/smartBR" + rows[i].headPhoto + " alt=\"#\">" +
+                        "<ul class=\"comment\">" +
+                        "<li style='float: left;border-right: 1px solid #e7e7e7;'>" +
+                        " <a class=\"comment_1\" target=\"_blank\">" +
+                        " <img class=\"li_images_a_a\" src=/hxjob" + rows[i].headPhoto + " alt=\"#\">" +
+                        "<a style='display:block'>" + rows[i].nickname + "</a>" +
                         " </a>" +
-                        " <button class=\"btn_btn_sx\" onclick=reply('" + rows[i].id + "','" + rows[i].nickname + "')>写私信</button>" +
-                        "<div class=\"h_c_l_wrap_a\">" +
-                        "  <div class=\"h_c_l_wrap_a_a\">" +
-                        "  <h3 ><a>" + rows[i].nickname + "</a>" +
-                        "</h3>" +
-                        "<span class='grade_star' style='position: relative;left: 137px;top: 20px;'><i style='width:" + rindexPercent + "%;'></i></span>" +
-                        "  <span style='position: relative; left: 382px; top: 21px;' class=\"span_a\">" + rows[i].postStatus + rows[i].workyear + "年" + "</span>" +
-                        "    </div>" +
-                        "   <br>" +
-                        "   <div class=\"p_pj\">" +
-                        "   <p class=\"p_an_e\">" +
+                        "<span class='grade_star' style='position: relative;top: -59px;left: 56px'><i style='width:" + rindexPercent + "%;'></i></span>" +
+                        "  <span style='position: relative; right: 32px; top: -40px;' class=\"span_a\">" + rows[i].postStatus + rows[i].workyear + "年" + "</span>" +
+                        "</li>" +
+                        "<p style='height: 75px'>" + rows[i].writingEvaluation +
                         "</p>" +
-                        " <p style='width: 500px;padding-left: 136px;padding-top: 26px'>" + rows[i].writingEvaluation +
-                        "</p>" +
-                        "  </div>" +
-                        " <ul class=\"class_ul_a\">" +
+                        " <ul class=\"class_ul_a\" style='position: relative;'>" +
                         "  <li style=\"color: #1b6d85\">" + rows[i].fullname +
                         "</li>" +
-                        "  <li class=\"li_xz\">" + rows[i].tags +
+                        "  <li class=\"li_xz\">" + rows[i].createtime +
                         "</li>" +
-                        " <li><a style='position: absolute;left: 300px' class='a_li_z' " + praiseCSS + " id=p" + rows[i].id + " onclick=praiseRemark('" + rows[i].id + "')></a><a id=remarkCount" + rows[i].id + " style='margin-top: 6px;position: absolute; left: 602px;font-size: 13px'>" + rows[i].remarkCount + "</a></li>" +
+                        " <li><a class='a_li_z' " + praiseCSS + " id=p" + rows[i].id + " onclick=praiseRemark('" + rows[i].id + "')></a>" +
+                        "<a id=remarkCount" + rows[i].id + " style='position: relative;left: 20px;top: -11px'>" + rows[i].remarkCount + "</a></li>" +
+                        "<li>" +
+                        " <button class=\"btn_btn_sx\" onclick=reply('" + rows[i].id + "','" + rows[i].nickname + "')>写私信</button>" +
+                        "</li>" +
                         "  </ul>" +
                         "  </div>" +
-                        "  </div>" +
+                        "  </li>" +
                         "</li>";
                     $("#onJob").append(org);
                 }
@@ -264,7 +252,7 @@ var getOrgCommentsOnJob = function (curr) {
     });
 };
 
-/*实习*/
+/*培训生*/
 var getOrgCommentsPractice = function (curr) {
 
     var datas = {};
@@ -293,34 +281,30 @@ var getOrgCommentsPractice = function (curr) {
                         praiseCSS = "style='color:#fb8341'";
                     }
                     var org = "  <li class=\"li_home_a\">" +
-                        "<div class=\"hoho\">" +
-                        " <a class=\"img_a_a\" target=\"_blank\">" +
-                        " <img class=\"li_images_a_a\" src=/smartBR" + rows[i].headPhoto + " alt=\"#\">" +
+                        "<ul class=\"comment\">" +
+                        "<li style='float: left;border-right: 1px solid #e7e7e7;'>" +
+                        " <a class=\"comment_1\" target=\"_blank\">" +
+                        " <img class=\"li_images_a_a\" src=/hxjob" + rows[i].headPhoto + " alt=\"#\">" +
+                        "<a style='display:block'>" + rows[i].nickname + "</a>" +
                         " </a>" +
-                        " <button class=\"btn_btn_sx\" onclick=reply('" + rows[i].id + "','" + rows[i].nickname + "')>写私信</button>" +
-                        "<div class=\"h_c_l_wrap_a\">" +
-                        "  <div class=\"h_c_l_wrap_a_a\">" +
-                        "  <h3 ><a>" + rows[i].nickname + "</a>" +
-                        "</h3>" +
-                        "<span class='grade_star' style='position: relative;left: 137px;top: 20px;'><i style='width:" + rindexPercent + "%;'></i></span>" +
-                        "  <span style='position: relative; left: 382px; top: 21px;' class=\"span_a\">" + rows[i].postStatus + rows[i].workyear + "年" + "</span>" +
-                        "    </div>" +
-                        "   <br>" +
-                        "   <div class=\"p_pj\">" +
-                        "   <p class=\"p_an_e\">" +
+                        "<span class='grade_star' style='position: relative;top: -59px;left: 56px'><i style='width:" + rindexPercent + "%;'></i></span>" +
+                        "  <span style='position: relative; right: 32px; top: -40px;' class=\"span_a\">" + rows[i].postStatus + rows[i].workyear + "年" + "</span>" +
+                        "</li>" +
+                        "<p style='height: 75px'>" + rows[i].writingEvaluation +
                         "</p>" +
-                        " <p style='width: 500px;padding-left: 136px;padding-top: 26px'>" + rows[i].writingEvaluation +
-                        "</p>" +
-                        "  </div>" +
-                        " <ul class=\"class_ul_a\">" +
+                        " <ul class=\"class_ul_a\" style='position: relative;'>" +
                         "  <li style=\"color: #1b6d85\">" + rows[i].fullname +
                         "</li>" +
-                        "  <li class=\"li_xz\">" + rows[i].tags +
+                        "  <li class=\"li_xz\">" + rows[i].createtime +
                         "</li>" +
-                        " <li><a style='position: absolute;left: 300px' class='a_li_z' " + praiseCSS + " id=p" + rows[i].id + " onclick=praiseRemark('" + rows[i].id + "')></a><a id=remarkCount" + rows[i].id + " style='margin-top: 6px;position: absolute; left: 602px;font-size: 13px'>" + rows[i].remarkCount + "</a></li>" +
+                        " <li><a class='a_li_z' " + praiseCSS + " id=p" + rows[i].id + " onclick=praiseRemark('" + rows[i].id + "')></a>" +
+                        "<a id=remarkCount" + rows[i].id + " style='position: relative;left: 20px;top: -11px'>" + rows[i].remarkCount + "</a></li>" +
+                        "<li>" +
+                        " <button class=\"btn_btn_sx\" onclick=reply('" + rows[i].id + "','" + rows[i].nickname + "')>写私信</button>" +
+                        "</li>" +
                         "  </ul>" +
                         "  </div>" +
-                        "  </div>" +
+                        "  </li>" +
                         "</li>";
                     $("#practice").append(org);
                 }
@@ -365,12 +349,12 @@ var praiseRemark = function (id) {
             } else if (data.code == 0) {
                 var x1 = document.getElementById("remarkCount" + id).innerText;
                 document.getElementById("remarkCount" + id).innerText = parseInt(x1) + 1;
-                $("#p" + id).css('background-image', 'url(/smartBR/resources/pcPlus/images/z2.png)');
+                $("#p" + id).css('background-image', 'url(/hxjob/resources/pcPlus/images/z2.png)');
                 layer.msg(data.msg);
             } else if (data.code == 1) {
                 var x2 = document.getElementById("remarkCount" + id).innerText;
                 document.getElementById("remarkCount" + id).innerText = parseInt(x2) - 1;
-                $("#p" + id).css('background-image', 'url(/smartBR/resources/pcPlus/images/z1.png)');
+                $("#p" + id).css('background-image', 'url(/hxjob/resources/pcPlus/images/z1.png)');
                 layer.msg(data.msg);
             } else {
                 layer.msg(data.msg);

@@ -6,6 +6,7 @@ import com.hx.hxjob.model.Position;
 import com.hx.hxjob.service.LoginService;
 import com.hx.hxjob.system.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +22,8 @@ import java.util.Map;
  * @description:
  * @created: 2020/01/20 09:26
  */
+@Controller
+@RequestMapping("pcm")
 public class PCLoginController {
     @Autowired
     private LoginService loginService;

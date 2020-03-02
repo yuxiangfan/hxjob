@@ -120,7 +120,7 @@
     </select>
     <select id="getMember" resultType="com.hx.hxjob.model.Member">
         select *
-        from member
+        from `member`
         where username = #{username}
     </select>
     <select id="getIndustriesOfJob" resultType="com.hx.hxjob.model.Industry">
@@ -132,7 +132,7 @@
         tm.id,tm.username,tm.password,tm.nickname,tm.mobile,tm.score,tm.status,
         date_format(tm.lastlogintime,'%Y-%m-%d %H:%i:%s') as lastlogintime,
         date_format(tm.createtime,'%Y-%m-%d %H:%i:%s') as createtime
-        from member tm
+        from `member` tm
         where 1=1
         <if test="username!=null and username!=''">
             and tm.username like concat("%",#{username},"%")
@@ -149,7 +149,7 @@
     <select id="getMemberPageCount" resultType="int">
         select
         count(1)
-        from member tm
+        from `member` tm
         where 1=1
         <if test="username!=null and username!=''">
             and tm.username like concat("%",#{username},"%")
@@ -162,12 +162,12 @@
         </if>
     </select>
     <update id="updateMemberPassword" parameterType="java.lang.String">
-        update member
+        update `member`
         set password = #{password}
         where id = #{memberid}
     </update>
     <update id="changeStatus" parameterType="java.util.Map">
-        update member
+        update `member`
         set `status` = #{status}
         where id = #{memberid}
     </update>
@@ -191,11 +191,11 @@
         like_job,
         introduce,
         job_status
-        from member
-        where member.id = #{id}
+        from `member`
+        where `member`.id = #{id}
     </select>
     <update id="addHeadPhoto" parameterType="java.util.Map">
-        update member
+        update `member`
         set address       = #{address},
         birthday      = #{birthday},
         gender        = #{gander},
@@ -209,14 +209,14 @@
         where id = #{id}
     </update>
     <select id="setHeadPhoto">
-        update member
+        update `member`
         set head_photo = #{headPhoto}
         where id = #{id}
     </select>
     <select id="getMemberByUsername" parameterType="java.lang.String" resultMap="memberMap">
         select
         <include refid="member"/>,spm.id as spm ,spm.position_code, spm.member_id
-        from member tm
+        from `member` tm
         left join organization_praise top on tm.id = top.memberid
         left join organization_remark toc on tm.id = toc.memberid
         left join organization_collection toco on tm.id = toco.memberid
@@ -225,19 +225,19 @@
         where username = #{username}
     </select>
     <update id="setLastLogintime" parameterType="java.lang.String">
-        update member
+        update `member`
         set lastlogintime = now()
         where username = #{username}
     </update>
     <insert id="insertMember" parameterType="com.hx.hxjob.model.Member">
-        insert into member(username, password, nickname, mobile, score, createtime, `status`)
+        insert into `member`(username, password, nickname, mobile, score, createtime, `status`)
         values (#{username}, #{password}, #{nickname}, #{mobile}, ${score}, NOW(), #{status});
     </insert>
     <select id="getCollect" resultMap="PositionGet">
         SELECT *
         FROM position p
         LEFT JOIN save_position_member spm ON p.code = spm.position_code
-        LEFT JOIN member m ON m.id = spm.member_id
+        LEFT JOIN `member` m ON m.id = spm.member_id
         LEFT JOIN organization og ON og.`code` = p.`orgcode`
         LEFT JOIN city cy ON cy.id = p.`address`
         and now() > p.publishtime and p.shelftime > now()
@@ -248,9 +248,9 @@
         FROM organization
         LEFT JOIN organization_collection
         ON organization.`code` = organization_collection.`orgcode`
-        LEFT JOIN member
-        ON member.`id` = organization_collection.`memberid`
-        WHERE member.`id` = #{id}
+        LEFT JOIN `member`
+        ON `member`.`id` = organization_collection.`memberid`
+        WHERE `member`.`id` = #{id}
     </select>
 
     <select id="getMemberIdByVal" resultType="java.lang.String">
@@ -264,7 +264,7 @@
     </insert>
     <select id="getMemberJobByUsername" resultMap="memberJobMap">
         select tm.id, spm.id as spmId, spm.position_code, spm.member_id
-        from member tm
+        from `member` tm
         left join save_position_member spm on tm.id = spm.member_id
         where username = #{username}
     </select>
@@ -332,7 +332,7 @@
         FROM save_remark_member srm
         LEFT JOIN organization_remark o ON srm.remarkid = o.id
         LEFT JOIN organization o2 ON o.orgcode = o2.code
-        LEFT JOIN member m ON m.id = o.memberid
+        LEFT JOIN `member` m ON m.id = o.memberid
         WHERE srm.memberid = #{id}
         order by srm.remarkTime DESC
         limit 0,10
@@ -340,7 +340,7 @@
     <select id="letter" resultType="com.hx.hxjob.model.organizationReply">
         SELECT o.replyData, date_format(o.puplish_time, '%Y-%m-%d %H:%i:%s') as publishTime, m.nickname, o2.fullname
         FROM organization_reply o
-        LEFT JOIN member m ON o.foot_people_id = m.id
+        LEFT JOIN `member` m ON o.foot_people_id = m.id
         LEFT JOIN organization o2 ON o.org_code = o2.code
         WHERE o.member_id = #{id}
         order by o.puplish_time desc;
@@ -350,7 +350,7 @@
         from organization_reply
         where member_id = #{id}
     </delete>
-    <select id="getNewWhether" resultType="com.hx.hxjob.model.ArticleCommandAttention">
+    <select id="getAdviceWhether" resultType="com.hx.hxjob.model.ArticleCommandAttention">
         select *
         from article_command_attention
         where commandid = #{id}
@@ -370,7 +370,7 @@
     </delete>
     <select id="getMemberById" resultType="com.hx.hxjob.model.Member">
         select job_status, nickname
-        from member
+        from `member`
         where id = #{memberId}
     </select>
     <insert id="savePraiseRemark">
@@ -396,15 +396,15 @@
         FROM organization
         LEFT JOIN organization_collection
         ON organization.`code` = organization_collection.`orgcode`
-        LEFT JOIN member
-        ON member.`id` = organization_collection.`memberid`
-        WHERE member.`id` = #{id}
+        LEFT JOIN `member`
+        ON `member`.`id` = organization_collection.`memberid`
+        WHERE `member`.`id` = #{id}
     </select>
     <select id="posGet" parameterType="integer" resultMap="PositionGet">
         SELECT *
         FROM POSITION p
         LEFT JOIN save_position_member spm ON p.code = spm.position_code
-        LEFT JOIN member m ON m.id = spm.member_id
+        LEFT JOIN `member` m ON m.id = spm.member_id
         LEFT JOIN organization og ON og.`code` = p.`orgcode`
         LEFT JOIN city cy ON cy.id = p.`address`
         WHERE m.id = #{id}

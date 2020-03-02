@@ -162,7 +162,7 @@
                 <a href="index.jsp#home" class="home">首页</a>
                 <a href="index.jsp#job">招聘信息</a>
                 <a href="index.jsp#company">机构点评</a>
-                <a href="index.jsp#good">贝睿精选</a>
+                <a href="index.jsp#good">校园杂志</a>
                 <a href="index.jsp#test">智能职测</a>
                 <a href="index.jsp#day">考试日历</a>
             </nav>

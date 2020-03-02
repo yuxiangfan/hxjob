@@ -1,4 +1,4 @@
-var path = "/smartBR";
+var path = "/hxjob";
 
 
 $(function () {
@@ -28,12 +28,12 @@ var newList = function (id) {
                     var list =
                         "<li class=\"home_con_li\">" +
                         " <a target=\"_blank\">" +
-                        " <img  src=/smartBR" + data[i].imagenew + ">" +
+                        " <img  src=/hxjob" + data[i].imagenew + ">" +
                         " </a>" +
                         "  <div class=\"h_c_l_wrap\">" +
                         "  <div>" +
                         " <h3 class=\"user_name\">" +
-                        "  <a href=/smartBR/pcviews/toNewsDetails/" + data[i].cid + ">" + data[i].title1 +
+                        "  <a href=/hxjob/pcviews/toAdviceDetails/" + data[i].cid + ">" + data[i].title1 +
                         "</a>" +
                         " </h3>" +
                         "  </div>" +
@@ -80,7 +80,7 @@ var attention = function (id) {
 /*所属关注收藏*/
 var getNewWhether = function (id) {
     $.ajax({
-        url: path + "/pcviews/getNewWhether/" + id,
+        url: path + "/pcviews/getAdviceWhether/" + id,
         datatype: "json",
         type: "post",
         success: function (data) {

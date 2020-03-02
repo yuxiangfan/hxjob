@@ -88,9 +88,9 @@
                         <dt>排序:</dt>
                         <dd class="option_con">
                             <a class="option_all select" href="javascript:;">全部</a>
-                            <a id="select1" href="javascript:;">推荐</a>
-                            <a href="javascript:;">只看在职</a>
-                            <a href="javascript:;">只看实习</a>
+                            <a id="select1" href="javascript:;">只看毕业生</a>
+                            <a href="javascript:;">只看实习生</a>
+                            <a href="javascript:;">只看培训生</a>
                         </dd>
                     </dl>
                 </div>

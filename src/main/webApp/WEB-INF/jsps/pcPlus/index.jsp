@@ -37,7 +37,7 @@
     <div class="index_gd">
         <section class="banner">
 
-            <h1 id="select1">贝睿-金融智能求职专家</h1>
+            <h1 id="select1">校园-智能招聘求职专家</h1>
             <dl class="banner_dl">
                 <dd>
                     <div class="banner_search">

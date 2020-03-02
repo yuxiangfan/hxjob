@@ -1237,8 +1237,10 @@ public class OrganizationService {
             result.put("code", -1);
             result.put("msg", "文字描述未填");
             return result;
+        } else {
+            result.put("code", 0);
+            return result;
         }
-        return result;
     }
 
     public SavePositionMember whetherRemark(String code, Member member) {

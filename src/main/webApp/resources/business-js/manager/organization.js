@@ -80,7 +80,7 @@ var getPositions = function (curr) {
                         "<td>" + list[i].fullname + "</td>" +
                         "<td>" + list[i].shortname + "</td>" +
                         "<td>" + list[i].code + "</td>" +
-                        "<td><img style='max-width:50px' src=/smartBR" + list[i].logo + " /></td>" +
+                        "<td><img style='max-width:50px' src=/hxjob" + list[i].logo + " /></td>" +
                         "<td>" + list[i].industryname + "</td>" +
                         "<td>" + list[i].cityname + "</td>" +
                         "<td>" + list[i].tags + "</td>" +
