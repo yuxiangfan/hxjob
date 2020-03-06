@@ -32,7 +32,7 @@
             <div class="no-pswd">
                 <a href="register" class="forget" style="margin-right: 10px;">没有账号?请注册</a>
             </div>
-            <button class="submit-btn" onclick='logining()'>进入贝睿</button>
+            <button class="submit-btn" onclick='logining()'>进入校园招聘</button>
             </form>
         </div>
     </div>

@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>【工商银行招聘信息】-贝睿</title>
+    <title>校园智能招聘网</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
     <link href="${path}/resources/pcH5Plus/css/base.css" rel="stylesheet" type="text/css">
     <script src="${path}/resources/pcH5Plus/js/jquery-2.1.1.min.js"></script>
@@ -52,8 +52,8 @@
         <div class="box_a">
             <div class="bd ">
                 <div class="every_see P_index5">
-                    <h2 style="text-align: center">贝睿性格测试</h2>
-                    <p>这是一份来自专业金融职前培训机构贝睿的一份基于性格色彩学的测试,它有助于测试者深入了解自己深层次性格,从而帮助自己得到更好的职业定位.</p>
+                    <h2 style="text-align: center">大学生性格测试</h2>
+                    <p>这是一份基于性格色彩学的测试,它有助于测试者深入了解自己深层次性格,从而帮助自己得到更好的职业定位.</p>
                     <br>
                     <p>[本测试共30道题目,请您根据第一感觉作答,现在就开始吧]</p>
                     <br>
@@ -359,7 +359,7 @@
                 <a href="${path}/hm/login">登录</a><em></em>
                 <a href="${path}/hm/register">注册</a><em></em>
                 <p>Copyright © 2019 beirui.com<br/>
-                    贝睿网 版权所有</p>
+                    校园智能招聘</p>
             </div>
         </div>
     </footer>

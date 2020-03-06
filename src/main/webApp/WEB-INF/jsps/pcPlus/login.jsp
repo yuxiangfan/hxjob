@@ -14,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <base href="<%=basePath%>"/>
-    <title>贝睿科技-登录主页</title>
+    <title>校园智能招聘-登录主页</title>
     <link rel="stylesheet" href="resources/pcPlus/css/style.css">
     <link rel="stylesheet" href="resources/pcPlus/css/login.css">
     <link href="resources/pc/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

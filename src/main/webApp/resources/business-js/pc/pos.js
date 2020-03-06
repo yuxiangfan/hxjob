@@ -51,7 +51,7 @@ var getPoss = function (industry, city, type) {
                         "<h2>" +
                         "<i>【" + data[i].organization.cityname + "】</i><a href=pcviews/posDetail/" + data[i].code + " target='_blank'> " + data[i].organization.fullname + " - " + data[i].title + "</a> " +
                         "<span style='float:right;'> " +
-                        "<span class='grade_star'><i style='width:" + rindexPercent + "%;'></i></span>（贝睿评级）" +
+                        "<span class='grade_star'><i style='width:" + rindexPercent + "%;'></i></span>（评级）" +
                         "</span>" +
                         "</h2>" +
                         "</div>" +

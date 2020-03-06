@@ -104,4 +104,6 @@ public interface MemberMapper {
     List<Download> downList(Map<String, String> params);
 
     int downListCount(Map<String, String> params);
+
+    Member getLogin( @Param("username") String username,@Param("userpwd") String userpwd);
 }

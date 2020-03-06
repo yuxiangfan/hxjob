@@ -98,7 +98,7 @@ var getOrgs = function (industry, city) {
                         "<p>标签：" + data[i].tags + "</p>" +
                         "</div>" +
                         "<div class='information_footer'>" +
-                        "<p style='font-size:12px'>行业：" + data[i].industryname + " &nbsp;&nbsp;贝睿评级：" + data[i].grade + "级 &nbsp;&nbsp;点评数据（" + data[i].commontCount + "条）" +
+                        "<p style='font-size:12px'>行业：" + data[i].industryname + " &nbsp;&nbsp;评级：" + data[i].grade + "级 &nbsp;&nbsp;点评数据（" + data[i].commontCount + "条）" +
                         "<span style='float:right'>" +
                         "<a href='javascrpt:void(0)' " + praiseCSS + " id=p" + data[i].code + " onclick=praise('" + data[i].code + "')>赞</a> &nbsp;&nbsp;" +
                         "<a href='javascrpt:void(0)' " + collectCSS + " id=c" + data[i].code + " onclick=collect('" + data[i].code + "')>收藏</a> &nbsp;&nbsp;" +

@@ -7,8 +7,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>贝睿科技-金融智能求职专家</title>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=Kd4FTzjAiPbljiFCZufP1obTzHpe2kjW"></script>
+    <title>校园智能招聘网</title>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=3.0&ak=Kd4FTzjAiPbljiFCZufP1obTzHpe2kjW"></script>
     <%@ include file="include_static_resource.jsp" %>
 
 </head>
@@ -111,27 +112,25 @@
                 </c:if>
 
                 <div class="line_div"></div>
-                <img class="no_2d" style=" position: relative;left: 235px;" src="${path}/resources/pcPlus/images/beirui_ma.jpg" alt="">
-                <p style="font-size: 10px;text-align: center">
-                    添加小贝助手，帮您快速修改简历，更快找到好工作！
-                </p>
                 <em class="dashed"></em>
             </section>
 
             <section class="con_r home_con_r">
-                <h3 class="bt">贝睿原创</h3>
+                <h4 class="bt" style="font-size: 14px">${pos.organization.fullname}—全部职位</h4>
                 <ul class="br">
-                    <c:forEach items="${brOriginal2}" var="brOriginal2">
+                    <c:forEach items="${allPosByOrg}" var="allPosByOrg">
                         <li class="home_con_li home_word">
-                            <h4><a href="${path}/pcviews/toNewsDetails/${brOriginal2.id}" target="_blank">${brOriginal2.title}</a></h4>
-                            <p>${brOriginal2.editor}</p>
+                            <h4><a style="color: #2c84cc" href="${path}/pcviews/posDetail/${allPosByOrg.code}"
+                                   target="_blank">${allPosByOrg.title}</a></h4>
+                            <ul class="allJob">
+                                <li>${pos.type}</li>
+                                <li>${pos.organization.industryname}</li>
+                                <li><span>编号：</span>${pos.code}</li>
+                                <li>${pos.publishtime}</li>
+                            </ul>
                         </li>
                     </c:forEach>
                 </ul>
-                <div style="position: relative;" class="inform">
-                    <h3 class="r_tt">请关注我们哦！</h3>
-                    <img width="165px" src="${path}/resources/pcPlus/images/erweimaBr.jpg" alt="">
-                </div>
             </section>
         </div>
     </div>

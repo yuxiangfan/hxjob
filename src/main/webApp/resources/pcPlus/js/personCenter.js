@@ -1,6 +1,6 @@
 /*上传头像*/
 var id = $(".personId").val();
-var path = "/smartBR";
+var path = "/hxjob";
 
 $(function () {
 
@@ -107,7 +107,7 @@ var getCollect = function () {
                         "      <td>" + data[i].title + "</td>" +
                         "      <td>" + data[i].organization.fullname + "</td>" +
                         "      <td>" +
-                        "      <a type=\"button\" href=/smartBR/pcviews/posDetail/" + data[i].code + " target='_blank' class=\"btn btn-warning\">查看</a>" +
+                        "      <a type=\"button\" href=/hxjob/pcviews/posDetail/" + data[i].code + " target='_blank' class=\"btn btn-warning\">查看</a>" +
                         "      <a type=\"button\" onclick=deleteCollect('" + data[i].code + "') class=\"btn btn-warning\">删除</a>" +
                         "         </td>" +
                         "             </tr>";
@@ -133,7 +133,7 @@ var getCollectOrg = function () {
                         "      <td>" + data[i].salary + " K</td>" +
                         "      <td>" + data[i].grade + " 分</td>" +
                         "      <td>" +
-                        "      <a type=\"button\" href=/smartBR/pcviews/tocommentlist/" + data[i].code + " target='_blank' class=\"btn btn-warning\">查看</a>" +
+                        "      <a type=\"button\" href=/hxjob/pcviews/tocommentlist/" + data[i].code + " target='_blank' class=\"btn btn-warning\">查看</a>" +
                         "      <a type=\"button\" onclick=deleteCollectOrg('" + data[i].code + "') class=\"btn btn-warning\">删除</a>" +
                         "         </td>" +
                         "             </tr>";
@@ -147,7 +147,7 @@ var getCollectOrg = function () {
 /*删除职业*/
 var deleteCollect = function (code) {
     $.ajax({
-        url: "/smartBR/pcviews/deleteSave/" + code,
+        url: "/hxjob/pcviews/deleteSave/" + code,
         dataType: 'json',
         type: 'post',
         success: function (data) {
@@ -162,7 +162,7 @@ var deleteCollect = function (code) {
 /*删除机构*/
 var deleteCollectOrg = function (code) {
     $.ajax({
-        url: "/smartBR/pcviews/deleteCollectOrg/" + code,
+        url: "/hxjob/pcviews/deleteCollectOrg/" + code,
         dataType: 'json',
         type: 'post',
         success: function (data) {
@@ -178,7 +178,7 @@ var deleteCollectOrg = function (code) {
 /*点评个人中心*/
 var getRemark = function () {
     $.ajax({
-        url: "/smartBR/pcviews/getRemark",
+        url: "/hxjob/pcviews/getRemark",
         datatype: "json",
         type: 'post',
         success: function (data) {
@@ -189,7 +189,7 @@ var getRemark = function () {
                     var remark =
                         "<div class=\"card_one\" >" +
                         "                    <a onclick=deleteRemark('" + data[i].id + "') class=\"deleteRemark\"></a>" +
-                        "                    <img style='cursor: pointer'  onclick=detailRemark('" + data[i].orgcode + "') class=\"card_one_img\" src=/smartBR" + data[i].logo + " alt=\"#\">" +
+                        "                    <img style='cursor: pointer'  onclick=detailRemark('" + data[i].orgcode + "') class=\"card_one_img\" src=/hxjob" + data[i].logo + " alt=\"#\">" +
                         "                    <label style=' cursor: pointer'  onclick=detailRemark('" + data[i].orgcode + "')>" + data[i].orgname + "</label>" +
                         "                    <div class=\"span_postion\"><span class=\"span_lable\">" + data[i].otherBenefit + "</span>" +
                         "                    <span class='grade_star'  ><i style='width:" + rindexPercent + "%;'></i></span>" +
@@ -206,7 +206,7 @@ var getRemark = function () {
 /*X个人中心点评*/
 var deleteRemark = function (id) {
     $.ajax({
-        url: "/smartBR/pcviews/deleteRemark/" + id,
+        url: "/hxjob/pcviews/deleteRemark/" + id,
         datatype: "json",
         type: 'post',
         success: function (data) {
@@ -221,14 +221,14 @@ var deleteRemark = function (id) {
 
 /*点评详情页*/
 var detailRemark = function (code) {
-    window.location.href = "/smartBR/pcviews/tocommentlist/" + code;
+    window.location.href = "/hxjob/pcviews/tocommentlist/" + code;
 }
 
 
 /*我收获的赞*/
 var praise = function () {
     $.ajax({
-        url: "/smartBR/pcviews/getPraise",
+        url: "/hxjob/pcviews/getPraise",
         datatype: "json",
         type: 'post',
         success: function (data) {
@@ -250,7 +250,7 @@ var praise = function () {
 /*我赞过的*/
 var alreadyPraise = function () {
     $.ajax({
-        url: "/smartBR/pcviews/alreadyPraise",
+        url: "/hxjob/pcviews/alreadyPraise",
         datatype: "json",
         type: "post",
         success: function (data) {
@@ -271,7 +271,7 @@ var alreadyPraise = function () {
 /*我的私信*/
 var letter = function () {
     $.ajax({
-        url: "/smartBR/pcviews/letter",
+        url: "/hxjob/pcviews/letter",
         datatype: 'json',
         type: 'post',
         success: function (data) {
@@ -295,7 +295,7 @@ var letter = function () {
 var clearLetter = function () {
     layer.confirm('确认清空所有私信吗？', function () {
         $.ajax({
-            url: "/smartBR/pcviews/clearLetter/" + id,
+            url: "/hxjob/pcviews/clearLetter/" + id,
             dataType: 'json',
             success: function (data) {
                 layer.alert(data.msg);

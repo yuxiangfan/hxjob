@@ -41,7 +41,7 @@
         </form>
 
         <div class="copyright">
-            <p>Powered by <a href="#" target="_Blank">合信码众</a></p>
+            <p>Powered by <a href="#" target="_Blank" style="color: #f0ad4e;">合信码众</a></p>
         </div>
 
     </div><!-- /.col-->

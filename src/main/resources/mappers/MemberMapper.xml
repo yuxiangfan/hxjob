@@ -462,4 +462,10 @@
         select count(1)
         from down_load
     </select>
+    <select id="getLogin" resultMap="memberMap">
+        select *
+        from `member`
+        where username = #{username}
+        and password = #{userpwd};
+    </select>
 </mapper>

@@ -46,8 +46,8 @@
                         <a href="${path}/pcviews/detailBeckham">
                             <img src="${path}/resources/pcPlus/images/12345.png" alt="">
                         </a>
-                        <h4 class="ul_li_h">"小贝+"</h4>
-                        <p class="ul_li_p">简介：贝睿的增值服务以及会员体系介绍</p>
+                        <h4 class="ul_li_h">"校园智能招聘简章"</h4>
+                        <p class="ul_li_p">简介：校园智能招聘求职专家</p>
                     </li>
                 </ul>
             </section>

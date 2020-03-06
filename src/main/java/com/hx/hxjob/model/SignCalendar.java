@@ -1,10 +1,4 @@
 package com.hx.hxjob.model;
-/*
- * @program: smartBR
- * @description:
- * @author: yu.God
- * @create: 2019-06-08 14:20
- **/
 
 public class SignCalendar {
     private int id;

@@ -1,10 +1,5 @@
 package com.hx.hxjob.model;
-/*
- * @program: smartBR
- * @description:
- * @author: yu.God
- * @create: 2019-05-17 15:23
- **/
+
 
 public class SaveRemarkMember {
     private String id;

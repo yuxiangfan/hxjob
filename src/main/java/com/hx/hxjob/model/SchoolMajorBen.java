@@ -1,10 +1,5 @@
 package com.hx.hxjob.model;
-/*
- * @program: smartBR
- * @description:
- * @author: yu.God
- * @create: 2019-05-21 19:53
- **/
+
 
 public class SchoolMajorBen {
     private int id;

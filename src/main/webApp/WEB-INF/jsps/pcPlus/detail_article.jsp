@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>贝睿科技-金融智能求职专家</title>
+    <title>校园智能招聘网</title>
     <%@ include file="include_static_resource.jsp" %>
 </head>
 <body>
@@ -43,8 +43,8 @@
                         <a href="${path}/pcviews/detailBeckham">
                             <img src="${path}/resources/pcPlus/images/12345.png" alt="">
                         </a>
-                        <h4 class="ul_li_h_a">"小贝+"</h4>
-                        <p class="ul_li_h">简介：贝睿的增值服务以及会员体系介绍</p>
+                        <h4 class="ul_li_h_a">"招聘简章"</h4>
+                        <p class="ul_li_h">简介：校园智能招聘简介</p>
                     </li>
                 </ul>
                 <br>
@@ -53,27 +53,24 @@
     </div>
 
     <!--尾-->
-    <footer>
-        <div class="footer">
-            <nav>
-                <a href="javascript:;">关于我们</a>
-                <a href="javascript:;">意见反馈</a>
-                <a href="javascript:;">使用帮助</a>
-                <a href="javascript:;">用户协议</a>
-            </nav>
-            <div class="foot_left">
-                <p class="foot_ebeirui"><em>贝睿</em>教育</p>
-                <p>
-                    Copyright © 2019 ebeirui.com京ICP备#####
-                    <span class="ml10">京公网安备############</span>
-                </p>
-                <p>ebeirui.com.保留所有版权. 使用这些服务遵守用户协议。</p>
-            </div>
-            <div class="foot_right">
-                <img src="${path}/resources/pcPlus/images/beirui_ma.jpg" alt="">
-            </div>
+   <footer>
+    <div class="footer">
+        <nav>
+            <a href="javascript:;">关于我们</a>
+            <a href="javascript:;">意见反馈</a>
+            <a href="javascript:;">使用帮助</a>
+            <a href="javascript:;">用户协议</a>
+        </nav>
+        <div class="foot_left">
+            <p class="foot_ebeirui"><em>校园</em>智能招聘</p>
+            <p>Powered by <a href="#" target="_Blank" style="color: #f0ad4e">合信码众</a></p>
         </div>
-    </footer>
+        <div class="foot_right">
+            <img src="${path}/resources/pcPlus/images/logo.png" alt="">
+        </div>
+    </div>
+</footer>
+
 </div>
 </body>
 <script>

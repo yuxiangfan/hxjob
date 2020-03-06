@@ -23,7 +23,7 @@
             <div class="image_hy">
             </div>
             <div class="left_hy">
-                <h1 style="font-size: 24px">金融专家就找贝睿</h1>
+                <h1 style="font-size: 24px">校园智能招聘专家</h1>
                 <p>
                     <br>
                     &nbsp;&nbsp;曾有个密友问我，她说：“亲爱的，女生到底是应该嫁给爱情，还是嫁
@@ -85,15 +85,11 @@
             <a href="javascript:;">用户协议</a>
         </nav>
         <div class="foot_left">
-            <p class="foot_ebeirui"><em>贝睿</em>教育</p>
-            <p>
-                Copyright © 2019 ebeirui.com京ICP备#####
-                <span class="ml10">京公网安备############</span>
-            </p>
-            <p>ebeirui.com.保留所有版权. 使用这些服务遵守用户协议。</p>
+            <p class="foot_ebeirui"><em>校园</em>智能招聘</p>
+            <p>Powered by <a href="#" target="_Blank" style="color: #f0ad4e">合信码众</a></p>
         </div>
         <div class="foot_right">
-            <img src="${path}/resources/pcPlus/images/beirui_ma.jpg" alt="">
+            <img src="${path}/resources/pcPlus/images/logo.png" alt="">
         </div>
     </div>
 </footer>

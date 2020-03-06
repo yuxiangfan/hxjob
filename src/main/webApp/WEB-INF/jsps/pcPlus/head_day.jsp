@@ -197,7 +197,7 @@
 
         $("li[class='apply']").click(
             function () {
-                window.location.href = "/smartBR/pcviews/openApplyForm/" + $(this).val();
+                window.location.href = "/hxjob/pcviews/openApplyForm/" + $(this).val();
             }
         );
         $("li[class='apply']").mousemove(
@@ -216,7 +216,7 @@
 
         $("li[class='exam']").click(
             function () {
-                window.location.href = "/smartBR/pcviews/openExamForm/" + $(this).val();
+                window.location.href = "/hxjob/pcviews/openExamForm/" + $(this).val();
             }
         )
         $("li[class='exam']").mousemove(

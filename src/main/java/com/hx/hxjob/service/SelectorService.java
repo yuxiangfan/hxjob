@@ -35,7 +35,6 @@ public class SelectorService {
     private SystemConfig systemConfig;
 
 
-
     public Map<String, Object> getACPage(Map<String, String> params) {
         Map<String, Object> result = new HashMap<String, Object>();
         PageUtil.dealPageParamForLayer(params);
@@ -328,14 +327,8 @@ public class SelectorService {
         return result;
     }
 
-    public List<Advice> brOriginal2() {
-        List<Advice> brNews = this.selectorMapper.brOriginalList2();
-        return brNews;
-    }
-
-    public List<Advice> brOriginal(Map<String, String> params) {
-        List<Advice> brNews = this.selectorMapper.brOriginalList(params);
-        return brNews;
+    public List<Advice> indexNewAdvices(Map<String, String> params) {
+        return this.selectorMapper.indexNewAdvices(params);
     }
 
     public Map<String, Object> getACPageForPC(Map<String, String> params) {
@@ -398,6 +391,7 @@ public class SelectorService {
         }
         return commands;
     }
+
     /*给所属关注*/
     public synchronized Map<String, Object> attention(String id, Member member) {
         Map<String, Object> result = new HashMap<>();

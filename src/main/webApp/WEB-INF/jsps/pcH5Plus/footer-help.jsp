@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
-    <title>贝睿-使用帮助</title>
+    <title>校园智能招聘网-使用帮助</title>
     <link rel="stylesheet" href="css/base.css"/>
     <link rel="stylesheet" href="css/profiles.css"/>
 </head>
@@ -57,7 +57,6 @@
     </div>
 </div>
 <!--底部-->
-<!--底部-->
 <footer class="br_foot">
     <div class="br_dflex">
         <div class="home"><a href="/"><i class="icon"></i> <em>首页</em></a></div>
@@ -66,13 +65,11 @@
             <a href="${path}/hm/login">登录</a><em></em>
             <a href="${path}/hm/register">注册</a><em></em>
             <p>Copyright © 2019 beirui.com<br/>
-                贝睿网 版权所有</p>
+                校园智能招聘</p>
         </div>
     </div>
 </footer>
 
 <script src="js/jquery-2.1.1.min.js"></script>
-
-
 </body>
 </html>

@@ -1,11 +1,4 @@
 package com.hx.hxjob.dao;
-/*
- * @program: smartBR
- * @description:
- * @author: yu.God
- * @create: 2019-05-22 23:13
- **/
-
 
 import com.hx.hxjob.model.ApplyCalendar;
 import org.apache.ibatis.annotations.Mapper;

@@ -2,7 +2,7 @@ var currentDustry = "";
 var currentCity = "";
 var currentType = "";
 var Job = "";
-var path = "/smartBR";
+var path = "/hxjob";
 $(function () {
 
     var id = $("#smi").val();
@@ -49,7 +49,7 @@ var getPoss = function (industry, city, type) {
                     var collectCSS = "";
 
                     if (!data[i].collectJob) {
-                        collectCSS = "style='background-image:url(/smartBR/resources/pcPlus/images/xin1.png);'";
+                        collectCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/xin1.png);'";
                     }
                     Job = data[i].collectJob;
                     var rindexPercent = data[i].rindex / 0.05;
@@ -99,10 +99,10 @@ var savePosition = function (code) {
             if (data.code == -9) {
                 layer.msg(data.msg);
             } else if (data.code == 0) {
-                $("#p" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/xin1.png)');
+                $("#p" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/xin1.png)');
                 layer.msg(data.msg);
             } else if (data.code == 1) {
-                $("#p" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/xin2.png)');
+                $("#p" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/xin2.png)');
                 layer.msg(data.msg);
             } else {
                 layer.msg(data.msg);

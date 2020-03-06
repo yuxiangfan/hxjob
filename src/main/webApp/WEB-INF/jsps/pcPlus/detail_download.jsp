@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>贝睿科技-金融智能求职专家</title>
+    <title>校园智能招聘网</title>
     <link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${path}/resources/pcPlus/css/style.css">
     <script src="${path}/resources/pcPlus/js/jquery-3.3.1.min.js"></script>
@@ -43,7 +43,7 @@
         </section>
         <!--右边悬浮-->
         <section class="con_d home_con_r">
-            <h3 class="bt">贝睿原创</h3>
+            <h3 class="bt">校园杂志</h3>
             <ul>
                 <li class="home_con_li home_word">
                     <p><a href="detail_article.jsp" target="_blank">"正规是好事,但是比考试还费时间"</a></p>
@@ -76,15 +76,11 @@
             <a href="javascript:;">用户协议</a>
         </nav>
         <div class="foot_left">
-            <p class="foot_ebeirui"><em>贝睿</em>教育</p>
-            <p>
-                Copyright © 2019 ebeirui.com京ICP备#####
-                <span class="ml10">京公网安备############</span>
-            </p>
-            <p>ebeirui.com.保留所有版权. 使用这些服务遵守用户协议。</p>
+            <p class="foot_ebeirui"><em>校园</em>智能招聘</p>
+            <p>Powered by <a href="#" target="_Blank" style="color: #f0ad4e">合信码众</a></p>
         </div>
         <div class="foot_right">
-            <img src="images/beirui_ma.jpg" alt="">
+            <img src="${path}/resources/pcPlus/images/logo.png" alt="">
         </div>
     </div>
 </footer>

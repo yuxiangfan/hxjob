@@ -38,7 +38,7 @@
 			<div class="form-header-group ">
 				<div class="header-text httac htvam">
 					<h1 class="form-header" data-component="header">
-						贝睿职业测评与竞争力排名
+						校园智能招聘网职业测评与竞争力排名
 					</h1>
 					
 				</div>

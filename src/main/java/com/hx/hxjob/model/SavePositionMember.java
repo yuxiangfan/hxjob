@@ -1,10 +1,5 @@
 package com.hx.hxjob.model;
-/*
- * @program: smartBR
- * @description: SavePositionMember
- * @author: yu.God
- * @create: 2019-04-28 15:27
- **/
+
 
 public class SavePositionMember {
     private int id;

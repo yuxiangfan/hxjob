@@ -25,13 +25,13 @@ var getIndexHot = function () {
                     var praiseCSS = "";
                     var rindexPercent = rows[i].satisfaction / 0.05;
                     if (!rows[i].whetherRemark) {
-                        praiseCSS = "style='background-image:url(/smartBR/resources/pcPlus/images/z2.png);'";
+                        praiseCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/z2.png);'";
                     }
                     var remark =
                         "<li>\n" +
                         "    <a>\n" +
                         "        <div class=\"img br_center\">\n" +
-                        "            <img class=\"img_tx_style\" src=/smartBR" + rows[i].headPhoto + ">\n" +
+                        "            <img class=\"img_tx_style\" src=/hxjob" + rows[i].headPhoto + ">\n" +
                         "        </div>\n" +
                         "        <div class=\"info\">\n" +
                         "            <div class=\"name br_elli\" style=\"margin-top: 10px\">" + rows[i].nickname + "\n" +
@@ -78,7 +78,7 @@ var getIndexPoss = function () {
                     var collectCSS = "";
 
                     if (!data[i].collectJob) {
-                        collectCSS = "style='background-image:url(/smartBR/resources/pcPlus/images/xin1.png);'";
+                        collectCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/xin1.png);'";
                     }
                     var rindexPercent = data[i].rindex / 0.05;
                     var indexPos =
@@ -124,10 +124,10 @@ var getIndexOrgs = function () {
                     var collectCSS = "";
                     var rindexPercent = data[i].score / 0.05;
                     if (!data[i].praiseFlag) {
-                        praiseCSS = "style='background-image:url(/smartBR/resources/pcPlus/images/z2.png);'";
+                        praiseCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/z2.png);'";
                     }
                     if (!data[i].collectFlag) {
-                        collectCSS = "style='background-image:url(/smartBR/resources/pcPlus/images/xin1.png);'";
+                        collectCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/xin1.png);'";
                     }
                     if (data[i].commentFlag) {
                         comment = "<button class=\"btn_style\" onclick=\"javascrtpt:window.location.href='remark.jsp'\">写点评</button></span>\n";
@@ -136,7 +136,7 @@ var getIndexOrgs = function () {
                         "  <li>\n" +
                         "                            <a>\n" +
                         "                                <div class=\"img br_center\">\n" +
-                        "                                    <img  src=/smartBR" + data[i].logo + " alt=\"#\">\n" +
+                        "                                    <img  src=/hxjob" + data[i].logo + " alt=\"#\">\n" +
                         "                                </div>\n" +
                         "                                <div class=\"info\">\n" +
                         "                                    <div class=\"name br_elli\">\n" +
@@ -214,7 +214,7 @@ var replyOk = function (val, code) {
 };
 
 
-var path = "/smartBR";
+var path = "/hxjob";
 
 /*职业收藏*/
 var savePosition = function (code) {
@@ -226,10 +226,10 @@ var savePosition = function (code) {
             if (data.code == -9) {
                 layer.msg(data.msg);
             } else if (data.code == 0) {
-                $("#p" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/xin1.png)');
+                $("#p" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/xin1.png)');
                 layer.msg(data.msg);
             } else if (data.code == 1) {
-                $("#p" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/xin2.png)');
+                $("#p" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/xin2.png)');
                 layer.msg(data.msg);
             } else {
                 layer.msg(data.msg);
@@ -250,14 +250,14 @@ var praise = function (code) {
             } else if (data.code == 0) {
                 var x1 = document.getElementById("praiseCount" + code).innerText;
                 document.getElementById("praiseCount" + code).innerText = parseInt(x1) + 1;
-                $("#p" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/z2.png)');
+                $("#p" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/z2.png)');
                 layer.msg(data.msg);
 
             } else if (data.code == 1) {
                 var x2 = document.getElementById("praiseCount" + code).innerText;
                 document.getElementById("praiseCount" + code).innerText = parseInt(x2) - 1;
                 layer.msg(data.msg);
-                $("#p" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/z1.png)');
+                $("#p" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/z1.png)');
             } else {
                 layer.msg(data.msg);
             }
@@ -276,12 +276,12 @@ var collect = function (code) {
             } else if (data.code == 0) {
                 var x1 = document.getElementById("collectCount" + code).innerText;
                 document.getElementById("collectCount" + code).innerText = parseInt(x1) + 1;
-                $("#c" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/xin1.png)');
+                $("#c" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/xin1.png)');
                 layer.msg(data.msg);
             } else if (data.code == 1) {
                 var x2 = document.getElementById("collectCount" + code).innerText;
                 document.getElementById("collectCount" + code).innerText = parseInt(x2) - 1;
-                $("#c" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/xin2.png)');
+                $("#c" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/xin2.png)');
                 layer.msg(data.msg);
             } else {
                 layer.msg(data.msg);

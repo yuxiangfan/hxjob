@@ -1,7 +1,7 @@
 $(function () {
     getIndexPoss();
     getIndexOrgs();
-    brOriginal();
+    newAdvice();
     getIndexHot();
     var layer;
     layui.use('layer', function () {
@@ -139,7 +139,7 @@ var getIndexOrgs = function () {
                         "                    </a>" +
                         "                        </li>" +
                         "                <li>" +
-                        "<span>"+
+                        "<span>" +
                         "<a href=tocommentlist/" + data[i].code + " target=\"_blank\">" + data[i].fullname + "</a>" +
                         "<span class='grade_star'><i style='width:" + rindexPercent + "%;'></i></span>" +
                         "</span>" +
@@ -291,26 +291,31 @@ function notLog() {
     layer.msg("请您先登录，再评论");
 }
 
-/*贝睿原创展示*/
-var brOriginal = function () {
+/*热门校园杂志*/
+var newAdvice = function () {
     $.ajax({
-        url: "brOriginal",
+        url: "indexNewAdvices",
         dataType: 'json',
         type: 'post',
         success: function (data) {
 
-            $(".brOrig").html("");
+            $(".newAdvice").html("");
 
             if (data != null) {
                 for (var i = 0; i < data.length; i++) {
                     var br =
                         " <li class=\"home_con_li home_word\">" +
-                        " <h4><a href= /hxjob/pcviews/toNewsDetails/" + data[i].id + " target=\"_blank\">" + data[i].title +
+                        " <h4><a href= /hxjob/pcviews/toAdviceDetails/" + data[i].id + " target=\"_blank\">" + data[i].title +
                         "</a></h4>" +
-                        " <p>" + data[i].editor +
+                        " <p>" + data[i].content +
                         "</p>" +
+                        "<ul class='newAdviceList'>" +
+                        "  <li><a class=\"hyjd\" href=/hxjob/pcviews/toAdviceList/" + data[i].cid + ">" + data[i].title1 + "&nbsp;&nbsp;" + "[" + data[i].nature + "]</a></li>" +
+                        "                        <li>" + "&nbsp;&nbsp;" + data[i].original + "</li>" +
+                        "                        <li>" + "&nbsp;&nbsp;" + data[i].publishtime + "</li>" +
+                        "</ul>" +
                         "  </li>";
-                    $(".brOrig").append(br);
+                    $(".newAdvice").append(br);
                 }
             }
         }

@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>贝睿个人中心页面</title>
+    <title>校园智能招聘网</title>
     <link rel="stylesheet" href="${path}/resources/pcPlus/css/personalcenter.css">
     <link rel="stylesheet" href="${path}/resources/pcPlus/css/bootstrap.min.css">
     <link rel="stylesheet" href="${path}/resources/pcPlus/css/style.css">
@@ -119,7 +119,6 @@
                                                                         class="right_box_input">
                     <br>
                     <label class="ladel_span">性别:</label>&nbsp;
-                    <%--           <input id="gander" type="text" class="right_box_input" value="${personForm.gender}">--%>
 
                     <select id="gander" class="right_box_input" style="-webkit-appearance: none; -webkit-tap-highlight-color: #fff;outline: 0;">
                         <option value='男' <c:if test="${personForm.gender=='男'}">selected</c:if>>男</option>
@@ -133,10 +132,10 @@
                     <label class="ladel_span">邮箱:</label>&nbsp;<input id="mail" type="text" class="right_box_input" value="${personForm.mail}">
                     <br>
                     <label class="ladel_span">感兴趣的行业:</label>&nbsp;<input id="likeIndustry" type="text" value="${personForm.likeIndustry}"
-                                                                          class="right_box_input" placeholder="例如：金融，信托">
+                                                                          class="right_box_input" placeholder="例如：互联网，进入">
                     <br>
                     <label class="ladel_span">感兴趣的岗位:</label>&nbsp;<input id="liekeJob" type="text" value="${personForm.likeJob}" class="right_box_input"
-                                                                          placeholder="例如：销售经理，管理员">
+                                                                          placeholder="例如：java程序员，项目经理助手">
                     <br>
                     <label class="ladel_span" style="float:left;">自我介绍:</label>&nbsp;
                     <textarea id="introduce" rows="4" cols="40" style="border: none;   resize: none;">${personForm.introduce}</textarea>
@@ -245,16 +244,12 @@
                 <a href="javascript:;">用户协议</a>
             </nav>
             <div class="foot_left">
-                <p class="foot_ebeirui"><em>贝睿</em>教育</p>
-                <p>
-                    Copyright © 2019 ebeirui.com京ICP备#####
-                    <span class="ml10">京公网安备############</span>
-                </p>
-                <p>ebeirui.com.保留所有版权. 使用这些服务遵守用户协议。</p>
+                <p class="foot_ebeirui"><em>校园</em>智能招聘</p>
+                <p>Powered by <a href="#" target="_Blank" style="color: #f0ad4e">合信码众</a></p>
             </div>
             <div class="foot_right">
-                <img src="images/beirui_ma.jpg" alt="">
-            </div>
+            <img src="${path}/resources/pcPlus/images/logo.png" alt="">
+        </div>
         </div>
     </footer>
     <script src="${path}/resources/pcPlus/js/personCenter.js"></script>

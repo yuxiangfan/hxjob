@@ -40,14 +40,14 @@ var praise = function (code) {
             } else if (data.code == 0) {
                 var x1 = document.getElementById("praiseCount" + code).innerText;
                 document.getElementById("praiseCount" + code).innerText = parseInt(x1) + 1;
-                $("#p" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/z2.png)');
+                $("#p" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/z2.png)');
                 layer.msg(data.msg);
 
             } else if (data.code == 1) {
                 var x2 = document.getElementById("praiseCount" + code).innerText;
                 document.getElementById("praiseCount" + code).innerText = parseInt(x2) - 1;
                 layer.msg(data.msg);
-                $("#p" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/z1.png)');
+                $("#p" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/z1.png)');
             } else {
                 layer.msg(data.msg);
             }
@@ -66,12 +66,12 @@ var collect = function (code) {
             } else if (data.code == 0) {
                 var x1 = document.getElementById("collectCount" + code).innerText;
                 document.getElementById("collectCount" + code).innerText = parseInt(x1) + 1;
-                $("#c" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/xin1.png)');
+                $("#c" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/xin1.png)');
                 layer.msg(data.msg);
             } else if (data.code == 1) {
                 var x2 = document.getElementById("collectCount" + code).innerText;
                 document.getElementById("collectCount" + code).innerText = parseInt(x2) - 1;
-                $("#c" + code).css('background-image', 'url(/smartBR/resources/pcPlus/images/xin2.png)');
+                $("#c" + code).css('background-image', 'url(/hxjob/resources/pcPlus/images/xin2.png)');
                 layer.msg(data.msg);
             } else {
                 layer.msg(data.msg);
@@ -96,10 +96,10 @@ var getOrgsHot = function (industry, city) {
                     var collectCSS = "";
                     var rindexPercent = data[i].score / 0.05;
                     if (!data[i].praiseFlag) {
-                        praiseCSS = "style='background-image:url(/smartBR/resources/pcPlus/images/z2.png);'";
+                        praiseCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/z2.png);'";
                     }
                     if (!data[i].collectFlag) {
-                        collectCSS = "style='background-image:url(/smartBR/resources/pcPlus/images/xin1.png);'";
+                        collectCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/xin1.png);'";
                     }
                     if (data[i].commentFlag) {
                         comment = " <span style='position: absolute;right: 20px;'><button onclick=writeRemark('" + data[i].code + "') class='btn_style'>写点评</button></span>";
@@ -109,7 +109,7 @@ var getOrgsHot = function (industry, city) {
                         "  <li>\n" +
                         "                            <a>\n" +
                         "                                <div class=\"img br_center\">\n" +
-                        "                                    <img  src=/smartBR" + data[i].logo + " alt=\"#\">\n" +
+                        "                                    <img  src=/hxjob" + data[i].logo + " alt=\"#\">\n" +
                         "                                </div>\n" +
                         "                                <div class=\"info\">\n" +
                         "                                    <div class=\"name br_elli\">\n" +

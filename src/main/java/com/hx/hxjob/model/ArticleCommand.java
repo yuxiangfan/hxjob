@@ -3,12 +3,6 @@ package com.hx.hxjob.model;
 import lombok.Getter;
 import lombok.Setter;
 
-/*
- * @program: smartBR
- * @description: 精选所属
- * @author: yu.God
- * @create: 2019-05-05 16:13
- **/
 @Getter
 @Setter
 public class ArticleCommand {

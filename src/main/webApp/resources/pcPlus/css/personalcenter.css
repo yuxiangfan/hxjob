@@ -171,7 +171,7 @@
     display: block;
     width: 21px;
     position: relative;
-    background-image: url(/smartBR/resources/pcPlus/images/delete.png);
+    background-image: url(/hxjob/resources/pcPlus/images/delete.png);
     float: right;
 }
 .detailRemark{
@@ -182,7 +182,7 @@
     display: block;
     width: 21px;
     position: relative;
-    background-image: url(/smartBR/resources/pcPlus/images/xq.png);
+    background-image: url(/hxjob/resources/pcPlus/images/xq.png);
     float: right;
 }
 
@@ -193,7 +193,7 @@
     display: block;
     width: 30px;
     position: relative;
-    background-image: url(/smartBR/resources/pcPlus/images/clear.png);
+    background-image: url(/hxjob/resources/pcPlus/images/clear.png);
     margin-top: 22px;
     margin-left: 627px;
 }

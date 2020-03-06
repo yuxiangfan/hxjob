@@ -44,24 +44,8 @@
             </section>
 
             <section class="con_r home_con_r">
-                <h3 class="bt">下载专区</h3>
-                <ul>
-                    <li class="home_con_li_a home_word">
-                        <a href="${path}/pcviews/detailDownload">
-                            <img src="${path}/resources/pcPlus/images/123456.png" alt="">
-                        </a>
-                        <h4 class="ul_li_h">"名称"</h4>
-                        <p class="ul_li_p">简介:考试讲义，电子书，培训资料等</p>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="home_con_li_a home_word">
-                        <a href="${path}/pcviews/detailBeckham">
-                            <img src="${path}/resources/pcPlus/images/12345.png" alt="">
-                        </a>
-                        <h4 class="ul_li_h">"小贝+"</h4>
-                        <p class="ul_li_p">简介：贝睿的增值服务以及会员体系介绍</p>
-                    </li>
+                <h3 class="bt">最新校园杂志</h3>
+                <ul class="newAdvice">
                 </ul>
             </section>
         </div>

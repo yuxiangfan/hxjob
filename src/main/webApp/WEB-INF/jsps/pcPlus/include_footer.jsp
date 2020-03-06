@@ -13,10 +13,10 @@
         </nav>
         <div class="foot_left">
             <p class="foot_ebeirui"><em>校园</em>智能招聘</p>
-            <p>Powered by <a href="#" target="_Blank" style="color: #f0ad4e">合信码众</a></p>
+            <p>Powered by <a href="#" target="_Blank" style="color: #f0ad4e;">合信码众</a></p>
         </div>
         <div class="foot_right">
-            <img src="${path}/resources/pcPlus/images/beirui_ma.jpg" alt="">
+            <img src="${path}/resources/pcPlus/images/logo.png" alt="">
         </div>
     </div>
 </footer>

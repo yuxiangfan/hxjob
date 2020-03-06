@@ -119,4 +119,6 @@ public interface OrganizationMapper {
     List<OrganizationRemark> getOrganizationCommentPageOnJob(Map<String, String> params);
 
     List<OrganizationRemark> getOrganizationCommenPractice(Map<String, String> params);
+
+    List<Organization> getSimilarOrg(@Param(value = "code") String code, @Param(value = "industry") String industry);
 }

@@ -17,11 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @program: com.hx.hxjob.controller.pc
- * @description:
- * @created: 2020/01/20 09:26
- */
+
 @Controller
 @RequestMapping("pcm")
 public class PCLoginController {

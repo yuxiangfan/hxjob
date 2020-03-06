@@ -1,10 +1,4 @@
 package com.hx.hxjob.model;
-/*
- * @program: smartBR
- * @description:
- * @author: yu.God
- * @create: 2019-05-21 20:06
- **/
 
 public class PositionCompetionTest {
     private int id;

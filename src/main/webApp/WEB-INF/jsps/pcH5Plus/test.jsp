@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <link href="${path}/resources/pcH5Plus/css/base.css" rel="stylesheet" type="text/css">
     <script src="${path}/resources/pcH5Plus/js/jquery-2.1.1.min.js"></script>
-    <title>贝睿-|评公司|搜职位|中国领先的金融信息平台</title>
+    <title>校园智能招聘网</title>
     <link href="${path}/resources/pcH5Plus/css/index.css" rel="stylesheet" type="text/css">
 </head>
 <body id="index">
@@ -52,12 +52,12 @@
 
                     <section class="section_style">
                         <div class="rectangle" onclick="javascrtpt:window.location.href='toCharacter/'">
-                            <div class="bt_a"><p class="bt">贝睿性格测试初阶</p></div>
-                            <p class="btm_a">简介:原型为彩色性格测试,经过贝睿团队多次测试改版,可简易方便地测出被测试者性格的优劣势.</p>
+                            <div class="bt_a"><p class="bt">校园智能招聘性格测试初阶</p></div>
+                            <p class="btm_a">简介:原型为彩色性格测试,可简易方便地测出被测试者性格的优劣势.</p>
                         </div>
                         <div class="rectangle" onclick="javascrtpt:window.location.href='poscom/'">
                             <div class="bt_b"><p class="bt">职业竞争力测试2019版</p></div>
-                            <p class="btm_a">简介:贝睿原创职业竞争力测试指南,可清晰明了地了解求职者的江湖地位...</p>
+                            <p class="btm_a">简介:大学生职业竞争力测试指南,可清晰明了地了解求职者的江湖地位...</p>
                         </div>
                         <div class="rectangle" style="height: 120px">
                             <div class="bt_c"><p class="bt">更多测试工具密集开发ing</p></div>
@@ -84,7 +84,7 @@
                     <a href="${path}/hm/login">登录</a><em></em>
                     <a href="${path}/hm/register">注册</a><em></em>
                     <p>Copyright © 2019 beirui.com<br/>
-                        贝睿网 版权所有</p>
+                        校园智能招聘</p>
                 </div>
             </div>
         </footer>

@@ -265,7 +265,7 @@
         o.fullname,
         o.tags
         from organization_remark toc
-        join member tm on toc.memberid = tm.id
+        join `member` tm on toc.memberid = tm.id
         join organization o on o.code = toc.orgcode
         where toc.id = #{id}
         order by toc.createtime desc
@@ -752,7 +752,8 @@
             limit ${offset},${limit}
         </if>
     </select>
-    <select id="getOrganizationCommentPageOnJob" parameterType="java.util.Map" resultType="com.hx.hxjob.model.OrganizationRemark">
+    <select id="getOrganizationCommentPageOnJob" parameterType="java.util.Map"
+            resultType="com.hx.hxjob.model.OrganizationRemark">
         select
         toc.id,toc.memberid,toc.orgcode,toc.orgname,toc.memberPhoto,toc.city,toc.workyear,toc.post_status,toc.salary_pre_tax,toc.other_benefit,toc.year_end_money,toc.growth,toc.workload,
         toc.cultural_context,toc.satisfaction,toc.theme,toc.writing_evaluation,toc.evaluate_label,toc.img_upload,
@@ -788,6 +789,8 @@
             limit ${offset},${limit}
         </if>
     </select>
-
-
+    <select id="getSimilarOrg" resultType="com.hx.hxjob.model.Organization">
+        select code,shortname,fullname,brief from organization where  industry  = #{industry} and code not in (#{code})
+        limit 0,10
+    </select>
 </mapper>

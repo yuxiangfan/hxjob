@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>贝睿科技-金融智能求职专家</title>
+    <title>校园智能招聘网</title>
     <link rel="stylesheet" href="${path}/resources/pcPlus/css/style.css">
     <link rel="stylesheet" href="${path}/resources/pcPlus/bootstrap-3.4.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${path}/resources/pcPlus/bootstrap-3.4.1/dist/css/bootstrap-theme.min.css">
@@ -82,8 +82,8 @@
     <div class="wrapper ">
         <div style="position: relative;">
             <div style="position: absolute;width: 300px;height: 300px;background-color: #f8f8f8;left: 648px;top: 10px;padding:40px 10px 0;">
-                <h3>贝睿金融网</h3>
-                <p>感谢每一个贝睿人的认真填写,您填写的数据将会为下一个贝睿人提供参考,同时也会让你获得更好的机会的选择</p>
+                <h3>校园智能招聘</h3>
+                <p>感谢每一个同学的认真填写,您填写的数据将会为下一个贝睿人提供参考,同时也会让你获得更好的机会的选择</p>
             </div>
         </div>
         <div>
@@ -262,15 +262,11 @@
             <a href="javascript:;">用户协议</a>
         </nav>
         <div class="foot_left">
-            <p class="foot_ebeirui"><em>贝睿</em>教育</p>
-            <p>
-                Copyright © 2019 ebeirui.com京ICP备#####
-                <span class="ml10">京公网安备############</span>
-            </p>
-            <p>ebeirui.com.保留所有版权. 使用这些服务遵守用户协议。</p>
+            <p class="foot_ebeirui"><em>校园</em>智能招聘</p>
+            <p>Powered by <a href="#" target="_Blank" style="color: #f0ad4e">合信码众</a></p>
         </div>
         <div class="foot_right">
-            <img src="${path}/resources/pcPlus/images/beirui_ma.jpg" alt="">
+            <img src="${path}/resources/pcPlus/images/logo.png" alt="">
         </div>
     </div>
 </footer>

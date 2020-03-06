@@ -1,6 +1,6 @@
 var layer;
 var laypage;
-var path = "/smartBR";
+var path = "/hxjob";
 var currentIndex;
 
 $(function () {
@@ -50,13 +50,13 @@ var getOrgComments = function (curr) {
                     var praiseCSS = "";
                     var rindexPercent = rows[i].satisfaction / 0.05;
                     if (!rows[i].whetherRemark) {
-                        praiseCSS = "style='background-image:url(/smartBR/resources/pcPlus/images/z2.png);'";
+                        praiseCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/z2.png);'";
                     }
                     var org =
                         "<li>\n" +
                         "    <a>\n" +
                         "        <div class=\"img br_center\">\n" +
-                        "            <img class=\"img_tx_style\" src=/smartBR" + rows[i].headPhoto + ">\n" +
+                        "            <img class=\"img_tx_style\" src=/hxjob" + rows[i].headPhoto + ">\n" +
                         "        </div>\n" +
                         "        <div class=\"info\">\n" +
                         "            <div class=\"name br_elli\" style=\"margin-top: 10px\">"+rows[i].nickname+"\n" +
@@ -124,7 +124,7 @@ var getOrgCommentsRecommend = function (curr) {
                         "<li>\n" +
                         "    <a>\n" +
                         "        <div class=\"img br_center\">\n" +
-                        "            <img class=\"img_tx_style\" src=/smartBR" + rows[i].headPhoto + ">\n" +
+                        "            <img class=\"img_tx_style\" src=/hxjob" + rows[i].headPhoto + ">\n" +
                         "        </div>\n" +
                         "        <div class=\"info\">\n" +
                         "            <div class=\"name br_elli\" style=\"margin-top: 10px\">"+rows[i].nickname+"\n" +
@@ -191,7 +191,7 @@ var getOrgCommentsOnJob = function (curr) {
                         "<li>\n" +
                         "    <a>\n" +
                         "        <div class=\"img br_center\">\n" +
-                        "            <img class=\"img_tx_style\" src=/smartBR" + rows[i].headPhoto + ">\n" +
+                        "            <img class=\"img_tx_style\" src=/hxjob" + rows[i].headPhoto + ">\n" +
                         "        </div>\n" +
                         "        <div class=\"info\">\n" +
                         "            <div class=\"name br_elli\" style=\"margin-top: 10px\">"+rows[i].nickname+"\n" +
@@ -258,7 +258,7 @@ var getOrgCommentsPractice = function (curr) {
                         "<li>\n" +
                         "    <a>\n" +
                         "        <div class=\"img br_center\">\n" +
-                        "            <img class=\"img_tx_style\" src=/smartBR" + rows[i].headPhoto + ">\n" +
+                        "            <img class=\"img_tx_style\" src=/hxjob" + rows[i].headPhoto + ">\n" +
                         "        </div>\n" +
                         "        <div class=\"info\">\n" +
                         "            <div class=\"name br_elli\" style=\"margin-top: 10px\">"+rows[i].nickname+"\n" +

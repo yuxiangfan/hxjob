@@ -1,5 +1,5 @@
 var i = 1;
-var path = "/smartBR";
+var path = "/hxjob";
 $(document).ready(function () {
 
 //    设置头部信息
@@ -167,7 +167,7 @@ $(document).ready(function () {
                         url: path + '/h5views/openExam/' + x,
                         dataType: "json",
                         success: function (data) {
-                            window.location.href = "/smartBR/h5views/openApplyForm/" + data.msg;
+                            window.location.href = "/hxjob/h5views/openApplyForm/" + data.msg;
                         }
                     });
                 } else {
@@ -175,7 +175,7 @@ $(document).ready(function () {
                         url: path + '/h5views/openExam/' + x,
                         dataType: "json",
                         success: function (data) {
-                            window.location.href = "/smartBR/h5views/openExamForm/" + data.msg;
+                            window.location.href = "/hxjob/h5views/openExamForm/" + data.msg;
                         }
                     });
                 }

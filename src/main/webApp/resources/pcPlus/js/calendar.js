@@ -1,4 +1,4 @@
-var path = "/smartBR";
+var path = "/hxjob";
 
 $(function () {
     var layer;
@@ -176,7 +176,7 @@ $(document).ready(function () {
                         url: path + '/pcviews/openExam/' + x,
                         dataType: "json",
                         success: function (data) {
-                            window.location.href = "/smartBR/pcviews/openApplyForm/" + data.msg;
+                            window.location.href = "/hxjob/pcviews/openApplyForm/" + data.msg;
                         }
                     });
                 } else {
@@ -184,7 +184,7 @@ $(document).ready(function () {
                         url: path + '/pcviews/openExam/' + x,
                         dataType: "json",
                         success: function (data) {
-                            window.location.href = "/smartBR/pcviews/openExamForm/" + data.msg;
+                            window.location.href = "/hxjob/pcviews/openExamForm/" + data.msg;
                         }
                     });
                 }

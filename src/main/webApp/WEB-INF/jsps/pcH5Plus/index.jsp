@@ -18,7 +18,7 @@
     <script src="${path}/resources/layui/layui.js"></script>
     <link rel="stylesheet" href="${path}/resources/pc/css/recruit.css">
     <script src="${path}/resources/pcH5Plus/js/jquery-2.1.1.min.js"></script>
-    <title>贝睿-|评公司|搜职位|中国领先的金融信息平台</title>
+    <title>校园智能招聘网</title>
     <link href="${path}/resources/pcH5Plus/css/index.css" rel="stylesheet" type="text/css">
     <link href="${path}/resources/pc/css/recruit.css" rel="stylesheet" type="text/css">
     <script src="${path}/resources/layui/layui.js"></script>
@@ -106,7 +106,7 @@
                     <a href="${path}/hm/login">登录</a><em></em>
                     <a href="${path}/hm/register">注册</a><em></em>
                     <p>Copyright © 2019 beirui.com<br/>
-                        贝睿网 版权所有</p>
+                        校园智能招聘</p>
                 </div>
             </div>
         </footer>

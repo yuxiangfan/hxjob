@@ -18,7 +18,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<meta http-equiv="Cache-Control" content="no-transform ">
 		<meta name="viewport" content="width=device-width">
-		<title>贝睿网</title>
+		<title>校园智能招聘</title>
 		<link rel="stylesheet" href="resources/pc/css/public.css" />
 		<link rel="stylesheet" href="resources/pc/css/tocomment.css" />
 		<link href="resources/layui/css/layui.css" rel="stylesheet" type="text/css" />
@@ -78,7 +78,7 @@
 							<h2>
 								<i>【${pos.organization.cityname }】</i><a href="pcviews/posDetail/${pos.code }" target="_blank"> ${pos.organization.shortname } - ${pos.title }</a> 
 								<span style="float:right;"> 
-									<span class="grade_star"><i style="width:${pos.rindex/0.05}%;"></i></span>（贝睿评级）
+									<span class="grade_star"><i style="width:${pos.rindex/0.05}%;"></i></span>（评级）
 								</span>
 							</h2>
 						</div>

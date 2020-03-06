@@ -5,7 +5,7 @@
 <head>
     <!--这是首页-->
     <meta charset="UTF-8">
-    <title>贝睿科技-金融智能求职专家</title>
+    <title>校园智能招聘网</title>
     <link rel="stylesheet" href="${path}/resources/pcPlus/css/style.css">
     <script src="${path}/resources/pcPlus/js/jquery-3.3.1.min.js"></script>
     <script src="${path}/resources/pcPlus/js/bootstrap.min.js"></script>

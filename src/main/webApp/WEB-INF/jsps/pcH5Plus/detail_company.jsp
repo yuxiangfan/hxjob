@@ -6,11 +6,11 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>【工商银行招聘信息】-贝睿</title>
+    <title>校园智能招聘网</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
     <link href="${path}/resources/pcH5Plus/css/base.css" rel="stylesheet" type="text/css">
     <script src="${path}/resources/pcH5Plus/js/jquery-2.1.1.min.js"></script>
-    <title>贝睿-|评公司|搜职位|中国领先的金融信息平台</title>
+    <title>校园智能招聘网</title>
     <link href="${path}/resources/pcH5Plus/css/index.css" rel="stylesheet" type="text/css">
     <link href="${path}/resources/pcH5Plus/css/recruit.css" rel="stylesheet" type="text/css">
     <link href="${path}/resources/pc/css/recruit.css" rel="stylesheet" type="text/css">
@@ -166,7 +166,7 @@
                 <a href="${path}/hm/login">登录</a><em></em>
                 <a href="${path}/hm/register">注册</a><em></em>
                 <p>Copyright © 2019 beirui.com<br/>
-                    贝睿网 版权所有</p>
+                    校园智能招聘</p>
             </div>
         </div>
     </footer>

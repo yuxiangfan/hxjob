@@ -1,10 +1,5 @@
 package com.hx.hxjob.model;
-/*
- * @program: smartBR
- * @description: 评论
- * @author: yu.God
- * @create: 2019-05-05 09:23
- **/
+
 
 public class OrganizationComment {
 

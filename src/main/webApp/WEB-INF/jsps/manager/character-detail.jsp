@@ -32,7 +32,7 @@
 						大学生性格测试
 					</h1>
 					<div class="form-subHeader">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是一份来自专业金融职前培训机构-贝睿的一份基于性格色彩学的测评，它将有助于测试者深入了解自己的深层次性格，从而帮助自己得到更好的职业定位。
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是一份专业招聘的一份基于性格色彩学的测评，它将有助于测试者深入了解自己的深层次性格，从而帮助自己得到更好的职业定位。
 					</div>
 				</div>
 			</div>

@@ -559,4 +559,8 @@ public class PositionService {
         return result;
     }
 
+    public List<Position> getAllPosByOrg(String orgCode) {
+        List<Position> allPos =  this.positionMapper.getAllPosByOrg(orgCode);
+        return allPos;
+    }
 }

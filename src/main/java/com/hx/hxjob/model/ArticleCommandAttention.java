@@ -1,10 +1,4 @@
 package com.hx.hxjob.model;
-/*
- * @program: smartBR
- * @description:
- * @author: yu.God
- * @create: 2019-05-07 18:01
- **/
 
 public class ArticleCommandAttention {
     private int id;

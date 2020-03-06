@@ -1446,4 +1446,11 @@ public class OrganizationService {
         result.put("total", this.organizationMapper.getOrganizationCommentPageCount(params));
         return result;
     }
+
+    public List<Organization> similarOrg(String code, String industry) {
+        List<Organization> similarOrg = organizationMapper.getSimilarOrg(code,industry);
+        return similarOrg;
+    }
+
+
 }

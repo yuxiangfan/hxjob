@@ -2,7 +2,7 @@ var memberPhoto = null;
 var imgUpload = null;
 var layer;
 
-var path = "/smartBR";
+var path = "/hxjob";
 layui.use('layer', function () {
     layer = layui.layer;
 });

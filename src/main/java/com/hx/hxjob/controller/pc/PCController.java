@@ -155,7 +155,7 @@ public class PCController {
     }
 
     /**
-     * @Description 展示评论列表
+     * @Description 展示机构详情
      * @Params [code, model, session]
      * @Return java.lang.String
      **/
@@ -168,6 +168,12 @@ public class PCController {
         model.addAttribute("systemConfig", systemConfig);
         /*判断是否评论过*/
         model.addAttribute("whetherRemark", this.organizationService.whetherRemark(code, member));
+        /*相似机构查询*/
+        model.addAttribute("similar", this.organizationService.similarOrg(
+                this.organizationService.getOrganization(code).getCode(),
+                this.organizationService.getOrganization(code).getIndustry()
+
+        ));
         return "pcPlus/detail_company";
     }
 
@@ -309,7 +315,8 @@ public class PCController {
         model.addAttribute("code", code);
         model.addAttribute("systemConfig", systemConfig);
         Model pos = model.addAttribute("pos", this.positionService.getPosByCode(code));
-        Model brOriginal2 = model.addAttribute("brOriginal2", this.selectorService.brOriginal2());
+        /*查询该公司下对应的全部职位*/
+        Model allPosByOrg = model.addAttribute("allPosByOrg", this.positionService.getAllPosByOrg(this.positionService.getPosByCode(code).getOrgcode()));
         return "pcPlus/detail_job";
     }
 
@@ -404,12 +411,11 @@ public class PCController {
         return "pcPlus/head_good";
     }
 
-    /*显示在前台的原创信息*/
-    @RequestMapping("brOriginal")
+    /*最新校园杂志显示*/
+    @RequestMapping("indexNewAdvices")
     @ResponseBody
-    public List<Advice> brOriginal(@RequestParam() Map<String, String> param) {
-        List<Advice> map = this.selectorService.brOriginal(param);
-        return map;
+    public List<Advice> indexNewAdvices(@RequestParam() Map<String, String> param) {
+        return this.selectorService.indexNewAdvices(param);
     }
 
     /**

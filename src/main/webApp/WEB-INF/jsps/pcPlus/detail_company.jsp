@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>贝睿科技-金融智能求职专家</title>
+    <title>校园智能招聘网</title>
     <%@ include file="include_static_resource.jsp" %>
     <link href="${path}/resources/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <script src="${path}/resources/pcPlus/js/jquery-3.3.1.min.js"></script>
@@ -128,7 +128,8 @@
                 <div>
                     <input type="hidden" id='cid'/>
                     <div class='unit'>
-                        <textarea style="margin-left: 30px; margin-top: 20px;" rows="6" cols="45" placeholder="写私信" class="replyData"></textarea>
+                        <textarea style="margin-left: 30px; margin-top: 20px;" rows="6" cols="45" placeholder="写私信"
+                                  class="replyData"></textarea>
                     </div>
                 </div>
                 <div style='text-align:center;margin-top:10px' class="replyOk">
@@ -137,50 +138,39 @@
             </div>
 
             <section class="con_r job_con_r">
-                <h3 class="bt">贝睿文章/广告</h3>
-                <ul>
-                    <li class="home_con_li home_word">
-                        <a href="javascript:;"></a>
-                        <h4>"文章名/广告名"</h4>
-                        <p>——描述</p>
-                    </li>
-                    <li class="home_con_li home_word">
-                        <a href="javascript:;"></a>
-                        <h4>"文章名/广告名"</h4>
-                        <p>——描述</p>
-                    </li>
-                    <li class="home_con_li home_word">
-                        <a href="javascript:;"></a>
-                        <h4>"文章名/广告名"</h4>
-                        <p>——描述</p>
-                    </li>
+                <h3 class="bt">相似机构</h3>
+                <ul class="br">
+                    <c:forEach items="${similar}" var="similar">
+                        <li class="home_con_li home_word">
+                            <h4><a style="color: #2c84cc" href="${path}/pcviews/tocommentlist/${similar.code}"
+                                   target="_blank">${similar.shortname}-${similar.fullname}</a></h4>
+                          <p class="similarP">${similar.brief}</p>
+                        </li>
+                    </c:forEach>
                 </ul>
             </section>
         </div>
     </div>
 
     <!--尾-->
-    <footer>
-        <div class="footer">
-            <nav>
-                <a href="javascript:;">关于我们</a>
-                <a href="javascript:;">意见反馈</a>
-                <a href="javascript:;">使用帮助</a>
-                <a href="javascript:;">用户协议</a>
-            </nav>
-            <div class="foot_left">
-                <p class="foot_ebeirui"><em>贝睿</em>教育</p>
-                <p>
-                    Copyright © 2019 ebeirui.com京ICP备#####
-                    <span class="ml10">京公网安备############</span>
-                </p>
-                <p>ebeirui.com.保留所有版权. 使用这些服务遵守用户协议。</p>
-            </div>
-            <div class="foot_right">
-                <img src="${path}/resources/pcPlus/images/beirui_ma.jpg" alt="">
-            </div>
+   <footer>
+    <div class="footer">
+        <nav>
+            <a href="javascript:;">关于我们</a>
+            <a href="javascript:;">意见反馈</a>
+            <a href="javascript:;">使用帮助</a>
+            <a href="javascript:;">用户协议</a>
+        </nav>
+        <div class="foot_left">
+            <p class="foot_ebeirui"><em>校园</em>智能招聘</p>
+            <p>Powered by <a href="#" target="_Blank" style="color: #f0ad4e">合信码众</a></p>
         </div>
-    </footer>
+        <div class="foot_right">
+            <img src="${path}/resources/pcPlus/images/logo.png" alt="">
+        </div>
+    </div>
+</footer>
+
 </div>
 </body>
 <script type="text/javascript">

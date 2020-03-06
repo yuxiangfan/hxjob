@@ -88,13 +88,9 @@
             </div>
 
             <section class="con_r home_con_r">
-                <h3 class="bt">贝睿原创</h3>
-                <ul class="brOrig">
+                <h3 class="bt">最新校园杂志</h3>
+                <ul class="newAdvice">
                 </ul>
-                <div style="position: relative;" class="inform">
-                    <h3 class="r_tt">请关注我们哦！</h3>
-                    <img width="165px" src="${path}/resources/pcPlus/images/erweimaBr.jpg" alt="">
-                </div>
             </section>
         </div>
     </div>

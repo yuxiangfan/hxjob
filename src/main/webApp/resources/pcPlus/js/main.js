@@ -645,15 +645,6 @@ $(function () {
     }
 
 
-    /*var path = "/smartBR";
-
-    var examCalendar = function () {
-        $.ajax({
-            url: path + "/pcviews/praiseRemark/",
-
-        })
-    }
-*/
 
     //7.点评页JS;
     //7.1 .星星按钮监控
@@ -718,71 +709,7 @@ $(document).ready(function () {
         }
 
     })
-})
-
-//
-// json数值绑定下拉框
-/*$.get("json/br.json",{}, function(data) {
-    for(var i=0;i<data.length;i++) {
-        var item = data[i];
-        var vals = item['学校名称'] ;
-        $("#proSelector").append("<option value='"+vals+"'>"+vals+"</option>");
-    };
 });
-// json数值绑定下拉框
-$.get("/smartBR/resources/pcPlus/json/br_1.json",{}, function(data) {
-    for(var i=0;i<data.length;i++) {
-        var item = data[i];
-        var vals = item['细分专业'] ;
-        $("#major_ben").append("<option value='"+vals+"'>"+vals+"</option>");
-    };
-});
-// json数值绑定下拉框
-$.get("json/br.json",{}, function(data) {
-    for(var i=0;i<data.length;i++) {
-        var item = data[i];
-        var vals = item['学校名称'] ;
-        $("#proSelector_b").append("<option value='"+vals+"'>"+vals+"</option>");
-    };
-});
-// json数值绑定下拉框
-$.get("json/br_1.json",{}, function(data) {
-    for(var i=0;i<data.length;i++) {
-        var item = data[i];
-        var vals = item['细分专业'] ;
-        $("#proSelector_c").append("<option value='"+vals+"'>"+vals+"</option>");
-    };
-});
-// json数值绑定下拉框
-$.get("json/br_2.json",{}, function(data) {
-    for(var i=0;i<data.length;i++) {
-        var item = data[i];
-        var vals = item['公司名称'] ;
-        $("#proSelector_d").append("<option value='"+vals+"'>"+vals+"</option>");
-    };
-});
-// json数值绑定下拉框
-$.get("json/br_3.json",{}, function(data) {
-    for(var i=0;i<data.length;i++) {
-        var item = data[i];
-        var vals = item['公司名称'] ;
-        $("#proSelector_f").append("<option value='"+vals+"'>"+vals+"</option>");
-    };
-});
-$.get("json/br_bank.json",{}, function(data) {
-    for(var i=0;i<data.length;i++) {
-        var item = data[i];
-        var vals = item['__EMPTY_1'] ;
-        $("#proSelector_j").append("<option value='"+vals+"'>"+vals+"</option>");
-    };
-});
-$.get("json/br_5.json",{}, function(data) {
-    for(var i=0;i<data.length;i++) {
-        var item = data[i];
-        var vals = item['__EMPTY_1'] ;
-        $("#proSelector_h").append("<option value='"+vals+"'>"+vals+"</option>");
-    };
-});*/
 
 
 //detail_company JS

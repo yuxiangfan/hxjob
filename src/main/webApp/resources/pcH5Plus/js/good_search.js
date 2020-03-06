@@ -63,7 +63,7 @@ var getSelectors = function (curr) {
                     var add =
                         "<li>\n" +
                         "                            <a style=\"padding:0;\">\n" +
-                        "                                <div class=\"img br_center\"><img style=\"width: 115%;margin-top: 18px\" src=/smartBR" + rows[i].image + "></div>\n" +
+                        "                                <div class=\"img br_center\"><img style=\"width: 115%;margin-top: 18px\" src=/hxjob" + rows[i].image + "></div>\n" +
                         "                                <div class=\"info\">\n" +
                         "                                    <div class=\"name br_elli\">\n" +
                         "                                        <button style=\"border: none;background-color: white;margin-left: -7px;font-size:1em;margin-top: -5px;display: block;color: #2c84cc;font-weight: bold; \"\n" +
@@ -104,7 +104,7 @@ var getRecommendSelectors = function () {
 };
 
 var newDetail = function (id) {
-    window.location.href = "/smartBR/h5views/toNewsDetails/" + id;
+    window.location.href = "/hxjob/h5views/toNewsDetails/" + id;
 };
 
 var paging = function (totalCount) {

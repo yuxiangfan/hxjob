@@ -248,8 +248,8 @@ footer {
 }
 
 .foot_right img {
-    width: 80px;
-    height: 80px;
+    width: 200px;
+    height: 90px;
 }
 
 /*首页标语-搜索*/
@@ -501,6 +501,21 @@ footer {
     overflow: hidden;
     zoom: 1;
     position: relative;
+}
+.similarP{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.allJob li {
+    float: left;
+    font-size: 12px;
+    margin-left: 5px;
+}
+.allJob li:nth-child(1){
+    margin-left: 1px;
 }
 
 .li_image {
@@ -1191,15 +1206,17 @@ div.remark_r div h3 {
     cursor: pointer;
     color: #2f6f9f;
 }
-.p_sn_f{
+
+.p_sn_f {
     position: relative;
     width: 100%;
     height: 30px;
     margin-top: 10px;
     line-height: 30px;
-   left: 365px;
+    left: 365px;
 }
-.p_sn_f li{
+
+.p_sn_f li {
     float: left;
     display: block;
     height: 30px;
@@ -1214,6 +1231,7 @@ div.remark_r div h3 {
     position: relative;
     background-image: url("/hxjob/resources/pcPlus/images/remark.png");
 }
+
 .li_home_a {
     padding: 10px 0;
     border-bottom: 1px solid #E7E7E7;
@@ -1221,12 +1239,15 @@ div.remark_r div h3 {
     zoom: 1;
     position: relative;
 }
-.li_home_a{
+
+.li_home_a {
     clear: both;
 }
-.li_home_a:nth-child(1){
+
+.li_home_a:nth-child(1) {
 
 }
+
 .li_xz {
     margin-left: 10px;
     cursor: pointer;
@@ -1245,6 +1266,27 @@ div.remark_r div h3 {
     margin-left: 2px;
     margin-top: 8px;
     box-shadow: 1px 1px 1px #000000;
+}
+
+.newAdvice h4 a {
+    color: #2c84cc;
+}
+
+.newAdvice a {
+    color: #2c84cc;
+}
+
+.newAdvice p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.newAdviceList li {
+    float: left;
+    font-size: 12px;
 }
 
 .p_sm, .p_sd {
@@ -1710,17 +1752,21 @@ div.remark_r div h3 {
     left: 460px;
     top: 19px;
 }
-.class_ul_a{
+
+.class_ul_a {
     position: relative;
 }
+
 .class_ul_a li {
     font-size: 12px;
     float: left;
 }
-.class_ul_a li:nth-child(3){
+
+.class_ul_a li:nth-child(3) {
     margin-left: 175px;
 }
-.class_ul_a li:nth-child(4){
+
+.class_ul_a li:nth-child(4) {
     margin-left: 18px;
 }
 
@@ -1793,7 +1839,7 @@ div.remark_r div h3 {
     left: 66px;
     width: 47px;
     height: 22px;
-    font-size:11px;
+    font-size: 11px;
     text-align: center;
     cursor: pointer;
     background-color: #2f6f9f;

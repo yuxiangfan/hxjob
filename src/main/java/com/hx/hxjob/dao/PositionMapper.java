@@ -55,4 +55,6 @@ public interface PositionMapper {
     public List<Map<String, Object>> getPcHotPos();
 
     public List<Position> getPositionByOrgCode(String orgcode);
+
+    List<Position> getAllPosByOrg(String orgCode);
 }

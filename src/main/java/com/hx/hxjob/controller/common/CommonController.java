@@ -15,7 +15,6 @@ import java.util.List;
 /**
  * @program: com.hx.hxjob.controller.common
  * @description:
- * @created: 2020/01/20 09:22
  */
 @Controller
 @RequestMapping("common")

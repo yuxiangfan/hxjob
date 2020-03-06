@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>【工商银行招聘信息】-贝睿</title>
+    <title>校园智能招聘网</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
     <link href="${path}/resources/pcH5Plus/css/base.css" rel="stylesheet" type="text/css">
     <script src="${path}/resources/pcH5Plus/js/jquery-2.1.1.min.js"></script>
@@ -58,16 +58,21 @@
     </section>
 
     <!--底部-->
-    <footer class="br_foot">
-        <div class="br_dflex">
-            <div class="home"><a href="/"><i class="icon"></i> <em>首页</em></a></div>
-            <div class="br_flex dh" style="margin-left: -36px">
-                <a href="footer-help.jsp">帮助</a><em></em>
-                <a href="${path}/hm/login">登录</a><em></em>
-                <a href="${path}/hm/register">注册</a><em></em>
-                <p>Copyright © 2019 beirui.com<br/>
-                    贝睿网 版权所有</p>
+    <footer>
+        <div class="footer">
+            <nav>
+                <a href="javascript:;">关于我们</a>
+                <a href="javascript:;">意见反馈</a>
+                <a href="javascript:;">使用帮助</a>
+                <a href="javascript:;">用户协议</a>
+            </nav>
+            <div class="foot_left">
+                <p class="foot_ebeirui"><em>校园</em>智能招聘</p>
+                <p>Powered by <a href="#" target="_Blank" style="color: #f0ad4e">合信码众</a></p>
             </div>
+            <div class="foot_right">
+            <img src="${path}/resources/pcPlus/images/logo.png" alt="">
+        </div>
         </div>
     </footer>
 

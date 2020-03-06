@@ -39,9 +39,7 @@ public interface SelectorMapper {
 
     void deleteCommand(String cid);
 
-    List<Advice> brOriginalList2();
-
-    List<Advice> brOriginalList(Map<String, String> params);
+    List<Advice> indexNewAdvices(Map<String, String> params);
 
     public List<Advice> getArticleCurriculumPageForPC(Map<String, String> params);
 

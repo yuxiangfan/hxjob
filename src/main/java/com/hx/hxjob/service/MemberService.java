@@ -290,4 +290,9 @@ public class MemberService {
         result.put("total", this.memberMapper.downListCount(params));
         return result;
     }
+
+    public Member getLogin(String username, String userpwd) {
+        Member member = memberMapper.getLogin(username, userpwd);
+        return member;
+    }
 }

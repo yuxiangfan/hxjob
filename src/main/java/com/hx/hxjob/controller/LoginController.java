@@ -17,11 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
-/**
- * @program: com.hx.hxjob.controller
- * @description: 登录Mvc
- * @created: 2020/01/15 12:44
- */
 @Controller
 public class LoginController {
     @Autowired
