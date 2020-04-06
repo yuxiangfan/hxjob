@@ -15,11 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @program: com.hx.hxjob.service
- * @description: 会员
- * @created: 2020/01/19 14:18
- */
+
 @Service
 public class MemberService {
 

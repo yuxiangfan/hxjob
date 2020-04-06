@@ -2,13 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.hx.hxjob</groupId>
+
+    <groupId>com.hx</groupId>
     <artifactId>hxjob</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>hxjob</name>
-    <description>合信招聘网</description>
+    <description>招聘网</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -39,7 +40,7 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
-        
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -198,6 +199,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.1.41</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
             <version>1.4.10</version>
@@ -237,26 +244,6 @@
             <artifactId>poi-ooxml-schemas</artifactId>
             <version>3.8</version>
         </dependency>
-
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.4</version>
-        </dependency>
-        <!--手机登录验证-->
-        <dependency>
-            <groupId>com.yunpian.sdk</groupId>
-            <artifactId>yunpian-java-sdk</artifactId>
-            <version>1.2.7</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.json-lib</groupId>
-            <artifactId>json-lib</artifactId>
-            <version>2.4</version>
-            <classifier>jdk15</classifier>
-        </dependency>
-
     </dependencies>
 
     <build>

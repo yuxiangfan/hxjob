@@ -1944,12 +1944,7 @@ div.remark_r div h3 {
 /*position: static;*/
 /*width:100%;*/
 /*}*/
-.image_hy {
-    background-image: url("../images/car.jpg");
-    background-repeat: no-repeat;
-    width: 990px;
-    height: 400px;
-}
+
 
 .left_hy {
     float: left;

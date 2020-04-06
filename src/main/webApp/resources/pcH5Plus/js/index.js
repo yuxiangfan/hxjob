@@ -51,7 +51,7 @@ var getIndexHot = function () {
                         "        </div>\n" +
                         "    </a>\n" +
                         "    <ul class=\"ul_style\">\n" +
-                        "        <li style=\"color: #1b6d85\">国泰君安证券</li>\n" +
+                        "        <li style=\"color: #1b6d85\"></li>\n" +
                         " <li><a class='a_li_z' " + praiseCSS + " id=p" + rows[i].id + " onclick=praiseRemark('" + rows[i].id + "')></a><span style='position: relative;font-size: 13px;left: 301px;top: -15px;'>" + rows[i].remarkCount + "</span></li>" +
                         "    </ul>\n" +
                         "    <div style=\"border-bottom:1px solid #f3f3f3;margin-bottom: 6px\"></div>\n" +
@@ -88,7 +88,7 @@ var getIndexPoss = function () {
                         "                                            class=\"a_span\">" + data[i].organization.cityname + "</span>】" + data[i].organization.fullname + " -" + data[i].title + "</a>\n" +
                         "\n" +
                         "                                </div>\n" +
-                        "                                <p>\n" + data[i].organization.brief +
+                        "                                <p style='overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;height: 37px;text-indent: 2em;text-overflow: ellipsis;'>\n" + data[i].posBrief+
                         "                                </p>\n" +
                         "                            </div>\n" +
                         "    <ul class=\"ul_style\">\n" +
@@ -149,7 +149,7 @@ var getIndexOrgs = function () {
                         comment +
                         "                                    </div>\n" +
                         "                                </div>\n" +
-                        "<div  style='width: 340px'>" + data[i].brief + "</div>" +
+                        "<div  style='overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;height: 37px;text-indent: 2em;text-overflow: ellipsis;'>" + data[i].brief + "</div>" +
                         "                            </a>\n" +
                         "                            <ul class=\"ul_style\">\n" +
                         "                                <li><a class=\"a_li_h5_a\" href='javascrpt:void(0)' " + praiseCSS + " id=p" + data[i].code + " onclick=praise('" + data[i].code + "')></a><span id=praiseCount" + data[i].code + " style='position: relative;left: 230px;top: -31px;font-size: 13px'>" + data[i].praiseCount + "</span>" +

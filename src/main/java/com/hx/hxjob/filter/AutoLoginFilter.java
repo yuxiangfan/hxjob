@@ -3,6 +3,7 @@ import com.hx.hxjob.model.Member;
 import com.hx.hxjob.service.MemberService;
 import com.hx.hxjob.system.Constant;
 import com.hx.hxjob.util.CookieUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import javax.servlet.*;
@@ -16,7 +17,7 @@ import java.io.IOException;
 @Component
 public class AutoLoginFilter implements Filter {
 
-    @Resource
+    @Autowired
     private MemberService memberService;
 
     @Override

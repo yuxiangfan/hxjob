@@ -48,14 +48,14 @@
                         <input class="form-control" placeholder="手机号" id="username" type="text" autofocus="">
                         <div style="padding-left: 70px" id="readUsername"></div>
                     </div>
-                    <%--验证码--%>
+              <%--      &lt;%&ndash;验证码&ndash;%&gt;
                     <div style="height: 35px">
                         <label class="pull-left" for="username">验证码:</label>
                         <input class="form-control" style="width: 20%" id="login_input" type="text" autofocus="">
                         <button class="a_box a_box1"
                                 style="position: relative;left: 144px; top: -34px; height: 34px;width: 49px;background: #50D27D;border: none;color: #FFFFFF;">获取
                         </button>
-                    </div>
+                    </div>--%>
                     <%--   <input type="password" id="password" name="password" placeholder="" autocomplete="off" required><br>--%>
                     <div style="height: 35px">
                         <label class="pull-left" for="password">密&nbsp&nbsp&nbsp码:</label>
@@ -201,7 +201,7 @@
         }
     );
 
-    /*手机验证码*/
+/*    /!*手机验证码*!/
     $(".a_box1").click(function () {
         checkCode();
     });
@@ -224,7 +224,7 @@
                 times();
             }
         }, "json");
-    }
+    }*/
 
     var time = $.cookie("checktime");
     if (!(time == null || time == "null" || time.length == 0 || time == 0)) {

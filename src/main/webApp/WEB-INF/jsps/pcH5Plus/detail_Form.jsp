@@ -200,10 +200,10 @@
                                 <div style="position: relative;">
                                     <p><label class="lable_style_left">证书技能</label>
                                         <div style="margin-left: 96px;margin-bottom: 10px">
-                                    <p><input type="checkbox" id="skill_book1" name="category" class="nationBook" value="CPA全科|CFA三级|美精算师 "/>CPA全科|CFA三级|美精算师
+                                    <p><input type="checkbox" id="skill_book1" name="category" class="nationBook" value="计算机相关证书"/>计算机相关证书
                                     </p>
-                                    <p><input type="checkbox" id="skill_book2" name="category" class="nationBook" value="司法|CPA1-2级|FRM"/>司法|CPA1-2级|FRM</p>
-                                    <p><input type="checkbox" id="skill_book3" name="category" class="nationBook" value="司法考试"/>司法考试</p>
+                                    <p><input type="checkbox" id="skill_book2" name="category" class="nationBook" value="司法相关证书"/>司法相关证书</p>
+                                    <p><input type="checkbox" id="skill_book3" name="category" class="nationBook" value="金融相关证书"/>金融相关证书</p>
                                     <p><input type="checkbox" id="skill_book4" name="category" class="nationBook" value="从业资格"/>从业资格</p>
                                 </div>
                                 </p>
@@ -221,12 +221,10 @@
                                 <div style="position: relative;margin:5px 0;">
                                     <p><label class="lable_style_left">奖学金、学生干部、荣誉证书</label>
                                         <div style="margin-left: 96px;margin-bottom: 10px">
-                                    <p><input type="checkbox" id="nation_book1" name="category" class="nationBook" value="英文4/6级  "/>英文4/6级 </p>
-                                    <p><input type="checkbox" id="nation_book2" name="category" class="nationBook" value="托福/雅思"/>托福/雅思</p>
-                                    <p><input type="checkbox" id="nation_book3" name="category" class="nationBook" value="托业"/>托业</p>
-                                    <p><input type="checkbox" id="nation_book4" name="category" class="nationBook" value="Office"/>Office</p>
-                                    <p><input type="checkbox" id="nation_book5" name="category" class="nationBook" value="C# JAVA"/>C# JAVA</p>
-                                    <p><input type="checkbox" id="nation_book6" name="category" class="nationBook" value="无"/>无</p>
+                                    <p><input type="checkbox" id="nation_book1" name="category" class="nationBook" value="国家级奖学金/学生干部/大赛获奖  "/>国家级奖学金/学生干部/大赛获奖 </p>
+                                    <p><input type="checkbox" id="nation_book2" name="category" class="nationBook"  value="省级部奖学金/学生干部/大赛获奖"/>省级奖学金/学生干部/大赛获奖</p>
+                                    <p><input type="checkbox" id="nation_book3" name="category" class="nationBook" value="校级奖学金/学生干部/大赛获奖"/>校级奖学金/学生干部/大赛获奖</p>
+                                    <p><input type="checkbox" id="nation_book4" name="category" class="nationBook" value="无或其他"/>无或其他</p>
                                 </div>
                                 <div>
                                     <p><label class="lable_style_left">其他技能（运动员、钢琴、游泳等）、大赛</label>
@@ -416,11 +414,11 @@
         <div class="br_dflex">
             <div class="home"><a href="/"><i class="icon"></i> <em>首页</em></a></div>
             <div class="br_flex dh" style="margin-left: -36px">
-                <a href="footer-help.jsp">帮助</a><em></em>
+                <a href="#">帮助</a><em></em>
                 <a href="${path}/hm/login">登录</a><em></em>
                 <a href="${path}/hm/register">注册</a><em></em>
-                <p>Copyright © 2019 beirui.com<br/>
-                    校园智能招聘</p>
+                <p>校园智能招聘<br/>
+                       By  合信码众</p>
             </div>
         </div>
     </footer>

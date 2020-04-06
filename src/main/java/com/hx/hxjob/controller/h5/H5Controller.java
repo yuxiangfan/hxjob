@@ -76,7 +76,6 @@ public class H5Controller {
         model.addAttribute("cities", cities);
         model.addAttribute("systemConfig", systemConfig);
         model.addAttribute("systemConfig", systemConfig);
-//		System.out.println(request.getParameter("sc"));
         if (!StringUtils.isEmpty(params.get("sc"))) {
             model.addAttribute("searchContent", MyEscape.unescape(params.get("sc")));
         }

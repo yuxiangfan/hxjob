@@ -290,11 +290,11 @@
             <div class="br_dflex">
                 <div class="home"><a href="/"><i class="icon"></i> <em>首页</em></a></div>
                 <div class="br_flex dh" style="margin-left: -36px">
-                    <a href="footer-help.jsp">帮助</a><em></em>
+                    <a href="#">帮助</a><em></em>
                     <a href="login.jsp">登录</a><em></em>
                     <a href="register.jsp">注册</a><em></em>
-                    <p>Copyright © 2019 beirui.com<br/>
-                        校园智能招聘</p>
+                    <p>校园智能招聘<br/>
+                       By  合信码众</p>
                 </div>
             </div>
         </footer>

@@ -75,8 +75,8 @@ var getOrgComments = function (curr) {
                         "            </div>\n" +
                         "        </div>\n" +
                         "    </a>\n" +
-                        "    <ul class=\"ul_style\">\n" +
-                        "        <li style=\"color: #1b6d85\">国泰君安证券</li>\n" +
+                        "    <ul class=\"ul_style\">" +
+                        "        <li style=\"color: #1b6d85\">"+ rows[i].fullname +
                         " <li><a class='a_li_z' " + praiseCSS + " id=p" + rows[i].id + " onclick=praiseRemark('" + rows[i].id + "')></a><span style='position: relative;font-size: 13px;left: 301px;top: -15px;'>" + rows[i].remarkCount + "</span></li>" +
                         "    </ul>\n" +
                         "    <div style=\"border-bottom:1px solid #f3f3f3;margin-bottom: 6px\"></div>\n" +
@@ -144,7 +144,8 @@ var getOrgCommentsRecommend = function (curr) {
                         "        </div>\n" +
                         "    </a>\n" +
                         "    <ul class=\"ul_style\">\n" +
-                        "        <li style=\"color: #1b6d85\">国泰君安证券</li>\n" +
+                        "        <li style=\"color: #1b6d85\">"+ rows[i].fullname +
+                        "</li>" +
                         " <li><a class='a_li_z' " + praiseCSS + " id=p" + rows[i].id + " onclick=praiseRemark('" + rows[i].id + "')></a><span style='position: relative;font-size: 13px;left: 301px;top: -15px;'>" + rows[i].remarkCount + "</span></li>" +
                         "    </ul>\n" +
                         "    <div style=\"border-bottom:1px solid #f3f3f3;margin-bottom: 6px\"></div>\n" +
@@ -211,7 +212,8 @@ var getOrgCommentsOnJob = function (curr) {
                         "        </div>\n" +
                         "    </a>\n" +
                         "    <ul class=\"ul_style\">\n" +
-                        "        <li style=\"color: #1b6d85\">国泰君安证券</li>\n" +
+                        "        <li style=\"color: #1b6d85\">"+ rows[i].fullname +
+                        "</li>\n" +
                         " <li><a class='a_li_z' " + praiseCSS + " id=p" + rows[i].id + " onclick=praiseRemark('" + rows[i].id + "')></a><span style='position: relative;font-size: 13px;left: 301px;top: -15px;'>" + rows[i].remarkCount + "</span></li>" +
                         "    </ul>\n" +
                         "    <div style=\"border-bottom:1px solid #f3f3f3;margin-bottom: 6px\"></div>\n" +
@@ -278,7 +280,8 @@ var getOrgCommentsPractice = function (curr) {
                         "        </div>\n" +
                         "    </a>\n" +
                         "    <ul class=\"ul_style\">\n" +
-                        "        <li style=\"color: #1b6d85\">国泰君安证券</li>\n" +
+                        "        <li style=\"color: #1b6d85\">"+ rows[i].fullname +
+                        "</li>\n" +
                         " <li><a class='a_li_z' " + praiseCSS + " id=p" + rows[i].id + " onclick=praiseRemark('" + rows[i].id + "')></a><span style='position: relative;font-size: 13px;left: 301px;top: -15px;'>" + rows[i].remarkCount + "</span></li>" +
                         "    </ul>\n" +
                         "    <div style=\"border-bottom:1px solid #f3f3f3;margin-bottom: 6px\"></div>\n" +

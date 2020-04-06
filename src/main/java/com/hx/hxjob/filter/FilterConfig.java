@@ -9,9 +9,10 @@ import javax.annotation.Resource;
 
 /**
  * 配置自动登录
- * */
+ */
 @Configuration
 public class FilterConfig {
+
     @Resource
     private AutoLoginFilter autoLoginFilter;
 

@@ -456,7 +456,9 @@
             )
         </if>
         order by torg.ishot desc,torg.sort
-        limit ${pageStart},${pageSize}
+        <if test="pageStart!=null and pageSize!=''">
+            limit ${pageStart},${pageSize}
+        </if>
     </select>
     <select id="getPcOrganizationsCount" resultType="int">
         select count(1)

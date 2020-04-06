@@ -32,7 +32,7 @@ var getIndexPoss = function () {
                         "                    <div>" +
                         "                        <h3 ><a href=posDetail/" + data[i].code + " target='_blank'>【<span class=\"a_span\">" + data[i].organization.cityname + "</span>】" + data[i].organization.fullname + " - " + data[i].title + "</a></h3>" +
                         "                    </div>" +
-                        "                    <div class=\"p_sm\" style='overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;'>" + data[i].organization.brief + "</div>" +
+                        "                    <div class=\"p_sm\" style='overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;height: 28px;text-indent: 2em;text-overflow: ellipsis;'>" + data[i].posBrief + "</div>" +
                         "                    <ul class=\"ul_a\">" +
                         "                        <li>" + data[i].type + "</li>" +
                         "                        <li>" + data[i].organization.industryname + "</li>" +

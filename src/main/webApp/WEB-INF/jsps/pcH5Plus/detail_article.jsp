@@ -58,21 +58,16 @@
     </section>
 
     <!--底部-->
-    <footer>
-        <div class="footer">
-            <nav>
-                <a href="javascript:;">关于我们</a>
-                <a href="javascript:;">意见反馈</a>
-                <a href="javascript:;">使用帮助</a>
-                <a href="javascript:;">用户协议</a>
-            </nav>
-            <div class="foot_left">
-                <p class="foot_ebeirui"><em>校园</em>智能招聘</p>
-                <p>Powered by <a href="#" target="_Blank" style="color: #f0ad4e">合信码众</a></p>
+    <footer class="br_foot">
+        <div class="br_dflex">
+            <div class="home"><a href="/"><i class="icon"></i> <em>首页</em></a></div>
+            <div class="br_flex dh" style="margin-left: -36px">
+                <a href="#">帮助</a><em></em>
+                <a href="${path}/hm/login">登录</a><em></em>
+                <a href="${path}/hm/register">注册</a><em></em>
+                <p>校园智能招聘<br/>
+                       By  合信码众</p>
             </div>
-            <div class="foot_right">
-            <img src="${path}/resources/pcPlus/images/logo.png" alt="">
-        </div>
         </div>
     </footer>
 

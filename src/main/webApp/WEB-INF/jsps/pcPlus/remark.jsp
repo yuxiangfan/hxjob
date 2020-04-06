@@ -83,7 +83,7 @@
         <div style="position: relative;">
             <div style="position: absolute;width: 300px;height: 300px;background-color: #f8f8f8;left: 648px;top: 10px;padding:40px 10px 0;">
                 <h3>校园智能招聘</h3>
-                <p>感谢每一个同学的认真填写,您填写的数据将会为下一个贝睿人提供参考,同时也会让你获得更好的机会的选择</p>
+                <p>感谢每一个同学的认真填写,您填写的数据将会提供参考,同时也会让你获得更好的机会的选择</p>
             </div>
         </div>
         <div>

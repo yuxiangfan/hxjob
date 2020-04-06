@@ -32,7 +32,7 @@ public class LoginController {
     @RequestMapping(value = "logining", method = RequestMethod.POST)
     public String logining(SystemUser systemUser, HttpServletRequest request, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
         model.addAttribute("systemConfig", systemConfig);
-        /*检查验证码*/
+        /*检查index验证码*/
         if (systemUser == null) {
             return "error";
         }

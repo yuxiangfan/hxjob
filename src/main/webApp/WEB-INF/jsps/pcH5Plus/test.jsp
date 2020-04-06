@@ -56,7 +56,7 @@
                             <p class="btm_a">简介:原型为彩色性格测试,可简易方便地测出被测试者性格的优劣势.</p>
                         </div>
                         <div class="rectangle" onclick="javascrtpt:window.location.href='poscom/'">
-                            <div class="bt_b"><p class="bt">职业竞争力测试2019版</p></div>
+                            <div class="bt_b"><p class="bt">职业竞争力测试报告单</p></div>
                             <p class="btm_a">简介:大学生职业竞争力测试指南,可清晰明了地了解求职者的江湖地位...</p>
                         </div>
                         <div class="rectangle" style="height: 120px">
@@ -80,11 +80,11 @@
             <div class="br_dflex">
                 <div class="home"><a href="/"><i class="icon"></i> <em>首页</em></a></div>
                 <div class="br_flex dh" style="margin-left: -36px">
-                    <a href="footer-help.jsp">帮助</a><em></em>
+                    <a href="#">帮助</a><em></em>
                     <a href="${path}/hm/login">登录</a><em></em>
                     <a href="${path}/hm/register">注册</a><em></em>
-                    <p>Copyright © 2019 beirui.com<br/>
-                        校园智能招聘</p>
+                    <p>校园智能招聘<br/>
+                       By  合信码众</p>
                 </div>
             </div>
         </footer>

@@ -57,9 +57,9 @@
                             类型:
                         </li>
                         <a class="a_0" href="#" style="color:#fb8341">全部</a>|
-                        <a class="a_1" href="javascript:void(0)" val='实习'>实习</a>|
-                        <a class="a_2" href="javascript:void(0)" val='校招'>校招</a>|
-                        <a class="a_3" href="javascript:void(0)" val='社招'>社招</a>|
+                        <a class="a_1" href="javascript:void(0)" val='毕业生'>毕业生</a>|
+                        <a class="a_2" href="javascript:void(0)" val='实习生'>实习生</a>|
+                        <a class="a_3" href="javascript:void(0)" val='培训生'>培训生</a>|
                     </ul>
                     <div style="border-bottom:1px solid #f3f3f3;margin-bottom: 6px"></div>
 
@@ -102,11 +102,11 @@
             <div class="br_dflex">
                 <div class="home"><a href="/"><i class="icon"></i> <em>首页</em></a></div>
                 <div class="br_flex dh" style="margin-left: -36px">
-                    <a href="footer-help.jsp">帮助</a><em></em>
+                    <a href="#">帮助</a><em></em>
                     <a href="${path}/hm/login">登录</a><em></em>
                     <a href="${path}/hm/register">注册</a><em></em>
-                    <p>Copyright © 2019 beirui.com<br/>
-                        校园智能招聘</p>
+                    <p>校园智能招聘<br/>
+                       By  合信码众</p>
                 </div>
             </div>
         </footer>

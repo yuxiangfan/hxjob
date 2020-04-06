@@ -6,10 +6,7 @@ import com.hx.hxjob.enums.KeyEnum;
 import java.security.MessageDigest;
 
 /**
- * @author 唐鑫炯
- * @version 1.0
  * @description MD5加密工具类
- * @createDate 2014-9-29
  */
 public class MD5 {
     private final static String[] hexDigits = {"0", "1", "2", "3", "4", "5",

@@ -8,6 +8,7 @@
             tp.type,
             tp.address,
             tp.department,
+            tp.pos_brief,
             tp.rindex,
             tp.ishot,
             tp.duty,
@@ -39,6 +40,7 @@
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
         <result column="orgcode" jdbcType="VARCHAR" property="orgcode"/>
+        <result column="pos_brief" jdbcType="VARCHAR" property="posBrief"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="type" jdbcType="VARCHAR" property="type"/>
         <result column="address" jdbcType="VARCHAR" property="address"/>
@@ -274,7 +276,9 @@
             )
         </if>
         order by ishot desc,publishtime desc,createtime desc
-        limit ${pageStart},${pageSize}
+        <if test="pageStart!=null and pageSize!=''">
+            limit ${pageStart},${pageSize}
+        </if>
     </select>
     <select id="getPcPositionCount" resultType="int">
         select count(1)

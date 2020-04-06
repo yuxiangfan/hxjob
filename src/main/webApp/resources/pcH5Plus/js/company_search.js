@@ -89,47 +89,48 @@ var getOrgsHot = function (industry, city) {
         type: 'post',
         success: function (data) {
             $("#orgsHot").html("");
-            if (data != null) {
-                for (var i = 0; i < data.length; i++) {
+            var orgs = data.orgs;
+            if (orgs != null) {
+                for (var i = 0; i < orgs.length; i++) {
                     var praiseCSS = "";
                     var comment = "";
                     var collectCSS = "";
-                    var rindexPercent = data[i].score / 0.05;
-                    if (!data[i].praiseFlag) {
+                    var rindexPercent = orgs[i].score / 0.05;
+                    if (!orgs[i].praiseFlag) {
                         praiseCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/z2.png);'";
                     }
-                    if (!data[i].collectFlag) {
+                    if (!orgs[i].collectFlag) {
                         collectCSS = "style='background-image:url(/hxjob/resources/pcPlus/images/xin1.png);'";
                     }
-                    if (data[i].commentFlag) {
-                        comment = " <span style='position: absolute;right: 20px;'><button onclick=writeRemark('" + data[i].code + "') class='btn_style'>写点评</button></span>";
+                    if (orgs[i].commentFlag) {
+                        comment = " <span style='position: absolute;right: 20px;'><button onclick=writeRemark('" + orgs[i].code + "') class='btn_style'>写点评</button></span>";
                     }
 
                     var org =
                         "  <li>\n" +
                         "                            <a>\n" +
                         "                                <div class=\"img br_center\">\n" +
-                        "                                    <img  src=/hxjob" + data[i].logo + " alt=\"#\">\n" +
+                        "                                    <img  src=/hxjob" + orgs[i].logo + " alt=\"#\">\n" +
                         "                                </div>\n" +
                         "                                <div class=\"info\">\n" +
                         "                                    <div class=\"name br_elli\">\n" +
-                        "                                        <button onclick=fullname('" + data[i].code + "')  class=\"btn_style_name\">" + data[i].fullname + "\n" +
+                        "                                        <button onclick=fullname('" + orgs[i].code + "')  class=\"btn_style_name\">" + orgs[i].fullname + "\n" +
                         "                                        </button>\n" +
                         "                                    </div>\n" +
                         "                                    <div class=\"eval\">\n" +
-                        "                                        <div class=\"star_nr\"><span class='grade_star_h5' style='left: 557px; top:22px'><i style='width:" + rindexPercent + "%;'></i><em></em></span>薪酬:<i>" + data[i].salary + "</i> K/月\n" +
+                        "                                        <div class=\"star_nr\"><span class='grade_star_h5' style='left: 557px; top:22px'><i style='width:" + rindexPercent + "%;'></i><em></em></span>薪酬:<i>" + orgs[i].salary + "</i> K/月\n" +
                         "                                        </div>\n" +
                         comment +
                         "                                    </div>\n" +
                         "                                </div>\n" +
-                        "<div  style='width: 340px'>" + data[i].brief + "</div>" +
+                        "<div  style='overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;height: 37px;text-indent: 2em;text-overflow: ellipsis;'>" + orgs[i].brief + "</div>" +
                         "                            </a>\n" +
                         "                            <ul class=\"ul_style\">\n" +
-                        "                                <li><a class=\"a_li_h5_a\" href='javascrpt:void(0)' " + praiseCSS + " id=p" + data[i].code + " onclick=praise('" + data[i].code + "')></a><span id=praiseCount" + data[i].code + " style='position: relative;left: 230px;top: -31px;font-size: 13px'>" + data[i].praiseCount + "</span>" +
+                        "                                <li><a class=\"a_li_h5_a\" href='javascrpt:void(0)' " + praiseCSS + " id=p" + orgs[i].code + " onclick=praise('" + orgs[i].code + "')></a><span id=praiseCount" + orgs[i].code + " style='position: relative;left: 230px;top: -31px;font-size: 13px'>" + orgs[i].praiseCount + "</span>" +
                         "                                </li>\n" +
-                        "                                <li style='padding-left: 20px'><a class=\"a_li_h5_b\" href='javascrpt:void(0)' " + collectCSS + " id=c" + data[i].code + "   onclick=collect('" + data[i].code + "')></a><span id=collectCount" + data[i].code + " style='position: relative;left: 21px;top: -31px;font-size: 10px'>" + data[i].collectCount + "</span>\n" +
+                        "                                <li style='padding-left: 20px'><a class=\"a_li_h5_b\" href='javascrpt:void(0)' " + collectCSS + " id=c" + orgs[i].code + "   onclick=collect('" + orgs[i].code + "')></a><span id=collectCount" + orgs[i].code + " style='position: relative;left: 21px;top: -31px;font-size: 10px'>" + orgs[i].collectCount + "</span>\n" +
                         "                                </li>\n" +
-                        "                                <li style='padding-left: 20px'><a class=\"a_li_h5_c\" style=''></a><span style='position: relative;font-size: 10px;left: 21px;top: -31px;'>" + data[i].commontCount + "</span>\n" +
+                        "                                <li style='padding-left: 20px'><a class=\"a_li_h5_c\" style=''></a><span style='position: relative;font-size: 10px;left: 21px;top: -31px;'>" + orgs[i].commontCount + "</span>\n" +
                         "                                </li>\n" +
                         "                            </ul>\n" +
                         "                            <div style=\"border-bottom:1px solid #f3f3f3;margin-bottom: 6px\"></div>\n" +

@@ -58,10 +58,9 @@
 
                     <a src="#" class="forgetPassword" style="float: right; color: #337ab7">忘记密码？</a>
 
-                    <%--  <input class="login_submit_btn" type="submit" value="进入贝睿">--%>
                     <a href="javascript:void(0)" onclick='logining()'><input type="button"
                                                                              class="login_submit_btn"
-                                                                             value="进入贝睿"></a>
+                                                                             value="进入校园招聘"></a>
                     <a href="pcm/register">没有账号，请注册</a>
                     <span style="position: relative;left: 125px;">第三方登录</span>
                     <div style="position: relative;left: 170px"><a src="#"><img src="resources/pcPlus/images/QQ.png"
