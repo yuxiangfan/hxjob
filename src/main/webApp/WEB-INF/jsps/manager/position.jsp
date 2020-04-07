@@ -88,7 +88,7 @@
 <div class="wrapper">
     <div class="main-header">
         <a href="javascript:void(0)" class="logo">
-            <img src="resources/images/logo.png" style="width: 44px;">
+            <img src="resources/images/logo.png" style="width: 65px;">
             <span class="logo-lg">校园智能招聘</span>
         </a>
         <div class="navbar navbar-static-top" role="navigation">

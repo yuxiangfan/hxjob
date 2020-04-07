@@ -63,12 +63,11 @@ var getDatas = function (id) {
     $("#" + id).find("select").each(function () {
         datas[$(this).attr('id')] = $(this).val();
     });
+    $("#" + id).find("textarea").each(function () {
+        datas[$(this).attr('id')] = $(this).val();
+    });
     datas.duty = ueDuty.getContent();
     datas.requirement = ueRequirement.getContent();
-    datas.contact = ueContact.getContent();
-    datas.remark = ueRemark.getContent();
-    datas.posBrief = uePosBrief.getContent();
-    datas.jobSalary = uePosBrief.getContent();
     return datas;
 };
 

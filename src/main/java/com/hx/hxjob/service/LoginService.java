@@ -51,6 +51,8 @@ public class LoginService {
             result.put("msg", "密码未填");
             return result;
         }
+
+
         SystemUser querySystemUser = this.loginMapper.getSystemUserByName(systemUser.getUserName().trim());
 
         if (querySystemUser == null) {

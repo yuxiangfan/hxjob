@@ -81,7 +81,9 @@ var getDatas = function(id){
 	$("#"+id).find("select").each(function(){
 		datas[$(this).attr('id')] = $(this).val();
 	});
-	datas.brief = ueBrief.getContent();
+	$("#" + id).find("textarea").each(function () {
+		datas[$(this).attr('id')] = $(this).val();
+	});
 	datas.description = ueDescription.getContent();
 	return datas;
 }

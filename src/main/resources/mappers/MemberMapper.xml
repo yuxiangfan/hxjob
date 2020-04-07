@@ -402,7 +402,7 @@
     </select>
     <select id="posGet" parameterType="integer" resultMap="PositionGet">
         SELECT *
-        FROM POSITION p
+        FROM `position` p
         LEFT JOIN save_position_member spm ON p.code = spm.position_code
         LEFT JOIN `member` m ON m.id = spm.member_id
         LEFT JOIN organization og ON og.`code` = p.`orgcode`

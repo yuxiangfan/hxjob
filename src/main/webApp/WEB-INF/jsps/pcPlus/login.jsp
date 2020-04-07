@@ -55,8 +55,7 @@
                     </div>
 
                     <a style="float: left;margin-left: 60px;"><input style="float: left;width: 24px;" type="checkbox" id="autoLogin" value="YES"/>自动登录</a>
-
-                    <a src="#" class="forgetPassword" style="float: right; color: #337ab7">忘记密码？</a>
+                    
 
                     <a href="javascript:void(0)" onclick='logining()'><input type="button"
                                                                              class="login_submit_btn"

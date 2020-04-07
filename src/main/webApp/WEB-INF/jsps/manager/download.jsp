@@ -80,10 +80,6 @@
             width: 100px;
             height: 26px;
         }
-
-        .fc-time {
-            display: none;
-        }
     </style>
 
 </head>
@@ -102,15 +98,18 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="resources/images/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                            <span class="hidden-xs">${sessionScope.SYSTEM_USER.realName }</span><span class="caret"></span>
+                            <span class="hidden-xs">${sessionScope.SYSTEM_USER.realName }</span><span
+                                class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="user-footer">
-                                <a href="http://www.25175.net/" target="_Blank" class="btn btn-default btn-flat">技术支持</a>
+                                <a href="http://www.25175.net/" target="_Blank"
+                                   class="btn btn-default btn-flat">技术支持</a>
                             </li>
 
                             <li class="user-footer">
-                                <a href="JavaScript:void(0)" onclick="editpsd()" class="btn btn-default btn-flat">密码修改</a>
+                                <a href="JavaScript:void(0)" onclick="editpsd()"
+                                   class="btn btn-default btn-flat">密码修改</a>
                             </li>
 
                             <li class="user-footer">
@@ -118,8 +117,6 @@
                             </li>
                         </ul>
                     </li>
-
-
                 </ul>
             </div>
         </div>
@@ -127,8 +124,8 @@
     <div class="main-sidebar">
         <div class="sidebar">
             <ul class="sidebar-menu">
-                <c:set var="munu" value="GRCP"/>
-                <c:set var="munuc" value="XGCS"/>
+                <c:set var="munu" value="JXGL"/>
+                <c:set var="munuc" value="JXLB"/>
                 <c:forEach var='res' items='${sessionScope.SYSTEM_USER.systemRole.systemResources }'>
                     <li class=" treeview <c:if test='${munu==res.resourcesCode }'>active</c:if>">
                         <a href="${res.resources }">
@@ -136,7 +133,8 @@
                         </a>
                         <ul class="treeview-menu">
                             <c:forEach var='ch' items='${res.children }'>
-                                <li <c:if test='${munuc==ch.resourcesCode }'>class='active'</c:if>><a href="${ch.resources }">${ch.resourcesName }</a></li>
+                                <li <c:if test='${munuc==ch.resourcesCode }'>class='active'</c:if>><a
+                                        href="${ch.resources }">${ch.resourcesName }</a></li>
                             </c:forEach>
                         </ul>
                     </li>
@@ -149,38 +147,36 @@
     <div class="content-wrapper">
         <div class="content-header">
             <h1>
-                性格测评
+                精选下载
             </h1>
-
         </div>
         <div class="content">
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <div class='params'>
-                            会员昵称：<input type='text' name='nickname'/>
+                        <div class='params'>&nbsp;&nbsp;&nbsp;&nbsp;
+                            标题：<input type='text' name='title'/>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            得分：<input type='text' name='minscore'/>-<input type='text' name='maxscore'/>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            时间：<input type='date' style='width:160px' name='starttime'/>-<input style='width:160px' type='date' name='endtime'/>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-
                             <button class='bt' onclick='searchData()'>查询</button>
                             <button class='bt' onclick='reset()'>重置</button>
                         </div>
-                        <!--                <div class="panel-heading"> -->
-                        <!--                   <a href="JavaScript:void(0)" class="btn btn-default btn-flat" onclick='add()' >新增账户</a> -->
-                        <!--                 </div> -->
+                        <div class="panel-heading">
+                            <a href="JavaScript:void(0)" class="btn btn-default btn-flat"
+                               onclick="add_down()">新增下载</a>
+                        </div>
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
                                         <th>序号</th>
-                                        <th>会员</th>
-                                        <th>得分</th>
-                                        <th>评测结果</th>
-                                        <th>评测时间</th>
+                                        <th>标题</th>
+                                        <th>下载链接</th>
+                                        <th>百度云下载码</th>
+                                        <th>有效时间</th>
+                                        <th>是否付费</th>
+                                        <th>是否会员专享</th>
+                                        <th>创建时间</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
@@ -190,67 +186,64 @@
                                 </table>
                                 <div id='page' style='text-align:right;padding:10px'></div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
+    <%--新增编辑新闻所属--%>
     <div class='account' style='display:none'>
         <div>
-            <input type="hidden" id='aid'/>
+            <input type="hidden" id='cid'/>
             <div class='unit'>
-                <div class='left'>用户名</div>
-                <div class='right'><input type='text' id='username' maxLength=16/></div>
+                <div class='left'>标题</div>
+                <div class='right'><input type='text' id='title'></div>
             </div>
             <div class='unit'>
-                <div class='left'>密码</div>
-                <div class='right'><input type='password' id='password' maxLength=16/></div>
+                <div class='left'>下载链接</div>
+                <div class='right'><input type='text' id='downloadLink' ></div>
             </div>
             <div class='unit'>
-                <div class='left'>真实姓名</div>
-                <div class='right'><input type='text' id='realname' maxLength=16/></div>
-            </div>
-            <div class='unit'>
-                <div class='left'>联系方式</div>
-                <div class='right'><input type='text' id='mobile' maxLength=16/></div>
-            </div>
-            <div class='unit'>
-                <div class='left'>角色</div>
-                <div class='right'>
-                    <select id='role'>
-                        <c:forEach var='role' items='${roles}'>
-                            <option value='${role.desEntryId}'>${role.roleName}</option>
-                        </c:forEach>
-                    </select>
+                <div class='left'>百度云下载码</div>
+                <div class='right'><input type='text' id='downloadCode'>
                 </div>
             </div>
-            <div class='unit'>
-                <div class='left'>状态</div>
-                <div class='right'>
-                    <select id='status'>
-                        <option value='ENABLE'>启用</option>
-                        <option value='DISABLE'>禁用</option>
-                    </select>
-                </div>
+            <div class="unit">
+                <div class='left'>有效时间&nbsp&nbsp</div>
+                <select class="right" id="validTime">
+                    <option value='All'>永久有效</option>
+                    <option value='seven'>7天有效</option>
+                    <option value='one'>1天有效</option>
+                </select>
             </div>
-
+        </div>
+        <div class='unit'>
+            <div class='left'>是否付费&nbsp&nbsp</div>
+            <select class="right" id="whetherPay">
+                <option value='YES'>是</option>
+                <option value='NO'>否</option>
+            </select>
+        </div>
+        <div class="unit">
+            <div class="left">是否会员专享&nbsp&nbsp</div>
+            <select class="right" id="whetherMember">
+                <option value='YES'>是</option>
+                <option value='NO'>否</option>
+            </select>
         </div>
         <div style='text-align:center;margin-top:10px'>
             <button class='bt' id='save'>保存</button>
         </div>
     </div>
 
-    <!--右下角-->
+</div>
 
-    <div class="main-footer">
-        <strong class="text-danger">校园智能招聘</strong>
-    </div>
+<!--右下角-->
 
+<div class="main-footer">
+    <strong class="text-danger">校园智能招聘</strong>
+</div>
 
 </div><!-- ./wrapper -->
 <script src="resources/js/jQuery-2.1.4.min.js"></script>
@@ -258,9 +251,15 @@
 <script src="resources/js/jquery.metisMenu.js"></script>
 <script src="resources/js/app.min.js" type="text/javascript"></script>
 <script src="resources/layui/layui.js"></script>
-<script src="resources/business-js/manager/character.js"></script>
+<script src="resources/business-js/manager/download.js"></script>
 <script src="resources/business-js/common.js"></script>
 <script>
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#publishtime', type: 'datetime' //指定元素
+        });
+    })
 
 
 </script>

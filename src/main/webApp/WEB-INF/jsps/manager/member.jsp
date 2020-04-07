@@ -81,8 +81,8 @@
       <div class="main-sidebar">
         <div class="sidebar">
         <ul class="sidebar-menu">
-        	<c:set var="munu" value="GRCP"/>
-        	<c:set var="munuc" value="ZJCE"/>
+        	<c:set var="munu" value="MBGL"/>
+        	<c:set var="munuc" value="HYLB"/>
 	        <c:forEach var='res' items='${sessionScope.SYSTEM_USER.systemRole.systemResources }'>
 	        	 <li class=" treeview <c:if test='${munu==res.resourcesCode }'>active</c:if>">
 	              <a href="${res.resources }">
@@ -103,7 +103,7 @@
       <div class="content-wrapper">
         <div class="content-header">
           <h1>
-           	职业和竞争力测评
+           	会员列表
           </h1>
          
         </div>
@@ -112,29 +112,33 @@
             <div class="col-md-12">
               <div class="panel panel-default">
               	<div class='params'>
-              		会员昵称：<input type='text' name='nickname' />
+              		用户名：<input type='text' name='username' />
               		&nbsp;&nbsp;&nbsp;&nbsp;
-              		得分：<input type='text' name='minscore' />-<input type='text' name='maxscore' />
+              		昵称：<input type='text' name='nickname' />
               		&nbsp;&nbsp;&nbsp;&nbsp;
-              		时间：<input type='date' style='width:160px' name='starttime' />-<input style='width:160px' type='date' name='endtime' />
-              		&nbsp;&nbsp;&nbsp;&nbsp;
-              		
+              		状态：<select name='status'>
+              			<option value=''>全部</option>
+              			<option value='ENABLE'>启用</option>
+              			<option value='DISABLE'>禁用</option>
+              		</select>
               		<button class='bt' onclick='searchData()'>查询</button>
               		<button class='bt' onclick='reset()'>重置</button>
               	</div>
-<!--                <div class="panel-heading"> -->
-<!--                   <a href="JavaScript:void(0)" class="btn btn-default btn-flat" onclick='add()' >新增账户</a> -->
-<!--                 </div> -->
+               <div class="panel-heading">
+
+                </div>
                 <div class="panel-body">
                   <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover">
                       <thead>
 	                      <tr>
 	                        <th>序号</th>
-	                        <th>会员</th>
-	                        <th>得分</th>
-	                        <th>评测结果</th>
-	                        <th>评测时间</th>
+	                        <th>用户名</th>
+	                        <th>昵称</th>
+	                        <th>积分</th>
+	                        <th>创建时间</th>
+	                        <th>最后登录时间</th>
+	                        <th>状态</th>
 	                        <th>操作</th>
 	                      </tr>
                       </thead>
@@ -207,7 +211,7 @@
     <script src="resources/js/jquery.metisMenu.js"></script>
     <script src="resources/js/app.min.js" type="text/javascript"></script>
     <script src="resources/layui/layui.js"></script>
-    <script src="resources/business-js/manager/posAcom.js"></script>
+    <script src="resources/business-js/manager/member.js"></script>
     <script src="resources/business-js/common.js"></script>
     <script>
     	
