@@ -131,7 +131,7 @@ var getPoss = function (industry, city, type, pageStart, pageSize) {
                         "                    <div>" +
                         "                        <h3 ><a href=posDetail/" + poss[i].code + " target='_blank'>【<span class=\"a_span\">" + poss[i].organization.cityname + "</span>】" + poss[i].organization.fullname + " - " + poss[i].title + "</a></h3>" +
                         "                    </div>" +
-                        "                    <div class=\"p_sm\" style='overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;height: 28px;text-indent: 2em;text-overflow: ellipsis;'>" + poss[i].posBrief + "</div>" +
+                        "                    <div class=\"p_sm\" style='overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;'>" + poss[i].organization.brief + "</div>" +
                         "                    <ul class=\"ul_a\">" +
                         "                        <li>" + poss[i].type + "</li>" +
                         "                        <li>" + poss[i].organization.industryname + "</li>" +
